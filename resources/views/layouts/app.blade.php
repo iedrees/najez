@@ -1,5 +1,11 @@
 @extends('layouts.base')
 
 @section('body')
-    @yield('content')
+
+    <x-navbar />
+
+    <div class="container mx-auto">
+        @yield('content')
+    </div>
+    
 @endsection
