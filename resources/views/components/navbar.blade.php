@@ -1,14 +1,44 @@
 <nav class="bg-white border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
             <x-logo class="w-10" />
           </div>
- 
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
             @auth
+
+                <div x-data="{ open: false }" class="ml-3 relative inline-block">
+                  <button  @click="open = true" type="button" class="inline-flex justify-center w-full px-4 py-2  text-sm leading-5 font-medium text-gray-700 focus:bg-gray-100 hover:text-gray-500 focus:outline-none transition ease-in-out duration-150" id="options-menu" aria-haspopup="true" aria-expanded="true">
+                    المشاريع  
+                    <svg class=" mr-2  w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                  </button>
+                  <div class="origin-top-left absolute left-0 mt-px w-56">
+                    <div x-show="open" @click.away="open = false" class="rounded-b-md bg-white  " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                      <div class="px-4 py-3">
+                        <p class="text-sm leading-5">
+                          Signed in as
+                        </p>
+                        <p class="text-sm leading-5 font-medium text-gray-900 truncate">
+                          tom@example.com
+                        </p>
+                      </div>
+                      <div class="border-t border-gray-100"></div>
+                      <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Account settings
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Support
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">License
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <!-- Profile dropdown -->
                 <div x-data="{ open: false }" class="mr-3 relative">
                     <div>
