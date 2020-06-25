@@ -1,18 +1,18 @@
-<nav class="bg-white border-b border-gray-200">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<nav class="bg-white shadow-sm border-gray-50">
+    <div class="container mx-auto">
       <div class="flex justify-between items-center">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
-            <x-logo class="w-10" />
+            <x-logo class="w-10 h-8" /> 
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
             @auth
 
-                <div x-data="{ open: false }" class="ml-3 relative inline-block">
-                  <button  @click="open = true" type="button" class="inline-flex justify-center w-full px-4 py-2  text-sm leading-5 font-medium text-gray-700 focus:bg-gray-100 hover:text-gray-500 focus:outline-none transition ease-in-out duration-150" id="options-menu" aria-haspopup="true" aria-expanded="true">
+                <div x-data="{ open: false }" class="mx-2 relative inline-block border-l border-r border-gray-100">
+                  <button  @click="open = true" type="button" class="inline-flex justify-center w-full px-4 py-5 text-sm leading-5 font-medium text-gray-700 focus:bg-gray-100 hover:text-gray-500 focus:outline-none transition ease-in-out duration-150" id="options-menu" aria-haspopup="true" aria-expanded="true">
                     المشاريع  
-                    <svg class=" mr-2  w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <svg class=" mr-2 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                     </svg>
                   </button>
@@ -42,12 +42,12 @@
                 <!-- Profile dropdown -->
                 <div x-data="{ open: false }" class="mr-3 relative">
                     <div>
-                        <button @click="open = true" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out" id="user-menu" aria-label="User menu" aria-haspopup="true">
+                        <button @click="open = true" class="flex text-sm rounded-full focus:outline-none focus:bg-gray-300 transition duration-150 ease-in-out" id="user-menu" aria-label="User menu" aria-haspopup="true">
                         <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                         </button>
                     </div>
-                    <div x-show="open" @click.away="open = false" class="origin-top-left absolute left-0 mt-2 w-48 rounded-md shadow-lg">
-                        <div class="py-1 rounded-md bg-white shadow-xs">
+                    <div x-show="open" @click.away="open = false" class="origin-top-left absolute left-0 mt-3  w-48 rounded-md shadow-lg">
+                        <div class="py-1 rounded-b-md bg-white">
                         <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Your Profile
                         </a>
                         <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Settings
