@@ -9,17 +9,17 @@
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
             @auth
 
-                <div x-data="{ open: false }" class="mx-2 relative inline-block border-l border-r border-gray-100">
+                <div x-data="{ open: false }" class="mx-2 relative inline-block border-l-2 border-r-2 border-gray-100">
                   <button  @click="open = true" type="button" class="inline-flex justify-center w-full px-4 py-5 text-sm leading-5 font-medium text-gray-700 focus:bg-gray-100 hover:text-gray-500 focus:outline-none transition ease-in-out duration-150" id="options-menu" aria-haspopup="true" aria-expanded="true">
                     المشاريع  
                     <svg class=" mr-2 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                     </svg>
                   </button>
-                  <div class="origin-top-left absolute left-0 mt-px w-56 ">
-                    <div x-show="open" @click.away="open = false" class="rounded-b-md bg-white shadow-sm" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <div class="origin-top-left absolute left-0 w-56 ">
+                    <div x-show="open" @click.away="open = false" class="rounded-b-md bg-gray-100 p-1 -ml-0.5" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 
-                      <div class="py-1 mt-px">
+                      <div class="py-1 mt-px bg-white rounded-md">
                         <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Account settings
                         </a>
                         <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Support
@@ -32,14 +32,14 @@
                 </div>
 
                 <!-- Profile dropdown -->
-                <div x-data="{ open: false }" class="mr-3 relative">
+                <div x-data="{ open: false }" class="mr-3 relative mt-px">
                     <div>
-                        <button @click="open = true" class="flex text-sm rounded-full focus:outline-none focus:bg-gray-300 transition duration-150 ease-in-out" id="user-menu" aria-label="User menu" aria-haspopup="true">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                        <button @click="open = true" class="flex text-sm focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" id="user-menu" aria-label="User menu" aria-haspopup="true">
+                          <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                         </button>
                     </div>
-                    <div x-show="open" @click.away="open = false" class="origin-top-left absolute left-0 mt-3 w-48 rounded-md shadow-sm">
-                        <div class="py-1 rounded-b-md bg-white mt-1">
+                    <div x-show="open" @click.away="open = false" class="origin-top-left absolute left-0 mt-3 w-48 rounded-b-md bg-gray-100 p-1">
+                        <div class="py-1 rounded-md bg-white">
                           <div class="px-4 py-3">
                             <p class="text-sm leading-5 font-bold">
                               {{auth()->user()->name}}
