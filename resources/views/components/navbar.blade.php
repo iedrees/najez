@@ -16,18 +16,10 @@
                       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                     </svg>
                   </button>
-                  <div class="origin-top-left absolute left-0 mt-px w-56">
-                    <div x-show="open" @click.away="open = false" class="rounded-b-md bg-white  " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                      <div class="px-4 py-3">
-                        <p class="text-sm leading-5">
-                          Signed in as
-                        </p>
-                        <p class="text-sm leading-5 font-medium text-gray-900 truncate">
-                          tom@example.com
-                        </p>
-                      </div>
-                      <div class="border-t border-gray-100"></div>
-                      <div class="py-1">
+                  <div class="origin-top-left absolute left-0 mt-px w-56 ">
+                    <div x-show="open" @click.away="open = false" class="rounded-b-md bg-white shadow-sm" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+
+                      <div class="py-1 mt-px">
                         <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Account settings
                         </a>
                         <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Support
@@ -46,14 +38,24 @@
                         <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                         </button>
                     </div>
-                    <div x-show="open" @click.away="open = false" class="origin-top-left absolute left-0 mt-3  w-48 rounded-md shadow-lg">
-                        <div class="py-1 rounded-b-md bg-white">
-                        <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Your Profile
-                        </a>
-                        <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Settings
-                        </a>
-                        <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Sign out
-                        </a>
+                    <div x-show="open" @click.away="open = false" class="origin-top-left absolute left-0 mt-3 w-48 rounded-md shadow-sm">
+                        <div class="py-1 rounded-b-md bg-white mt-1">
+                          <div class="px-4 py-3">
+                            <p class="text-sm leading-5 font-bold">
+                              {{auth()->user()->name}}
+                            </p>
+                            <p class="text-sm leading-5 font-medium text-gray-500 truncate">
+                              {{auth()->user()->email}}
+                            </p>
+                          </div>
+                          <div class="border-t border-gray-100"></div>
+
+                          <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Your Profile
+                          </a>
+                          <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Settings
+                          </a>
+                          <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Sign out
+                          </a>
                         </div>
                     </div>
                 </div>

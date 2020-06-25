@@ -9,13 +9,13 @@
             <title>{{ config('app.name') }}</title>
         @endif
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=milano,sky,sky-bold,shekari" />
+        <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=milano,sky,sky-bold,shekari,almawadah,hama,neckar" />
 
         @livewireStyles
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
 
-    <body class="bg-gray-100">
+    <body class="bg-gray-200">
         @yield('body')
 
         <script src="{{ mix('js/app.js') }}"></script>

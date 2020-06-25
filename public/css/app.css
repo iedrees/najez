@@ -36961,6 +36961,18 @@ input:invalid, textarea:invalid, select:invalid {
   font-family: "shekari";
 }
 
+.font-almawadah {
+  font-family: "almawadah";
+}
+
+.font-hama {
+  font-family: "hama";
+}
+
+.font-neckar {
+  font-family: "neckar";
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;

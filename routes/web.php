@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
  
 Route::livewire('/', 'home.home')->name('home');
+Route::livewire('/projects/{id}', 'projects.show')->name('projects.show');
 
 Route::middleware('guest')->group(function () {
     Route::view('login', 'auth.login')->name('login');
