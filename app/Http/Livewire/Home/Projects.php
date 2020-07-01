@@ -7,7 +7,7 @@ use App\Models\Project;
 
 class Projects extends Component
 {
-    public $items;
+    public $items = [];
 
     public function mount()
     {
