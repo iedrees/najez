@@ -83,6 +83,13 @@
 
     <div class="min-h-screen">
         <div class="container mx-auto py-6">
+
+            @if (session()->has('message'))
+                <x-alert class="" :color="session('color')">
+                    {{ session('message') }}
+                </x-alert>
+            @endif
+
             {{$slot}}
         </div>
     </div>
