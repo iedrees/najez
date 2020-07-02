@@ -15,7 +15,7 @@ class Index extends Component
     public function mount($id)
     {
         $this->projectid = $id;
-        $this->tasks = Task::where('project_id', $id)->latest()->get();
+        $this->tasks = Task::where('project_id', $id)->with('user')->latest()->get();
     }
 
     public function refresh()
