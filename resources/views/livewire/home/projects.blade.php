@@ -1,10 +1,10 @@
 <div class="my-10 container mx-auto">
     @if(count($items))
         @foreach($items as $project)
-            <div class="bg-white shadow-sm overflow-hidden sm:rounded-lg mb-3">
+            <div class="bg-white shadow-smx overflow-hidden sm:rounded-sm mb-2 p-px">
                 <a href="{{route('projects.show', $project->id)}}" class="block hover:bg-{{data_get($project, 'color', 'teal')}}-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 py-5 p-2 bg-{{data_get($project, 'color', 'gray')}}-50  border-l-4 border-{{data_get($project, 'color', 'teal')}}-300 border-dotted">
+                        <div class="flex-shrink-0 py-5 rounded-r-sm  p-2 bg-{{data_get($project, 'color', 'gray')}}-50  border-l-2  border-{{data_get($project, 'color', 'teal')}}-100">
                             <img class="w-20 h-20 p-2 rounded-r opacity-75" src="{{data_get($project, 'image', asset('images/021-efficiency.svg'))}}  " alt="" />
                         </div>
                         <div class="min-w-0 px-5 py-5 flex-1 sm:flex sm:items-center sm:justify-between ">
@@ -45,3 +45,4 @@
             </div>
     @endif
 </div>
+ 

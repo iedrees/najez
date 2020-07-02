@@ -19,12 +19,13 @@
             <div class="origin-top-left absolute left-0 w-56 ">
               <div x-show="open" @click.away="open = false" class="rounded-b-md bg-gray-100 p-1 -ml-0.5" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 
-                <div class="py-1 mt-px bg-white rounded-md">
-                  <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Account settings
-                  </a>
-                  <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">Support
-                  </a>
-                  <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">License
+                <div class="py-1 mt-px bg-white rounded-sm">
+                  {{-- <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
+                    مشروع أول ..
+                  </a> --}}
+            
+                  <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
+                    أنشئ مشروع جديد
                   </a>
                 </div>
               </div>
@@ -32,47 +33,47 @@
           </div>
 
 
-              <!-- Profile dropdown -->
-              <div x-data="{ open: false }" class="mr-3 relative mt-px">
-                  <div>
-                      <button @click="open = true" class="flex text-sm focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" id="user-menu" aria-label="User menu" aria-haspopup="true">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                      </button>
-                  </div>
-                  <div x-show="open" @click.away="open = false" class="origin-top-left absolute left-0 mt-3 w-48 rounded-b-md bg-gray-100 p-1">
-                      <div class="py-1 rounded-md bg-white">
-                        <div class="px-4 py-3">
-                          <p class="text-sm leading-5 font-bold">
-                            {{auth()->user()->name}}
-                          </p>
-                          <p class="text-sm leading-5 font-medium text-gray-500 truncate">
-                            {{auth()->user()->email}}
-                          </p>
-                        </div>
-                        <div class="border-t border-gray-100"></div>
+          <!-- Profile dropdown -->
+          <div x-data="{ open: false }" class="mr-3 relative mt-px">
+              <div>
+                  <button @click="open = true" class="flex text-sm focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" id="user-menu" aria-label="User menu" aria-haspopup="true">
+                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                  </button>
+              </div>
+              <div x-show="open" @click.away="open = false" class="origin-top-left absolute left-0 mt-3 w-48 rounded-b-md bg-gray-100 p-1">
+                  <div class="py-1 rounded-sm bg-white">
+                    <div class="px-4 py-3">
+                      <p class="text-sm leading-5 font-bold">
+                        {{auth()->user()->name}}
+                      </p>
+                      <p class="text-sm leading-5 font-medium text-gray-500 truncate">
+                        {{auth()->user()->email}}
+                      </p>
+                    </div>
+                    <div class="border-t border-gray-100"></div>
 
-                        <a href="{{url('dashboard')}}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"> 
-                          {{__('Dashboard')}}
-                        </a>
-                        <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Settings
-                        </a>
-                        <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Sign out
-                        </a>
-                      </div>
+                    <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"> 
+                      الملف الشخصي
+                    </a>
+                   
+                    <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                      خروج
+                    </a>
                   </div>
               </div>
-          @else
-          <div class="py-2">
-            <a href="{{ route('login') }}" class="inline-flex mr-1 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none active:bg-indigo-200 transition ease-in-out duration-150">
+          </div>
+        @else
+        <div class="py-2">
+          <a href="{{ route('login') }}" class="inline-flex mr-1 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none active:bg-indigo-200 transition ease-in-out duration-150">
               {{__('Login')}}
           </a>
 
           <a href="{{ route('register') }}" class="inline-flex mr-1 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none  transition ease-in-out duration-150">
               {{__('Register')}}
           </a>
-          </div>
+        </div>
 
-          @endauth
+        @endauth
 
       </div>
     </div>
