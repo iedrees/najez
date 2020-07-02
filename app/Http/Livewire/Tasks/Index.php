@@ -22,7 +22,7 @@ class Index extends Component
     {
         $this->tasks = Task::where('project_id', $this->projectid)->latest()->get();
     }
-
+ 
     public function render()
     {
         return view('livewire.tasks.index');

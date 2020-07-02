@@ -17,7 +17,6 @@ class QuickCreate extends Component
 
     public function submit()
     {
- 
         $this->validate([
             'task' => 'required',
         ]);
@@ -30,7 +29,6 @@ class QuickCreate extends Component
         
         $this->task = '';
         $this->emit('taskAdded');
-
     }
 
     public function render()
