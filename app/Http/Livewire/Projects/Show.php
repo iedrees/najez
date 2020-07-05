@@ -11,7 +11,7 @@ class Show extends Component
 
     public function mount($id)
     {
-        $this->project = Project::where('id', $id)->firstOrFail();
+        $this->project = Project::where('id', $id)->with('members', 'user')->firstOrFail();
     }
 
     public function render()
