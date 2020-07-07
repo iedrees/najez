@@ -1,6 +1,6 @@
 
 <div>
- 
+
     <div class="bg-white shadow-sm overflow-hidden border-t-2 border-{{data_get($project, 'color', 'gray')}}-200">
 
         <div class=" container mx-auto">
@@ -31,9 +31,9 @@
                     </div>
                 </div>
             </div>
- 
+
         </div>
-    
+
     </div>
 
 
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-{{-- 
+{{--
     <div class="border-t-2 border-{{data_get($project, 'color', 'teal')}}-100 border-dottedx bg-{{data_get($project, 'color', 'teal')}}-50">
         <div class="container mx-auto pt-1">
             <div class="">
@@ -73,7 +73,7 @@
                         </svg>
                         <span> التفاصيل </span>
                     </a>
-    
+
                     </nav>
                 </div>
             </div>
