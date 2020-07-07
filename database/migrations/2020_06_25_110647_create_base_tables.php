@@ -41,6 +41,14 @@ class CreateBaseTables extends Migration
             $table->softDeletes('deleted_at', 0);	
             $table->timestamps();
         });
+
+        Schema::create('project_members', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->nullable();	 
+            $table->foreignId('project_id')->nullable();	
+            $table->string('rule', 100)->default('member');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -52,5 +60,6 @@ class CreateBaseTables extends Migration
     {
         Schema::dropIfExists('projects');
         Schema::dropIfExists('tasks');
+        Schema::dropIfExists('user_project');
     }
 }

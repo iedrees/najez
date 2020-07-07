@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = [
-        'name','user_id'
-    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function members()
+    {
+        return $this->hasMany(ProjectMember::class);
+    }
 }

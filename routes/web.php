@@ -8,6 +8,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('auth')->as('projects.')->prefix('/projects/{id}')->group(function () {
         Route::livewire('/', 'projects.show')->name('show');
         Route::livewire('/settings', 'projects.settings')->name('settings');
+        Route::livewire('/members', 'projects.members')->name('members');
     });
     Route::middleware('auth')->as('users.')->prefix('/users/{id}')->group(function () {
         Route::livewire('/', 'users.show')->name('show');
