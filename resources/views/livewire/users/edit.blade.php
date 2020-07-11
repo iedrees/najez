@@ -90,6 +90,5 @@
 {{--            </path>--}}
 {{--        </svg></button>--}}
 {{--</form>--}}
-<script>
-    window.livewire.emit('postAdded')
-</script>
+
+<x-text

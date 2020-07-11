@@ -7,7 +7,7 @@
 
                         <div class="flex items-center">
                             <div class="flex-shrink-0 py-5 rounded-r-sm  p-2">
-                                <img class="w-20 h-20 p-2 rounded-r opacity-75" alt=""/>
+                                <img class="h-8 w-8 rounded-sm" src="{{$user->image}}" alt="" />
                             </div>
                             <div class="min-w-0 px-5 py-5 flex-1 sm:flex sm:items-center sm:justify-between ">
                                 <div>
@@ -61,21 +61,26 @@
                                                                     x-on:click="isEditing = false"
                                                                 >✓</button>
                                                             </form>
-
-                                                            <small class="text-xs">Enter to save, Esc to cancel</small>
                                                         </div>
+                                                    </div>
                                                 </td>
 
                                             </tr>
                                             <tr>
                                                 <th> الأسم :</th>
                                                 <td>{{$user->name}}</td>
+
+                                            </tr>
+                                            <tr>
                                             </tr>
                                             <tr>
                                                 <th>
                                                     الإيميل :
                                                 </th>
                                                 <td>{{ $user->email }}</td>
+
+                                            </tr>
+                                            <tr>
 
                                             </tr>
                                             <tr>
