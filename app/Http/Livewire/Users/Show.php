@@ -3,30 +3,30 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
-use http\Client\Request;
-use Illuminate\Support\Str;
 use Livewire\Component;
 
-class Show extends Component
-{
+class Show extends Component {
     public $user;
     public $newName;
+    public $Name;
+    public $email;
+    public $password;
+
     public function mount($id)
     {
         $this->user = User::where('id', $id)->firstOrFail();
     }
+
     public function update($id)
     {
-        $newName = (string)Str::of($this->newName)->trim()->substr(0, 100);
-        $widget =  User::where('id', $id)->firstOrFail();
-        $widget->username = $newName ?? null;
-        $widget->save();
+        $widget = User::where('id', $id)->update([
+            'username' => $this->newName ?? $this->user->username,
+            'name' => $this->Name ?? $this->user->name,
+            'email' => $this->email ?? $this->user->email,
+            'password' => $this->password ?? $this->user->password,
+        ]);
 
     }
-//    private function init(User $user)
-//    {
-//        $this->user = $this->new;
-//    }
     public function render()
     {
         return view('livewire.users.show');

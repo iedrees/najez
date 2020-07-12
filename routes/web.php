@@ -14,7 +14,7 @@ Route::middleware('auth')->group(function () {
         Route::livewire('/', 'users.show')->name('show');
     });
         Route::livewire('edit', 'users.edit');
-    Route::livewire('pro', 'projects.project-create');
+    Route::livewire('create', 'projects.project-create')->name('create');
 
 
 });
