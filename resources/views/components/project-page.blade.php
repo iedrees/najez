@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-  
+
     <div class="min-h-screen">
         <div class="container mx-auto py-6">
 

@@ -1,20 +1,26 @@
 <?php
 
- 
-// Projects 
+
+// Projects
 Route::middleware('auth')->group(function () {
     Route::livewire('/', 'home.home')->name('home');
-  
+
     Route::middleware('auth')->as('projects.')->prefix('/projects/{id}')->group(function () {
         Route::livewire('/', 'projects.show')->name('show');
         Route::livewire('/settings', 'projects.settings')->name('settings');
         Route::livewire('/members', 'projects.members')->name('members');
     });
- 
-});
-  
+    Route::middleware('auth')->as('users.')->prefix('/users/{id}')->group(function () {
+        Route::livewire('/', 'users.show')->name('show');
+    });
+        Route::livewire('edit', 'users.edit');
+    Route::livewire('create', 'projects.project-create')->name('create');
 
-// Auth 
+
+});
+
+
+// Auth
 Route::middleware('auth')->group(function () {
     Route::view('email/verify', 'auth.verify')->middleware('throttle:6,1')->name('verification.notice');
     Route::get('email/verify/{id}/{hash}', 'Auth\EmailVerificationController')->middleware('signed')->name('verification.verify');

@@ -20,13 +20,13 @@ class QuickCreate extends Component
         $this->validate([
             'task' => 'required',
         ]);
- 
+
         Task::create([
             'task' => $this->task,
             'project_id' => $this->projectid,
             'user_id' => auth()->user()->id,
         ]);
-        
+
         $this->task = '';
         $this->emit('taskAdded');
     }
