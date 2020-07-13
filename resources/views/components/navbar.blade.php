@@ -32,9 +32,6 @@
                                        role="menuitem">
                                         أنشئ مشروع جديد
                                     </a>
-                                    {{--                    <a href="{{ route('create'), auth()->user()->name}}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" type="button" @click='isDialogOpen = true' wire:click="submit">--}}
-                                    {{--                        أنشئ مشروع جديد--}}
-                                    {{--                    </a>--}}
                                 </div>
                             </div>
                         </div>
