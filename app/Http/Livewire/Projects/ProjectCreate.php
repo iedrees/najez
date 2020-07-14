@@ -8,26 +8,21 @@ use Livewire\Component;
 
 class ProjectCreate extends Component {
     public $name;
-    public $user_id;
-
+ 
     public function submit()
     {
         $this->validate([
-            'name' => 'required',
+            'name' => 'required|min:2',
         ]);
 
-        Project::create([
+        $project = Project::create([
             'name' => $this->name,
-            //'user_id' =>$user['id'],
-            //'user_id' =>$user_id ,
             'user_id' => auth()->user()->id,
-
         ]);
 
         session()->flash('color', 'green');
         session()->flash('message', 'تمت إضافة المشروع بنجاح.');
-        $this->redirect(route('home'));
-        //$this->redirect(route('projects.show', $project->id));
+        $this->redirect(route('projects.show', $project->id));
     }
 
     public function render()

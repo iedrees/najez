@@ -13,10 +13,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware('auth')->as('users.')->prefix('/users/{id}')->group(function () {
         Route::livewire('/', 'users.show')->name('show');
     });
-        Route::livewire('edit', 'users.edit');
-    Route::livewire('create', 'projects.project-create')->name('create');
-
-
+    
+    Route::livewire('profile', 'users.edit')->name('profile');
+    Route::livewire('create-project', 'projects.project-create')->name('create-project');
 });
 
 

@@ -1,5 +1,5 @@
 @props([
-    'label',
+    'label' => '',
     'for',
     'error' => false,
     'helpText' => false,
@@ -9,9 +9,11 @@
 <div class="  ">
   <div class="md:col-span-2">
     <div class="sm:items-start sm:pb-5 bg-white px-5 py-4 rounded mb-1">
-        <label for="{{ $for }}" class="block text-sm font-bold leading-5 text-gray-600 sm:mt-px">
-            {{ $label }}
-        </label>
+        @if ($label)
+            <label for="{{ $for }}" class="block text-sm font-bold leading-5 text-gray-600 sm:mt-px">
+              {{ $label }}
+            </label>
+        @endif
 
         <div class="mt-3">
             {{ $slot }}
