@@ -1,2 +1,2 @@
-<livewire:home.projects />
+<livewire:home.projects  />  
   

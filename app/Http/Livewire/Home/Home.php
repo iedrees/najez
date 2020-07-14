@@ -14,7 +14,7 @@ class Home extends Component {
     public function countTasks($project_id)
     {
         $countTask = Task::where('project_id', $project_id)->count();
-        //dd($countTask);
+        dd($countTask);
     }
 
     public function countDoneTasks($project_id)
