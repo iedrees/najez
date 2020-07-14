@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Projects;
 
+use App\Models\Task;
 use Livewire\Component;
 use App\Models\Project;
 
@@ -19,7 +20,6 @@ class Show extends Component
     {
         $this->addedMessageVisible = true;
     }
-
     public function render()
     {
         return view('livewire.projects.show');
