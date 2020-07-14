@@ -1,7 +1,7 @@
 <div class="my-10 container mx-auto">
     @if(count($items))
         @foreach($items as $project)
-            <div class="bg-white shadow-smx overflow-hidden sm:rounded-sm mb-2 p-px">
+            <div class="bg-white shadow-smx overflow-hidden sm:rounded-sm mb-2 p-px"  >
                 <a href="{{route('projects.show', $project->id)}}" class="block hover:bg-{{data_get($project, 'color', 'teal')}}-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                     <div class="flex items-center">
                         <div class="flex-shrink-0 py-5 rounded-r-sm  p-2 bg-{{data_get($project, 'color', 'gray')}}-50  border-l-2  border-{{data_get($project, 'color', 'teal')}}-100">
@@ -18,26 +18,32 @@
                                         @foreach ($project->members as $member)
                                             <img class="-mr-0.5 inline-block h-8 w-8 rounded-full text-white shadow-solid" src="{{$member->user->image}}" title="{{$member->user->name}}" alt="{{$member->user->name}}" />
                                         @endforeach
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                             <div class="mt-4 pl-5 flex-shrink-0 sm:mt-0">
                             <div class="flex items-center overflow-hidden text-2xl text-gray-700">
-                                <span class="text-gray-500 mx-1"> 63   </span> 
+                                <div wire:load="countTasks({{ $project->id}})">
+                                <p class="text-gray-500 mx-1" wire:model="countTask" >  </p>
+                                </div>
                                 <span class="text-gray-200 mx-1">/</span>
-                                <b class="text-green-300"> 234 </b> 
+                                <div wire:load="countDoneTasks({{ $project->id}})">
+                                <b class="text-green-300">  </b>
+                                </div>
                                 <i class="ti-check-box text-sm text-green-300 inline-block -mt-1.5 mr-2"></i>
                             </div>
                             </div>
+
                         </div>
                     </div>
                 </a>
             </div>
         @endforeach
-    @else 
-            <div>   
-                No projects ..
+    @else
+            <div>
+                 لا يوجد مشاريع  
             </div>
     @endif
+
 </div>
- 
+

@@ -5,13 +5,13 @@
         </a>
 
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
-            Create a new account
+            التسجيل بحساب جديد
         </h2>
 
         <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
-            Or
+            أو
             <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                sign in to your account
+                تسجيل الدخول إلي حسابك
             </a>
         </p>
     </div>
@@ -21,7 +21,7 @@
             <form wire:submit.prevent="register">
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 leading-5">
-                        Name
+                        الأسم
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -35,7 +35,7 @@
 
                 <div class="mt-6">
                     <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
-                        Email address
+                        البريد الإلكتروني
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -49,7 +49,7 @@
 
                 <div class="mt-6">
                     <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
-                        Password
+                        رمز الدخول
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -60,12 +60,12 @@
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
- 
+
 
                 <div class="mt-6">
                     <span class="block w-full rounded-md shadow-sm">
                         <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                            Register
+                            تسجيل
                         </button>
                     </span>
                 </div>
