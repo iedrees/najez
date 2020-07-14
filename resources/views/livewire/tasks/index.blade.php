@@ -16,10 +16,7 @@
         </div>
     @else
         <div>
-            <h4 class="font-medium text-gray-800 truncate text-2xl">
-                <span class="mx-2">ابدء بكتابه المهام </span>
-            </h4>
-            <br>
+            <div class="border border-blue-200 text-base my-3 bg-blue-50 text-blue-600 p-3 rounded">ابدء بكتابه المهام </div>
             <livewire:tasks.quick-create :projectid="$projectid"/>
         </div>
     @endif
