@@ -11,6 +11,7 @@
                             <div>
                                 <div class="font-medium text-gray-700 truncate">
                                     <b class="text-2xl"> {{$project->name}} </b>
+                                      
                                 </div>
                                 <div class="mt-3 flex flex-shrink">
                                     <div class="flex overflow-hidden">
@@ -23,13 +24,9 @@
                             </div>
                             <div class="mt-4 pl-5 flex-shrink-0 sm:mt-0">
                             <div class="flex items-center overflow-hidden text-2xl text-gray-700">
-                                <div wire:load="countTasks({{ $project->id}})">
-                                <p class="text-gray-500 mx-1" wire:model="countTask" >  </p>
-                                </div>
+                                <p class="text-gray-500 mx-1"  >  {{$project->tasks_count}}</p>
                                 <span class="text-gray-200 mx-1">/</span>
-                                <div wire:load="countDoneTasks({{ $project->id}})">
-                                <b class="text-green-300">  </b>
-                                </div>
+                                <b class="text-green-300"> {{$project->done_tasks_count}}  </b>
                                 <i class="ti-check-box text-sm text-green-300 inline-block -mt-1.5 mr-2"></i>
                             </div>
                             </div>

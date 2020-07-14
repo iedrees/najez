@@ -18,4 +18,15 @@ class Project extends Model
     {
         return $this->hasMany(ProjectMember::class);
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function doneTasks()
+    {
+        return $this->hasMany(Task::class)->where('done', true);
+    }
+
 }

@@ -11,7 +11,7 @@ class Projects extends Component
 
     public function mount()
     {
-        $this->items = Project::get();
+        $this->items = Project::withCount('tasks', 'doneTasks')->get();
     }
 
     public function render()
