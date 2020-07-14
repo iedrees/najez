@@ -4,7 +4,7 @@
         <x-fields.wrapper label="اسم المشروع" for="item.name" :error="$errors->first('item.name')">
             <x-fields.text wire:model.lazy="item.name" id="item.name" rules="required"/>
         </x-fields.wrapper>
-        
+ 
         <x-fields.wrapper label="حالةالمشروع" for="item.status" :error="$errors->first('item.status')">
             <x-fields.text wire:model.lazy="item.status" id="item.status" rules="required"/>
         </x-fields.wrapper>

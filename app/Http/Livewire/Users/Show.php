@@ -7,26 +7,30 @@ use Livewire\Component;
 
 class Show extends Component {
     public $user;
-    public $newName;
-    public $Name;
-    public $email;
-    public $password;
-
-    public function mount($id)
+ 
+    public function mount()
     {
-        $this->user = User::where('id', $id)->firstOrFail();
+        $this->user = auth()->user()->toArray();
     }
 
-    public function update($id)
+    public function update()
     {
-        $widget = User::where('id', $id)->update([
-            'username' => $this->newName ?? $this->user->username,
-            'name' => $this->Name ?? $this->user->name,
-            'email' => $this->email ?? $this->user->email,
-            'password' => $this->password ?? $this->user->password,
+        $this->validate([
+            'user.username' => 'required',
+            'user.name' => 'required',
+            'user.email' => 'required|email',
         ]);
 
+        $user = User::where('id', auth()->user()->id)->firstOrFail();
+        $user->username = data_get($this, 'user.username');
+        $user->name     = data_get($this, 'user.name');
+        $user->email    = data_get($this, 'user.email');
+        $user->save();
+
+        session()->flash('color', 'green');
+        session()->flash('message', 'تم التعديل بنجاح.');
     }
+    
     public function render()
     {
         return view('livewire.users.show');

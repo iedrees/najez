@@ -8,7 +8,7 @@
 
 <div class="  ">
   <div class="md:col-span-2">
-    <div class="sm:items-start sm:pb-5 bg-white px-5 py-4 rounded mb-1">
+    <div class="sm:items-start sm:pb-5 bg-white px-5 py-4 rounded mb-1 border border-transparent @if($error) border-red-400 @endif">
         @if ($label)
             <label for="{{ $for }}" class="block text-sm font-bold leading-5 text-gray-600 sm:mt-px">
               {{ $label }}

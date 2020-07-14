@@ -5,22 +5,23 @@
 Route::middleware('auth')->group(function () {
     Route::livewire('/', 'home.home')->name('home');
 
-    Route::middleware('auth')->as('projects.')->prefix('/projects/{id}')->group(function () {
+    Route::as('projects.')->prefix('/projects/{id}')->group(function () {
         Route::livewire('/', 'projects.show')->name('show');
         Route::livewire('/settings', 'projects.settings')->name('settings');
         Route::livewire('/members', 'projects.members')->name('members');
     });
-    Route::middleware('auth')->as('users.')->prefix('/users/{id}')->group(function () {
-        Route::livewire('/', 'users.show')->name('show');
-    });
-    
-    Route::livewire('profile', 'users.edit')->name('profile');
+
     Route::livewire('create-project', 'projects.project-create')->name('create-project');
 });
 
 
 // Auth
 Route::middleware('auth')->group(function () {
+
+    // profile
+    Route::livewire('/profile', 'users.show')->name('profile');
+
+    // Auth
     Route::view('email/verify', 'auth.verify')->middleware('throttle:6,1')->name('verification.notice');
     Route::get('email/verify/{id}/{hash}', 'Auth\EmailVerificationController')->middleware('signed')->name('verification.verify');
     Route::get('logout', 'Auth\LogoutController')->name('logout');
