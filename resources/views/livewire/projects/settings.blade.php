@@ -18,9 +18,12 @@
         </x-fields.wrapper>
 
                 <x-fields.wrapper label="شعار المشروع " for="item.image" :error="$errors->first('item.image')">
-                    <input type="file" wire:model="image">
-                    @error('image') <span class="error">{{ $message }}</span> @enderror
+                    <label class="w-32 flex flex-col items-center px-2 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+                        <span class="mt-2 text-base leading-normal">اختر ملف </span>
+                        <input type="file" wire:model="image" class="hidden">
+                    </label>
                 </x-fields.wrapper>
+
         <div class="text-left mt-2">
             <button type="submit"
                     class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
@@ -32,12 +35,4 @@
 
 
 </x-project-page>
-<script>
-    ('#datepicker').datepicker({
-        dateFormat: 'dd-mm-yy',
-    });
 
-    $('#datepicker').on('change', function (e) {
-    @this.set('taskduedate', e.target.value)
-    });
-</script>
