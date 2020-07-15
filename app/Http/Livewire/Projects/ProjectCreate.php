@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class ProjectCreate extends Component {
     public $name;
- 
+
     public function submit()
     {
         $this->validate([
