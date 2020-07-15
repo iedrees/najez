@@ -17,13 +17,10 @@
             <x-fields.text wire:model.lazy="item.deadline" id="item.deadline" rules="required" type="date"/>
         </x-fields.wrapper>
 
-                <x-fields.wrapper label="شعار المشروع " for="item.image" :error="$errors->first('item.image')">
-{{--                <form wire:submit.prevent="save" enctype="multipart/form-data">--}}
-                    <input type="file" wire:model="image">
-                    @error('image') <span class="error">{{ $message }}</span> @enderror
-{{--                    <button type="submit">رفع الصوره</button>--}}
-{{--                </form>--}}
-                </x-fields.wrapper>
+        <x-fields.wrapper label="شعار المشروع " for="item.image" :error="$errors->first('item.image')">
+            <input type="file" wire:model="image"
+                                @error('image') <span class="error">{{ $message }}</span> @enderror
+        </x-fields.wrapper>
         <div class="text-left mt-2">
             <button type="submit"
                     class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
@@ -35,12 +32,12 @@
 
 
 </x-project-page>
-<script>
-    ('#datepicker').datepicker({
-        dateFormat: 'dd-mm-yy',
-    });
+{{--<script>--}}
+{{--    ('#datepicker').datepicker({--}}
+{{--        dateFormat: 'dd-mm-yy',--}}
+{{--    });--}}
 
-    $('#datepicker').on('change', function (e) {
-    @this.set('taskduedate', e.target.value)
-    });
-</script>
+{{--    $('#datepicker').on('change', function (e) {--}}
+{{--    @this.set('taskduedate', e.target.value)--}}
+{{--    });--}}
+{{--</script>--}}
