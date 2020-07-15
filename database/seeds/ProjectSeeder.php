@@ -17,21 +17,26 @@ class ProjectSeeder extends Seeder
 
 
         Project::create([
-            'name'           => 'كابتشر',
-            'user_id'        => 1,
+            'name' => 'كابتشر',
+            'user_id' => 1,
+            'image' => 'uploads/images/1594814830.png',
+
         ]);
 
         Project::create([
-            'name'           => 'طويق',
-            'user_id'        => 1,
-            'color'          => 'purple',
+            'name' => 'طويق',
+            'user_id' => 1,
+            'color' => 'purple',
+            'image' => 'uploads/images/1594814275.png',
         ]);
 
         Project::create([
-            'name'           => 'تثقيف',
-            'user_id'        => 1,
-            'color'          => 'indigo',
+            'name' => 'تثقيف',
+            'user_id' => 1,
+            'color' => 'indigo',
+            'image' => 'uploads/images/1594814935.png',
         ]);
+
 
         for ($i = 0; $i < 50; $i++) {
             Task::create([
@@ -41,6 +46,6 @@ class ProjectSeeder extends Seeder
                 'done'           => array_rand([true,false])
             ]);
           }
- 
+
     }
 }

@@ -21,7 +21,7 @@ class CreateBaseTables extends Migration
             $table->text('details')->nullable();
             $table->string('status', 100)->default('active');
             $table->string('color', 20)->default('teal')->nullable();
-            $table->string('image')->nullable();
+            $table->mediumText('image')->nullable();
             $table->json('meta')->nullable();
             $table->date('deadline')->nullable();
             $table->softDeletes('deleted_at', 0);

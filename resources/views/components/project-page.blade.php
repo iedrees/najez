@@ -5,7 +5,7 @@
             <div class="block focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 py-5 p-2 bg-gray-50">
-                        <img class="w-20 h-20 p-2 rounded-r opacity-75" src="{{data_get($project, 'image', asset('images/021-efficiency.svg'))}}  " alt="" />
+                        <img class="w-20 h-20 p-2 rounded-r opacity-75" src="{{data_get($project,$project->name)}}  " alt="" />
                     </div>
                     <div class="min-w-0 px-5 py-5 flex-1 sm:flex sm:items-center sm:justify-between ">
                         <div>

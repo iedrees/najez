@@ -1,6 +1,6 @@
 <x-project-page :project="$project">
 
-    <form wire:submit.prevent="submit">
+    <form wire:submit.prevent="submit" enctype="multipart/form-data">
         <x-fields.wrapper label="اسم المشروع" for="item.name" :error="$errors->first('item.name')">
             <x-fields.text wire:model.lazy="item.name" id="item.name" rules="required"/>
         </x-fields.wrapper>
@@ -17,6 +17,12 @@
             <x-fields.text wire:model.lazy="item.deadline" id="item.deadline" rules="required" type="date"/>
         </x-fields.wrapper>
 
+                <x-fields.wrapper label="شعار المشروع " for="item.image" :error="$errors->first('item.image')">
+                    <label class="w-32 flex flex-col items-center px-2 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+                        <span class="mt-2 text-base leading-normal">اختر ملف </span>
+                        <input type="file" wire:model="image" class="hidden">
+                    </label>
+                </x-fields.wrapper>
 
         <div class="text-left mt-2">
             <button type="submit"
@@ -29,12 +35,4 @@
 
 
 </x-project-page>
-<script>
-    ('#datepicker').datepicker({
-        dateFormat: 'dd-mm-yy',
-    });
 
-    $('#datepicker').on('change', function (e) {
-    @this.set('taskduedate', e.target.value)
-    });
-</script>
