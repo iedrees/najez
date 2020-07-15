@@ -18,11 +18,8 @@
         </x-fields.wrapper>
 
                 <x-fields.wrapper label="شعار المشروع " for="item.image" :error="$errors->first('item.image')">
-{{--                <form wire:submit.prevent="save" enctype="multipart/form-data">--}}
                     <input type="file" wire:model="image">
                     @error('image') <span class="error">{{ $message }}</span> @enderror
-{{--                    <button type="submit">رفع الصوره</button>--}}
-{{--                </form>--}}
                 </x-fields.wrapper>
         <div class="text-left mt-2">
             <button type="submit"
