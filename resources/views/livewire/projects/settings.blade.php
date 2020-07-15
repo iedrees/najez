@@ -17,13 +17,7 @@
             <x-fields.text wire:model.lazy="item.deadline" id="item.deadline" rules="required" type="date"/>
         </x-fields.wrapper>
 
-        {{--        <x-fields.wrapper label="شعار المشروع " for="item.image" :error="$errors->first('item.image')">--}}
-        {{--        <form wire:submit.prevent="save">--}}
-        {{--            <input type="file" wire:model="image">--}}
-        {{--            @error('image') <span class="error">{{ $message }}</span> @enderror--}}
-        {{--            <button type="submit">رفع الصوره</button>--}}
-        {{--        </form>--}}
-        {{--        </x-fields.wrapper>--}}
+
         <div class="text-left mt-2">
             <button type="submit"
                     class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">

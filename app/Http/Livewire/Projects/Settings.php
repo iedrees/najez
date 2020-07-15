@@ -7,8 +7,7 @@ use App\Models\Project;
 use Livewire\WithFileUploads;
 
 class Settings extends Component {
-    use WithFileUploads;
-
+//    use WithFileUploads;
     public $image;
     public $project;
     public $item;
