@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
     protected $fillable = [
-        'name','user_id','image'
+        'id','name','user_id','image','deadline',
     ];
     public function user()
     {
@@ -23,10 +24,25 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+    /// i add this
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 
     public function doneTasks()
     {
         return $this->hasMany(Task::class)->where('done', true);
     }
-
+//    public function diff()
+//    {
+////        $this->project = Project::where('id', "1");
+//        $this->project = Project::find(1);
+////        Carbon::createFromFormat('d/m/Y', $request->date);
+//        $end = Carbon::parse($this->project->$request->deadline);
+//        $now = Carbon::now();
+//        $length = $end->diffInDays($now);
+//        //logger($length);
+//        return $length;
+//    }
 }
