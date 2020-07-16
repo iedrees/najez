@@ -18,7 +18,7 @@
         <x-fields.wrapper label="البريد الإلكتروني" for="user.email" :error="$errors->first('user.email')">
             <x-fields.text dir="ltr" wire:model.lazy="user.email" id="user.email" rules="required"/>
         </x-fields.wrapper>
-        <x-fields.wrapper label="شعار المشروع " for="item.image" :error="$errors->first('item.image')">
+        <x-fields.wrapper label="صورة العرض" for="item.image" :error="$errors->first('item.image')">
             <label class="w-32 flex flex-col items-center px-2 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white">
                 <span class="mt-2 text-base leading-normal">اختر ملف </span>
                 <input type="file" wire:model="image" class="hidden">

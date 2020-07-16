@@ -6,11 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Storage;
 
-class Project extends Model
-{
+class Project extends Model {
     protected $fillable = [
-        'id','name','user_id','image','deadline',
+        'id', 'name', 'user_id', 'image', 'deadline',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -25,6 +25,7 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+
     /// i add this
     public function project()
     {
@@ -38,18 +39,6 @@ class Project extends Model
 
     public function getImageAttribute($value)
     {
-        return  isset($value)? Storage::url($value): asset('images/021-efficiency.svg');
+        return isset($value) ? Storage::url($value) : asset('images/021-efficiency.svg');
     }
-
-//    public function diff()
-//    {
-////        $this->project = Project::where('id', "1");
-//        $this->project = Project::find(1);
-////        Carbon::createFromFormat('d/m/Y', $request->date);
-//        $end = Carbon::parse($this->project->$request->deadline);
-//        $now = Carbon::now();
-//        $length = $end->diffInDays($now);
-//        //logger($length);
-//        return $length;
-//    }
 }

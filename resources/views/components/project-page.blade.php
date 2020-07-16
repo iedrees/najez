@@ -5,7 +5,7 @@
             <div class="block focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 py-5 p-2 bg-gray-50 rounded">
- 
+
                         <img class="w-20 h-20 p-2 rounded opacity-75" src="{{data_get($project,'image')}}" alt="" />
                     </div>
                     <div class="min-w-0 px-5 py-5 flex-1 sm:flex sm:items-center sm:justify-between ">
@@ -22,7 +22,22 @@
                                     <a href="{{route('projects.members', $project->id)}}" class="inline-flex items-center p-px px-1.5 mx-2 rounded bg-gray-100 text-gray-700 bg-white hover:bg-gray-200 focus:outline-none transition ease-in-out duration-150">
                                         <svg class="h-5 w-5 text-gray-500"  fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
                                     </a>
+
                                 </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="container mx-auto">
+                                <div class="inline-grid  lg:flex bg-gray rounded-lg border shadow-lg  ">
+                                    <div class="w-full p-4">
+                                        <div class="inline-grid">
+                                            <p>
+                                                تسليم المشروع :</p>
+                                            <p class="text-gray-500 mx-1">  {{$project->deadline}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

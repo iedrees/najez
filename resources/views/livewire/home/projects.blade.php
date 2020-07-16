@@ -25,53 +25,14 @@
                                             <img
                                                 class="-mr-0.5 inline-block h-8 w-8 rounded-full text-white shadow-solid"
                                                 src="{{$member->user->image}}" title="{{$member->user->name}}"
-                                                alt="{{$member->user->name}}"/>
+                                                alt="{{$member->user->name}}"
+                                            />
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-4 pl-5 flex-shrink-0 sm:mt-0">
-                                <div class="flex items-center overflow-hidden text-2xl text-gray-700" >
-                                    <div>
-{{--                                    --}}{{--       date_deadline() > 7                      active + befoer didline blue --}}
-{{--                                    @if($project->status == 'active' && (($project->days_between)>7) )--}}
-{{--                                        <div class="bottom-0 right-0 w-10 h-10 bg-blue-600 rounded-full "--}}
-{{--                                             style="right: 20px ; bottom:20px ">--}}
-{{--                                            <div class="font-semibold text-xs flex justify-center item-center h-full">--}}
-{{--                                                <br>--}}
-{{--                                                active--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        --}}{{--            date_deadline() > 0  &&    date_deadline() < 7            befor deadlin by one weak yellow --}}
-{{--                                    @elseif(false)--}}
-{{--                                        <div class="bottom-0 right-0 w-10 h-10 bg-yellow-300 rounded-full "--}}
-{{--                                             style="right: 20px ; bottom:20px ">--}}
-{{--                                            <div class="font-semibold text-xs flex justify-center item-center h-full">--}}
-{{--                                                <br>--}}
-{{--                                                left--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        --}}{{--       date_deadline() > -8     after deadlin befoer by one weak orange --}}
-{{--                                    @elseif(false)--}}
-{{--                                        <div class="bottom-0 right-0 w-10 h-10 bg-orange-500 rounded-full "--}}
-{{--                                             style="right: 20px ; bottom:20px ">--}}
-{{--                                            <div class="font-semi bold text-xs flex justify-center item-center h-full">--}}
-{{--                                                <br>--}}
-{{--                                                late--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        --}}{{--    date_deadline() < -7    after deadlin by more one weak red --}}
-{{--                                    @elseif(false)--}}
-{{--                                        <div class="bottom-0 right-0 w-10 h-10 bg-red-600 rounded-full "--}}
-{{--                                             style="right: 20px ; bottom:20px ">--}}
-{{--                                            <div class="font-semibold text-xs flex justify-center item-center h-full">--}}
-{{--                                                left--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    @endif--}}
-                                    </div>
-{{--<div> {{$project->diff()}}</div>--}}
-                                    <p class="text-gray-500 mx-1">  {{$project->deadline}}</p>
+                                <div class="flex items-center overflow-hidden text-2xl text-gray-700">
                                     <p class="text-gray-500 mx-1">  {{$project->tasks_count}}</p>
                                     <span class="text-gray-200 mx-1">/</span>
                                     <b class="text-green-300"> {{$project->done_tasks_count}}  </b>
