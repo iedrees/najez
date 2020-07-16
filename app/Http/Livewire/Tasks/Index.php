@@ -15,12 +15,12 @@ class Index extends Component
     public function mount($id)
     {
         $this->projectid = $id;
-        $this->tasks = Task::where('project_id', $id)->with('user')->latest()->get();
+        $this->refresh();
     }
 
     public function refresh()
     {
-        $this->tasks = Task::where('project_id', $this->projectid)->latest()->get();
+        $this->tasks = Task::where('project_id', $this->projectid)->with('user', 'activities')->latest()->get();
     }
  
     public function render()
