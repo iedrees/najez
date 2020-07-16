@@ -19,7 +19,7 @@ class ProjectSeeder extends Seeder
         Project::create([
             'name' => 'كابتشر',
             'user_id' => 1,
-            'image' => 'uploads/images/1594814830.png',
+            // 'image' => 'uploads/images/1594814830.png',
 
         ]);
 
@@ -27,25 +27,25 @@ class ProjectSeeder extends Seeder
             'name' => 'طويق',
             'user_id' => 1,
             'color' => 'purple',
-            'image' => 'uploads/images/1594814275.png',
+            // 'image' => 'uploads/images/1594814275.png',
         ]);
 
         Project::create([
             'name' => 'تثقيف',
             'user_id' => 1,
             'color' => 'indigo',
-            'image' => 'uploads/images/1594814935.png',
+            // 'image' => 'uploads/images/1594814935.png',
         ]);
 
 
-        for ($i = 0; $i < 50; $i++) {
-            Task::create([
-                'task'           => $faker->sentence($nbWords = 6, $variableNbWords = true),
-                'user_id'        => 1,
-                'project_id'     => array_rand([1=>1,2=>2,3=>3]),
-                'done'           => array_rand([true,false])
-            ]);
-          }
+        // for ($i = 0; $i < 50; $i++) {
+        //     Task::create([
+        //         'task'           => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        //         'user_id'        => 1,
+        //         'project_id'     => array_rand([1=>1,2=>2,3=>3]),
+        //         'done'           => array_rand([true,false])
+        //     ]);
+        // }
 
     }
 }

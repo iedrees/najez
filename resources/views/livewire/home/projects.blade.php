@@ -8,7 +8,7 @@
                         <div
                             class="flex-shrink-0 py-5 rounded-r-sm  p-2 bg-{{data_get($project, 'color', 'gray')}}-50  border-l-2  border-{{data_get($project, 'color', 'teal')}}-100">
                             <img class="w-20 h-20 p-2 rounded-r opacity-75"
-                                 src="{{data_get($project, 'image', asset('images/021-efficiency.svg'))}}  " alt=""/>
+                                 src="{{data_get($project, 'image')}}  " alt=""/>
                         </div>
                         <div class="min-w-0 px-5 py-5 flex-1 sm:flex sm:items-center sm:justify-between ">
                             <div>

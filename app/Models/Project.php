@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class Project extends Model
 {
@@ -34,6 +35,12 @@ class Project extends Model
     {
         return $this->hasMany(Task::class)->where('done', true);
     }
+
+    public function getImageAttribute($value)
+    {
+        return  isset($value)? Storage::url($value): asset('images/021-efficiency.svg');
+    }
+
 //    public function diff()
 //    {
 ////        $this->project = Project::where('id', "1");

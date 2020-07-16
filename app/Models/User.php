@@ -22,9 +22,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getImageAttribute()
+    public function getImageAttribute($value)
     {
-        # TODO, get real image or a placeholder image
-        return asset('images/user.png');
+        return  isset($value)? \Storage::url($value): asset('images/user.png');
     }
 }

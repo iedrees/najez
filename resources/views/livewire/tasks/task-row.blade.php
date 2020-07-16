@@ -35,19 +35,34 @@
                         </div>
                     </header>
                     <div class="relative flex-1 p-1 ">
-                        <div class="text-gray-700 bg-gray-50 p-3 rounded leading-8 text-sm">
-                            {!! nl2br($task->task) !!}
+                        <div>
+                            <div class="text-gray-700 bg-gray-50 p-3 rounded leading-8 text-sm">
+                                {!! nl2br($task->task) !!}
+                            </div>
+                            <span class="p-1 inline-block px-1 text-sm text-gray-300 flex items-center">
+                                <b class="ml-2 text-gray-700 bg-gray-200 py-0.5 rounded-full inline-flex items-center">
+                                    <img class="inline-block h-5 w-5 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                                    <span class="mx-2 text-sm">{{$task->user->name}}</span>
+                                </b>
+                                    
+                                {{$task->created_at->diffForHumans()}} 
+                                <span dir="ltr" class="mx-3 text-xs">{{$task->created_at}}</span>
+                            </span>
                         </div>
-                        <span class="p-1 inline-block px-1 text-sm text-gray-300 flex items-center">
-                            <b class="ml-2 text-gray-700 bg-gray-200 py-0.5 rounded-full inline-flex items-center">
-                                <img class="inline-block h-5 w-5 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                                <span class="mx-2 text-sm">{{$task->user->name}}</span>
-                            </b>
-                                
-                            {{$task->created_at->diffForHumans()}} 
-                            <span dir="ltr" class="mx-3 text-xs">{{$task->created_at}}</span>
-                        </span>
+
+                        <div>
+                            @foreach($task->activities as $activity)
+                                {{$activity->causer->name}} - 
+                                {{$activity->description}}
+                            @endforeach
+                        </div>
+
+                     
                     </div>
+          
+
+   
+                
                 </div>
                 </div>
             </section>
