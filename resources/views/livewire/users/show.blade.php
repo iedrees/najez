@@ -19,11 +19,15 @@
             <x-fields.text dir="ltr" wire:model.lazy="user.email" id="user.email" rules="required"/>
         </x-fields.wrapper>
         <x-fields.wrapper label="صورة العرض" for="item.image" :error="$errors->first('item.image')">
-            <label class="w-32 flex flex-col items-center px-2 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white">
-                <span class="mt-2 text-base leading-normal">اختر ملف </span>
-                <input type="file" wire:model="image" class="hidden">
-
-            </label>
+            <div>
+                <label
+                    class="w-32 flex flex-col items-center px-2 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white">
+                    <span class="mt-2 text-base leading-normal">اختر ملف </span>
+                    <input wire:model="image" id="image" accept="image/*" type="file" wire:change="$emit(loadFile)"
+                           class="hidden">
+                </label>
+                <img src="{{$image}}" width="200"/>
+            </div>
         </x-fields.wrapper>
 
         <div class="text-left mt-2">
@@ -35,4 +39,19 @@
         </div>
     </form>
 </div>
-
+<script>
+    // console.log(window);
+    // setTimeout(1);
+    document.addEventListener('livewire:load', () => {
+        window.livewire.on('loadFile', () => {
+            let inputField = document.getElementById('image')
+            let file = inputField.files[0]
+            let reader = new FileReader();
+            reader.onloadend = () => {
+              //  window.livewire.emit('fileUpload', reader.result)
+                console.log(reader.result);
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+</script>

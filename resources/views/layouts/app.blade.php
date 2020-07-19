@@ -7,5 +7,5 @@
     <div class="">
         @yield('content')
     </div>
-    
+
 @endsection

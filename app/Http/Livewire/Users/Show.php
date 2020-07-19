@@ -10,12 +10,21 @@ class Show extends Component {
     use WithFileUploads;
     public $user;
     public $image;
+    protected $listeners = [
+        'fileUpload' => 'handleFileUpload',
+
+    ];
+
 
     public function mount()
     {
         $this->user = auth()->user()->toArray();
     }
-
+    public function handleFileUpload($imageData)
+    {
+//        $this->image = $imageData;
+        dd($imageData);
+    }
     public function update()
     {
         $this->validate([
