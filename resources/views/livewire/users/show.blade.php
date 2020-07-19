@@ -26,20 +26,13 @@
                     <input wire:model="image" id="image" accept="image/*" type="file" wire:change="$emit(loadFile)"
                            class="hidden">
                 </label>
-                <img src="{{$image}}" width="200"/>
-            </div>
-        </x-fields.wrapper>
-
-        <div class="text-left mt-2">
+                <img src="{{$image}}" width="200"/></div></x-fields.wrapper><div class="text-left mt-2">
             <button type="submit"
                     class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                 <i class="ti-check ml-2"></i>
                 حفظ
             </button>
-        </div>
-    </form>
-</div>
-<script>
+        </div></form></div><script>
     // console.log(window);
     // setTimeout(1);
     document.addEventListener('livewire:load', () => {

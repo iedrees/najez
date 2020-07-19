@@ -8,6 +8,7 @@ use Livewire\WithFileUploads;
 
 class Show extends Component {
     use WithFileUploads;
+
     public $user;
     public $image;
     protected $listeners = [
@@ -15,16 +16,16 @@ class Show extends Component {
 
     ];
 
+    public function handleFileUpload($imageData)
+    {
+        $this->image = $imageData;
+    }
 
     public function mount()
     {
         $this->user = auth()->user()->toArray();
     }
-    public function handleFileUpload($imageData)
-    {
-//        $this->image = $imageData;
-        dd($imageData);
-    }
+
     public function update()
     {
         $this->validate([
@@ -35,8 +36,8 @@ class Show extends Component {
 
         $user = User::where('id', auth()->user()->id)->firstOrFail();
         $user->username = data_get($this, 'user.username');
-        $user->name     = data_get($this, 'user.name');
-        $user->email    = data_get($this, 'user.email');
+        $user->name = data_get($this, 'user.name');
+        $user->email = data_get($this, 'user.email');
 //        $this->image->store('image');
         $path = $this->image->storeAs(
             'profile/images', time() . '.' . $this->image->extension(), 'public');
