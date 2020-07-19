@@ -1,4 +1,5 @@
 <div>
+ 
     @if(count($tasks))
         <div>
             <livewire:tasks.quick-create :projectid="$projectid"/>
@@ -11,7 +12,7 @@
             </h4>
 
             @foreach($tasks as $task)
-                <livewire:tasks.task-row :task="$task" :key="$task->id"/>
+                <livewire:tasks.task-row :task="$task" :key="$task->id" :project="$project"/>
             @endforeach
         </div>
     @else

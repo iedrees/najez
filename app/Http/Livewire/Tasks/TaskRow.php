@@ -7,10 +7,12 @@ use Livewire\Component;
 class TaskRow extends Component
 {
     public $task;
+    public $project;
 
-    public function mount($task)
+    public function mount($task, $project)
     {
         $this->task = $task;
+        $this->project = $project;
     }
 
     public function checkTask()

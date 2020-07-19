@@ -1,4 +1,4 @@
 <x-project-page :project="$project">
-    <livewire:tasks.index :id="$project->id" :projectid="$project->id" />
+    <livewire:tasks.index :project="$project" :id="$project->id" :projectid="$project->id" />
 </x-project-page>
 

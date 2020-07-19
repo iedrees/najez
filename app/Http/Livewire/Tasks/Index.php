@@ -8,12 +8,14 @@ use App\Models\Task;
 class Index extends Component
 {
     public $tasks;
+    public $project;
     public $projectid;
 
     protected $listeners = ['taskAdded' => 'refresh'];
 
-    public function mount($id)
+    public function mount($id, $project)
     {
+        $this->project = $project;
         $this->projectid = $id;
         $this->refresh();
     }
