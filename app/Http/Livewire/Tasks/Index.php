@@ -24,7 +24,7 @@ class Index extends Component
     {
         $this->tasks = Task::where('project_id', $this->projectid)->with('user', 'activities')->latest()->get();
     }
- 
+
     public function render()
     {
         return view('livewire.tasks.index');
