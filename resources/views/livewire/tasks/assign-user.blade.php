@@ -1,9 +1,9 @@
 {{-- Search  --}}
 
-<div x-data="{open:false}" class="relative w-64" x-on:click.away="open = false">
+<div x-data="{open:false}" class="relative block" x-on:click.away="open = false">
  
-    <span class="rounded-md shadow-sm relative inline ">
-        <button x-on:focus="open = true" type="button" class="inline-flex justify-center  rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150" id="options-menu" aria-haspopup="true" aria-expanded="true">
+    <span class="rounded-md shadow-sm relative inline">
+        <button x-on:focus="open = true" type="button" class=" h-8 inline-flex justify-center  rounded-l-md border border-gray-300 px-2 py-1 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none   transition ease-in-out duration-150" id="options-menu" aria-haspopup="true" aria-expanded="true">
           تعيين
           <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -11,8 +11,8 @@
         </button>
     </span>
  
-    <div x-show="open"  class="origin-top-right absolute right-0 mt-1  rounded-md shadow-sm w-full">
-        <div class="rounded-b-md bg-white shadow w-sm">
+    <div x-show="open"  class="origin-top-right absolute left-0 mt-1 w-64 rounded-md shadow-sm w-full">
+        <div class="rounded-b-md bg-white shadow w-sm w-64">
             <div class="" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 @if(!count($project->members))
                     <div class="p-2 px-3 text-gray-600 text-sm">
