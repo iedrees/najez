@@ -38,8 +38,7 @@
                                 </div>
                             </div>
                         </div>
-
-
+ 
                         <!-- Profile dropdown -->
                         <div class="mr-3 relative mt-px">
                             <div>

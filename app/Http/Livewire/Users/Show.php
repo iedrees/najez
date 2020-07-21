@@ -11,15 +11,15 @@ class Show extends Component {
 
     public $user;
     public $image;
-    protected $listeners = [
-        'fileUpload' => 'handleFileUpload',
 
-    ];
+    // protected $listeners = [
+    //     'fileUpload' => 'handleFileUpload',
+    // ];
 
-    public function handleFileUpload($imageData)
-    {
-        $this->image = $imageData;
-    }
+    // public function handleFileUpload($imageData)
+    // {
+    //     $this->image = $imageData;
+    // }
 
     public function mount()
     {
