@@ -1,7 +1,8 @@
 <div class="my-10 container mx-auto">
     @if(count($items))
         @foreach($items as $project)
-                @if(Auth::user()->id == $project->user_id || Auth::user()->id == $member->user_id)
+            @if(Auth::user()->id == $project->user_id)
+{{--                @if(Auth::user()->id == $project->user_id || Auth::user()->id == $member->user_id)--}}
                 <div class="bg-white shadow-smx overflow-hidden sm:rounded-sm mb-2 p-px">
                     <a href="{{route('projects.show', $project->id)}}"
                        class="block hover:bg-{{data_get($project, 'color', 'teal')}}-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
@@ -46,14 +47,14 @@
                     </a>
                 </div>
             @endif
-        @endforeach
-        {{--        @endforeach--}}
+            @endforeach
+            {{--        @endforeach--}}
 
-    @else
-        <div>
-            لا يوجد مشاريع
-        </div>
-    @endif
+            @else
+                <div>
+                    لا يوجد مشاريع
+                </div>
+            @endif
 
 </div>
 
