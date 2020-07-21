@@ -22,7 +22,7 @@ class Index extends Component
 
     public function refresh()
     {
-        $this->tasks = Task::where('project_id', $this->projectid)->with('user', 'activities')->latest()->get();
+        $this->tasks = Task::where('project_id', $this->projectid)->with('user', 'assignedUser', 'activities')->latest()->get();
     }
  
     public function render()

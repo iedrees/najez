@@ -41,8 +41,13 @@
                                 </div>
                             </div>
 
-                            <livewire:tasks.assign-user :task="$task" :project="$project"  />
-
+                            <div class="flex items-center">
+                                <div>
+                                    {{$task->assignedUser->name}}
+                                </div>
+                                <livewire:tasks.assign-user :task="$task" :project="$project"  />
+                            </div>
+                 
                             <div class="mt-2">
                                 @foreach($task->activities as $activity)
                                     <div class="bg-blue-50 p-2 mb-0.5 text-gray-600">

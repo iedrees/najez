@@ -25,6 +25,7 @@ class QuickCreate extends Component
             'task' => $this->task,
             'project_id' => $this->projectid,
             'user_id' => auth()->user()->id,
+            'assigned_user_id' => auth()->user()->id,
         ]);
 
         $this->task = '';

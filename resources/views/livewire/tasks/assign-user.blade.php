@@ -1,18 +1,22 @@
 {{-- Search  --}}
-<div x-data="{open:false}" class="relative block mb-5" x-on:click.away="open = false">
-    <div class="relative rounded shadow-sm bg-gray-200 p-1">
-        <input x-on:focus="open = true" wire:model="search" type="text" placeholder="ابحث عن عضو لتعيين المهة له .." class="p-3 pr-10 block w-full rounded-none rounded transition ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none"  />
-        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
-        </div>
-    </div>
 
-    <div x-show="open" class="origin-top-right absolute right-0 mt-1 w-56 rounded-md shadow-sm w-full">
-        <div class="rounded-b-md bg-white shadow">
+<div x-data="{open:false}" class="relative w-64" x-on:click.away="open = false">
+ 
+    <span class="rounded-md shadow-sm relative inline ">
+        <button x-on:focus="open = true" type="button" class="inline-flex justify-center  rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150" id="options-menu" aria-haspopup="true" aria-expanded="true">
+          تعيين
+          <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+    </span>
+ 
+    <div x-show="open"  class="origin-top-right absolute right-0 mt-1  rounded-md shadow-sm w-full">
+        <div class="rounded-b-md bg-white shadow w-sm">
             <div class="" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 @if(!count($project->members))
                     <div class="p-2 px-3 text-gray-600 text-sm">
-                        لا توجد نتائج .. 
+                        لا يوجد أعضاء فريق لهذا المشروع، أضف أعضاء للمشروع أولاً.
                     </div>
                 @else
                     @foreach($project->members as $member)
