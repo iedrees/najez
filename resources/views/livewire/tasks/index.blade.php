@@ -1,5 +1,5 @@
 <div>
- 
+
     @if(count($tasks))
         <div>
             <livewire:tasks.quick-create :projectid="$projectid"/>

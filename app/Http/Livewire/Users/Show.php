@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Users;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Storage;
 
 class Show extends Component {
     use WithFileUploads;
@@ -28,21 +29,25 @@ class Show extends Component {
 
     public function update()
     {
-        $this->validate([
-            'user.username' => 'required',
-            'user.name' => 'required',
-            'user.email' => 'required|email',
-        ]);
+       $this->validate([
+           'user.username' => 'required',
+           'user.name' => 'required',
+           'user.email' => 'required|email',
+       ]);
 
         $user = User::where('id', auth()->user()->id)->firstOrFail();
+ 
         $user->username = data_get($this, 'user.username');
         $user->name = data_get($this, 'user.name');
         $user->email = data_get($this, 'user.email');
+ 
         if(isset($this->image)) {
-            $user->image =  $this->image->storeAs('profile/images', time() . '.' . $this->image->extension(), 'public');
+            $path = $this->image->storeAs('profile/images', time() . '.' . $this->image->extension());
+            $user->addMedia(Storage::path($path))->toMediaCollection();
+            // $user->image =  $this->image->storeAs('profile/images', time() . '.' . $this->image->extension(), 'public');
         }
         $user->save();
-        
+
         session()->flash('color', 'green');
         session()->flash('message', 'تم التعديل بنجاح.');
     }
