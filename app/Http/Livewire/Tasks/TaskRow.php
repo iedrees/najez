@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Tasks;
 
 use Livewire\Component;
 use App\Models\Task;
+use Carbon\Carbon;
 
 class TaskRow extends Component
 {
@@ -21,6 +22,7 @@ class TaskRow extends Component
     public function checkTask()
     {
         $this->task->done =  !$this->task->done;
+        $this->task->done_at =  Carbon::now();
         $this->task->save();
     }
 

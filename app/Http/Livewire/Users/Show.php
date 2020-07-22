@@ -38,7 +38,9 @@ class Show extends Component {
         $user->username = data_get($this, 'user.username');
         $user->name = data_get($this, 'user.name');
         $user->email = data_get($this, 'user.email');
-        $user->image = $this->image->storeAs('profile/images', time() . '.' . $this->image->extension(), 'public');
+        if(isset($this->image)) {
+            $user->image =  $this->image->storeAs('profile/images', time() . '.' . $this->image->extension(), 'public');
+        }
         $user->save();
         
         session()->flash('color', 'green');
