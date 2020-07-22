@@ -11,15 +11,15 @@ class Show extends Component {
 
     public $user;
     public $image;
-    protected $listeners = [
-        'fileUpload' => 'handleFileUpload',
 
-    ];
+    // protected $listeners = [
+    //     'fileUpload' => 'handleFileUpload',
+    // ];
 
-    public function handleFileUpload($imageData)
-    {
-        $this->image = $imageData;
-    }
+    // public function handleFileUpload($imageData)
+    // {
+    //     $this->image = $imageData;
+    // }
 
     public function mount()
     {
@@ -38,11 +38,9 @@ class Show extends Component {
         $user->username = data_get($this, 'user.username');
         $user->name = data_get($this, 'user.name');
         $user->email = data_get($this, 'user.email');
-//        $this->image->store('image');
-        $path = $this->image->storeAs(
-            'profile/images', time() . '.' . $this->image->extension(), 'public');
-        $user->image = $path;
+        $user->image = $this->image->storeAs('profile/images', time() . '.' . $this->image->extension(), 'public');
         $user->save();
+        
         session()->flash('color', 'green');
         session()->flash('message', 'تم التعديل بنجاح.');
     }

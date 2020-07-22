@@ -21,6 +21,8 @@ class AssignUser extends Component
     {
         $this->task->assigned_user_id = $user['id'];
         $this->task->save();
+
+        $this->emit('taskAssigned', $this->task->id);
     }
 
     public function render()

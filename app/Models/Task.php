@@ -18,11 +18,16 @@ class Task extends Model {
     }
 
     protected $fillable = [
-        'task', 'done', 'user_id', 'project_id',
+        'task', 'done', 'user_id', 'project_id', 'assigned_user_id',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function assignedUser()
+    {
+        return $this->belongsTo(User::class, 'assigned_user_id');
     }
 }
