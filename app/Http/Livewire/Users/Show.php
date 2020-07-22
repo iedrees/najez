@@ -12,7 +12,7 @@ class Show extends Component {
 
     public $user;
     public $image;
- 
+
     public function mount()
     {
         $this->user = auth()->user()->toArray();
@@ -21,20 +21,23 @@ class Show extends Component {
     public function update()
     {
         $this->validate([
-           'user.username' => 'required',
-           'user.name' => 'required',
-           'user.email' => 'required|email',
+            'user.username' => 'required',
+            'user.name' => 'required',
+            'user.employee_num' => 'required',
+            'user.email' => 'required|email',
         ]);
 
         $user = User::where('id', auth()->user()->id)->firstOrFail();
- 
+
         $user->username = data_get($this, 'user.username');
         $user->name = data_get($this, 'user.name');
         $user->email = data_get($this, 'user.email');
-        if(isset($this->image)) {
+        $user->employee_num = data_get($this, 'user.employee_num');
+        if (isset($this->image))
+        {
             $path = $this->image->storeAs('profile/images', time() . '.' . $this->image->extension());
             $user->clearMediaCollection('profile')
-                 ->addMedia(Storage::path($path))->toMediaCollection('profile');
+                ->addMedia(Storage::path($path))->toMediaCollection('profile');
         }
         $user->save();
 

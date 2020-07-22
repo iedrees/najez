@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('confirmed')->default(true);
             $table->mediumText('image')->nullable();
+            $table->integer('employee_num')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
