@@ -28,19 +28,22 @@ class Show extends Component {
 
     public function update()
     {
-        $this->validate([
-            'user.username' => 'required',
-            'user.name' => 'required',
-            'user.email' => 'required|email',
-        ]);
+//        $this->validate([
+//            'user.username' => 'required',
+//            'user.name' => 'required',
+//            'user.email' => 'required|email',
+//        ]);
 
         $user = User::where('id', auth()->user()->id)->firstOrFail();
+
+        $user->addMedia($this->image)->toMediaCollection();
+
         $user->username = data_get($this, 'user.username');
         $user->name = data_get($this, 'user.name');
         $user->email = data_get($this, 'user.email');
-        $user->image = $this->image->storeAs('profile/images', time() . '.' . $this->image->extension(), 'public');
+//        $user->image = $this->image->storeAs('profile/images', time() . '.' . $this->image->extension(), 'public');
         $user->save();
-        
+
         session()->flash('color', 'green');
         session()->flash('message', 'تم التعديل بنجاح.');
     }
