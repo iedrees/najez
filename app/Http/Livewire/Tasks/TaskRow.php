@@ -28,7 +28,7 @@ class TaskRow extends Component
 
     public function updateTaskInfo($taskid)
     {
-        $this->task = Task::where('id', $taskid)->with('user', 'assignedUser', 'activities')->first();
+        // $this->task = Task::where('id', $taskid)->with('user', 'assignedUser', 'activities')->first();
     }
 
     public function render()
