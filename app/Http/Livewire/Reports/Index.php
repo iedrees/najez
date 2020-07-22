@@ -8,7 +8,6 @@ use Carbon\Carbon;
 
 class Index extends Component
 {
-
     public $start;
     public $end;
  
@@ -22,7 +21,6 @@ class Index extends Component
     {
         $this->start = $start;
         $this->end = $end;
- 
     }
  
     public function render()
@@ -30,6 +28,7 @@ class Index extends Component
         $tasks = Task::where('done', true)
                     ->whereBetween('done_at', [$this->start ,$this->end])
                     ->with('assignedUser', 'project')->get();
+                    
         return view('livewire.reports.index')->with('tasks', $tasks);
     }
 }

@@ -13,7 +13,10 @@ Route::middleware('auth')->group(function () {
 
     Route::livewire('create-project', 'projects.project-create')->name('create-project');
 });
-
+ 
+// Download Reports
+Route::get('reports/view-pdf/{start}/{end}', 'PdfController@viewPDF');
+Route::get('reports/download', 'PdfController@download')->name('reports.download');
 
 // Auth
 Route::middleware('auth')->group(function () {
