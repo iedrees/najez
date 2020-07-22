@@ -35,6 +35,20 @@
                             @endif
                         </div>
                     @endforeach
+                    <div class="flex items-center text-gray-700 p-3 border-b border-gray-100">
+                        <img class="h-8 w-8 rounded-sm" src="{{auth()->user()->image}}" alt="" />
+                        <div class="mx-2 flex-grow">
+                            <h4 class="text-sm">{{ auth()->user()->name }}</h4>
+                        </div>
+                        @if(auth()->user()->id != $task->assigned_user_id)
+                            <div>
+                                <button x-on:click="open = false" wire:click="assignMember({{auth()->user()}}, {{$task}})" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-indigo-100 hover:bg-indigo-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-indigo-200 transition ease-in-out duration-150">
+                                    <svg class="-mr-0.5 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path></svg>
+                                    تعيين
+                                </button>
+                            </div>
+                        @endif
+                    </div>
                 @endif
             </div>
         </div>

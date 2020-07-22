@@ -10,7 +10,17 @@
                 class="form-checkbox cursor-pointer hover:opacity-75 border border-gray-100 h-8 w-8 text-indigo-600 bg-gray-200 transition duration-150 ease-in-out focus:shadow-outline-none">
         </div>
         <div @click="showDetail = !showDetail" x-on:keydown.escape="showDetail = false" class="@if($task->done) line-through text-gray-400 @endif bg-white w-full mb-1 border-gray-200 shadow-sm p-4 rounded  cursor-pointer hover:bg-gray-50 hover:border-blue-200">
-            {{$task->task}}
+            
+            <span class="flex items-center">
+                <span class="flex-grow">{{$task->task}}</span>
+                <div class="inline-flex items-center rounded-md border border-green-300 px-1 py-1 bg-green-100 text-green-500 text-sm leading-4">
+                    <svg class="h-4 w-4 " fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M9 3a1 1 0 012 0v5.5a.5.5 0 001 0V4a1 1 0 112 0v4.5a.5.5 0 001 0V6a1 1 0 112 0v5a7 7 0 11-14 0V9a1 1 0 012 0v2.5a.5.5 0 001 0V4a1 1 0 012 0v4.5a.5.5 0 001 0V3z" clip-rule="evenodd"></path></svg>
+                   <div class="mx-1 -mb-1">
+                       {{$task->assignedUser->name}}
+                   </div>
+                </div>
+            </span>
+
         </div>
     </div>
 
@@ -44,9 +54,9 @@
                             <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
                                 <div class="flex items-center -ml-px rounded-r-md border border-gray-300 px-2 py-2 bg-green-100 text-green-500 text-sm leading-5 h-8">
                                     <svg class="h-4 w-4 " fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M9 3a1 1 0 012 0v5.5a.5.5 0 001 0V4a1 1 0 112 0v4.5a.5.5 0 001 0V6a1 1 0 112 0v5a7 7 0 11-14 0V9a1 1 0 012 0v2.5a.5.5 0 001 0V4a1 1 0 012 0v4.5a.5.5 0 001 0V3z" clip-rule="evenodd"></path></svg>
-{{--                                    <div class="mx-1 -mb-1">--}}
-{{--                                        {{$task->assignedUser->name}}--}}
-{{--                                    </div>--}}
+                                   <div class="mx-1 -mb-1">
+                                       {{$task->assignedUser->name}}
+                                   </div>
                                 </div>
 
                                 <livewire:tasks.assign-user :task="$task" :project="$project"  />
