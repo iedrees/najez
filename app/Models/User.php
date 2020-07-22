@@ -24,8 +24,8 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
     ];
 
-    public function getImageAttribute($value)
+    public function getImageAttribute()
     {
-        return  isset($value)? \Storage::url($value): asset('images/user.png');
+        return null !== $this->getFirstMediaUrl('profile')  ? $this->getFirstMediaUrl('profile'): asset('images/user.png');
     }
 }

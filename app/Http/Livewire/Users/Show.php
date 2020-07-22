@@ -12,16 +12,7 @@ class Show extends Component {
 
     public $user;
     public $image;
-
-    // protected $listeners = [
-    //     'fileUpload' => 'handleFileUpload',
-    // ];
-
-    // public function handleFileUpload($imageData)
-    // {
-    //     $this->image = $imageData;
-    // }
-
+ 
     public function mount()
     {
         $this->user = auth()->user()->toArray();
@@ -29,22 +20,21 @@ class Show extends Component {
 
     public function update()
     {
-       $this->validate([
+        $this->validate([
            'user.username' => 'required',
            'user.name' => 'required',
            'user.email' => 'required|email',
-       ]);
+        ]);
 
         $user = User::where('id', auth()->user()->id)->firstOrFail();
  
         $user->username = data_get($this, 'user.username');
         $user->name = data_get($this, 'user.name');
         $user->email = data_get($this, 'user.email');
- 
         if(isset($this->image)) {
             $path = $this->image->storeAs('profile/images', time() . '.' . $this->image->extension());
-            $user->addMedia(Storage::path($path))->toMediaCollection();
-            // $user->image =  $this->image->storeAs('profile/images', time() . '.' . $this->image->extension(), 'public');
+            $user->clearMediaCollection('profile')
+                 ->addMedia(Storage::path($path))->toMediaCollection('profile');
         }
         $user->save();
 
