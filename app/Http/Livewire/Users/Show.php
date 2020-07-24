@@ -28,7 +28,6 @@ class Show extends Component {
         ]);
 
         $user = User::where('id', auth()->user()->id)->firstOrFail();
-
         $user->username = data_get($this, 'user.username');
         $user->name = data_get($this, 'user.name');
         $user->email = data_get($this, 'user.email');
