@@ -19,7 +19,7 @@ class ProjectCreate extends Component {
         $project = Project::create([
             'name' => $this->name,
             'user_id' => auth()->user()->id,
-            'deadline' => Carbon::now()->addDays(10),
+            'deadline' => Carbon::now()->addDays(12),
         ]);
 
         session()->flash('color', 'green');
