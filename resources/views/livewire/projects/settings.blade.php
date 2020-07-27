@@ -19,7 +19,7 @@
 
         <x-fields.wrapper label="شعار المشروع" for="item.image" :error="$errors->first('image')">
             <label for="image">
-                <img src="{{$image ? $image->temporaryUrl() : $image}}"
+                <img src="{{$image ? $image->temporaryUrl() : $project->image}}"
                      class=" cursor-pointer hover:opacity-75 inline-block h-32 w-32 rounded text-white shadow-solid"/>
                 <input wire:model="image" id="image" accept="image/*" type="file" wire:change="$emit(loadFile)"
                        class="hidden">

@@ -30,7 +30,7 @@ class Settings extends Component {
         $this->project->status = data_get($this->item, 'status');
         $this->project->details = data_get($this->item, 'details');
         $this->project->deadline = data_get($this->item, 'deadline');
-        logger($this->project->image);
+
         if (isset($this->image))
         {
             $path = $this->image->storeAs('upload/images', time() . '.' . $this->image->extension());
@@ -42,7 +42,7 @@ class Settings extends Component {
 
         session()->flash('color', 'green');
         session()->flash('message', 'تم التعديل بنجاح.');
-//        dd($this->project->image);
+
     }
 
 
