@@ -84,7 +84,7 @@
                   </td>
                   <td class="px-6 w-56  max-w-md py-4  text-sm leading-5 font-medium text-gray-900">
                     <div class="text-gray-700">{{$task->assignedUser->name}}</div>
-                    <span dir="ltr" class="text-gray-400 font-bold">#{{$task->assignedUser->id}}</span>
+                    <span dir="ltr" class="text-gray-400 font-bold">#{{$task->assignedUser->employee_num}}</span>
                   </td>
                 </tr>
                 @endforeach

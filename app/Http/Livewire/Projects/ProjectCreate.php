@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Projects;
 use App\Models\Project;
 use App\Models\User;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class ProjectCreate extends Component {
     public $name;
@@ -18,6 +19,7 @@ class ProjectCreate extends Component {
         $project = Project::create([
             'name' => $this->name,
             'user_id' => auth()->user()->id,
+            'deadline' => Carbon::now()->addDays(7),
         ]);
 
         session()->flash('color', 'green');
