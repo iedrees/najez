@@ -29,9 +29,13 @@ class Index extends Component
                 {
                     $q->where('id', auth()->user()->id);
                 })
-                ->orWhere('user_id', auth()->user()->id);
+                ->orWhereHas('project',  function ($q)
+                {
+                    $q->where('user_id', auth()->user()->id);
+                });
             })
-            ->with('user', 'assignedUser', 'activities')
+
+            ->with('user', 'assignedUser', 'activities', 'project')
             ->latest()
             ->get();
     }

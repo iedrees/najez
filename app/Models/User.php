@@ -28,4 +28,9 @@ class User extends Authenticatable implements HasMedia
     {
         return "" !== $this->getFirstMediaUrl('profile')  ? $this->getFirstMediaUrl('profile'): asset('images/user.png');
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

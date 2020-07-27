@@ -11,7 +11,13 @@ class Projects extends Component {
 
     public function mount()
     {
-        $this->items = Project::withCount('tasks', 'doneTasks')->get();
+        $this->items = Project::withCount('tasks', 'doneTasks')
+            ->where('user_id', auth()->id()) 
+            ->orWhereHas('members', function ($q)
+            {
+                $q->where('user_id', auth()->id());
+            })   
+            ->get();
     }
     public function render()
     {

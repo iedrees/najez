@@ -8,13 +8,12 @@
             <div class="mr-5 w-0 flex-1">
               <dl>
                 <dt class="text-sm leading-5 font-medium text-gray-400 truncate mb-3">
-                  مهام الأسبوع المنجزة
+                  مهام الأسبوع المنجزة لمشاريعك 
                 </dt>
                 <dd class="flex items-baseline">
                   <div class="text-3xl leading-8 font-semibold text-gray-700">
                     {{$total}}
                   </div>
-
                 </dd>
               </dl>
             </div>
