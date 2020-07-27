@@ -41,6 +41,6 @@ class Project extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        return "" !== $this->getFirstMediaUrl('uplaod')  ? $this->getFirstMediaUrl('uplaod'): asset('images/021-efficiency.svg');
+        return "" !== $this->getFirstMediaUrl('upload')  ? $this->getFirstMediaUrl('upload'): asset('images/021-efficiency.svg');
     }
 }

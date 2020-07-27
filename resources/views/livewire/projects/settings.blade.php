@@ -16,7 +16,7 @@
         <x-fields.wrapper label="موعد تسليم المشروع " for="item.deadline" :error="$errors->first('item.deadline')">
             <x-fields.text wire:model.lazy="item.deadline" id="item.deadline" rules="required" type="date"/>
         </x-fields.wrapper>
-
+ 
         <x-fields.wrapper label="شعار المشروع" for="item.image" :error="$errors->first('image')">
             <label for="image">
                 <img src="{{$image ? $image->temporaryUrl() : $project->image}}"
