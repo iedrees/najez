@@ -17,12 +17,14 @@
             <x-fields.text wire:model.lazy="item.deadline" id="item.deadline" rules="required" type="date"/>
         </x-fields.wrapper>
 
-                <x-fields.wrapper label="شعار المشروع " for="item.image" :error="$errors->first('item.image')">
-                    <label class="w-32 flex flex-col items-center px-2 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
-                        <span class="mt-2 text-base leading-normal">اختر ملف </span>
-                        <input type="file" wire:model="image" class="hidden">
-                    </label>
-                </x-fields.wrapper>
+        <x-fields.wrapper label="شعار المشروع" for="item.image" :error="$errors->first('image')">
+            <label for="image">
+                <img src="{{$image ? $image->temporaryUrl() : $project->image}}"
+                     class=" cursor-pointer hover:opacity-75 inline-block h-32 w-32 rounded text-white shadow-solid"/>
+                <input wire:model="image" id="image" accept="image/*" type="file" wire:change="$emit(loadFile)"
+                       class="hidden">
+            </label>
+        </x-fields.wrapper>
 
         <div class="text-left mt-2">
             <button type="submit"

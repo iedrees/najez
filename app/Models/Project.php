@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Storage;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Project extends Model {
+class Project extends Model implements HasMedia
+{
+    use HasMediaTrait;
     protected $fillable = [
         'id', 'name', 'user_id', 'image', 'deadline',
     ];
@@ -37,8 +39,8 @@ class Project extends Model {
         return $this->hasMany(Task::class)->where('done', true);
     }
 
-    public function getImageAttribute($value)
+    public function getImageAttribute()
     {
-        return isset($value) ? Storage::url($value) : asset('images/021-efficiency.svg');
+        return "" !== $this->getFirstMediaUrl('uplaod')  ? $this->getFirstMediaUrl('uplaod'): asset('images/021-efficiency.svg');
     }
 }
