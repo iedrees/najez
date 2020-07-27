@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model implements HasMedia
 {
-    use HasMediaTrait;
+    use HasMediaTrait, SoftDeletes;
+
     protected $fillable = [
         'id', 'name', 'user_id', 'image', 'deadline',
     ];
