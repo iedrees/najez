@@ -18,6 +18,7 @@ class Settings extends Component {
     {
         $this->project = Project::where('id', $id)->with('members', 'user')->firstOrFail();
         $this->item = $this->project->toArray();
+
     }
 
     public function submit()
