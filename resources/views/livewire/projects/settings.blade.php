@@ -30,14 +30,11 @@
                 <div class="btn-wrapper text-left">
                     @if(auth()->user()->id == $project->user_id)
                         <div x-data="{ open: false }" class="relative inline-block z-40">
-                            <span class="flex w-full rounded-md shadow-sm mt-2">
-                   <button @click="open = true" type="button"
-                           class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6 text-white-400" fill="currentColor" viewBox="0 0 20 20"><path
-                             fill-rule="evenodd"
-                             d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                             clip-rule="evenodd"></path></svg>
-                             حذف المشروع</button></span>
+                            <button @click="open = true" type="button"
+                                    class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                                <i class="ti-close ml-2"></i>
+                                حذف المشروع
+                            </button>
                             <div x-show="open" @click.away="open = false"
                                  class="origin-top-right absolute left-0 mt-2 w-56 rounded-md shadow-lg">
                                 <div class="rounded-md bg-white shadow-xs p-3 text-sm text-gray-500 leading-8">
