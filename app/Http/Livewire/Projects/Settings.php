@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Projects;
 
+use Illuminate\Support\Facades\Session;
 use Storage;
 use Livewire\Component;
 use App\Models\Project;
@@ -18,7 +19,6 @@ class Settings extends Component {
     {
         $this->project = Project::where('id', $id)->with('members', 'user')->firstOrFail();
         $this->item = $this->project->toArray();
-
     }
 
     public function submit()
@@ -43,6 +43,15 @@ class Settings extends Component {
 
         session()->flash('color', 'green');
         session()->flash('message', 'تم التعديل بنجاح.');
+
+    }
+    public function removeProject($id)
+    {
+        Project::where('id', $id)->delete();
+        session()->flash('color', 'green');
+        session()->flash('message', 'تمت ازالة المشروع بنجاح. ');
+        $this->redirect(route('home'));
+
 
     }
 
