@@ -12,7 +12,7 @@ class Project extends Model implements HasMedia
     use HasMediaTrait, SoftDeletes;
 
     protected $fillable = [
-        'id', 'name', 'user_id', 'image', 'deadline',
+        'id', 'name', 'user_id', 'image', 'deadline','deleted_at',
     ];
 
     public function user()
