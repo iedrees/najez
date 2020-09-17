@@ -15,6 +15,9 @@ class PdfController extends Controller
         $end = request()->end;
   
         Browsershot::url(config('app.url').'/reports/view-pdf/'.$start.'/'.$end)
+            ->setIncludePath('$PATH:/usr/local/bin')
+            // ->setNodeBinary('/usr/local/bin/node')
+            // ->setNpmBinary('/usr/local/bin/npm')
             ->savePdf('reports/'.$start.'-'.$end.'-report.pdf');
 
         return response()->streamDownload(function () use($start, $end){
