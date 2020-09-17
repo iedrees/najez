@@ -26,10 +26,10 @@ class Index extends Component
     public function render()
     {
         $tasks = Task::where('done', true)
-                    // ->whereHas('project',  function ($q)
-                    // {
-                    //     $q->where('user_id', auth()->user()->id);
-                    // })
+                    ->whereHas('project',  function ($q)
+                    {
+                        $q->where('user_id', auth()->user()->id);
+                    })
                     ->whereBetween('done_at', [$this->start ,$this->end])
                     ->with('assignedUser', 'project')->get();
                     
