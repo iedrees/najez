@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/profile', 'users.show')->name('profile');
 
     // Reports
-    Route::livewire('/reports', 'reports.index')->name('reports.index');
+    Route::livewire('/reports/index', 'reports.index')->name('reports.index');
 
     // Auth
     Route::view('email/verify', 'auth.verify')->middleware('throttle:6,1')->name('verification.notice');
