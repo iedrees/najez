@@ -33,4 +33,19 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Project::class);
     }
+
+    public function getAllMyTasksAttribute()
+    {
+        return $this->hasMany(Task::class, 'assigned_user_id');
+    }
+ 
+    public function getAllMyDoneTasksAttribute()
+    {
+        return $this->hasMany(Task::class, 'assigned_user_id')->where('done', true);
+    }
+ 
+    public function getAllMyNotDoneTasksAttribute()
+    {
+        return $this->hasMany(Task::class, 'assigned_user_id')->where('done', false);
+    }
 }
