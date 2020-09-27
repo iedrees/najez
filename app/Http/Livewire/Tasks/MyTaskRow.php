@@ -13,7 +13,7 @@ class MyTaskRow extends Component
     {
         $this->task = $task;
     }
-
+ 
     public function checkTask()
     {
         $this->task->done =  !$this->task->done;
