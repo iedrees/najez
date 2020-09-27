@@ -29,7 +29,7 @@ class MyTasks extends Component
             // ->orWhere('user_id', auth()->user()->id)
             ->with('project', 'user')
             ->orderBy('created_at', 'desc')
-            ->paginate(30);
+            ->paginate(60);
 
         return view('livewire.tasks.my-tasks')->with('tasks', $tasks);
     } 

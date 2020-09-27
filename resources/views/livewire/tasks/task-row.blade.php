@@ -58,8 +58,9 @@
                                        {{$task->assignedUser->name}}
                                    </div>
                                 </div>
-
-                                <livewire:tasks.assign-user :task="$task" :project="$project"  />
+                            
+                                    <livewire:tasks.assign-user :task="$task" :project="$project" />
+                                    <livewire:tasks.delete-task :task="$task" />                              
                             </div>
 
                             <div class="mt-2">
