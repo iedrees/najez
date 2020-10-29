@@ -25,6 +25,7 @@ class Show extends Component {
             'user.username' => 'required',
             'user.name' => 'required',
             'user.employee_num' => 'required',
+            'user.employee_ext' => 'required',
             'user.email' => 'required|email',
         ]);
 
@@ -33,6 +34,7 @@ class Show extends Component {
         $user->name = data_get($this, 'user.name');
         $user->email = data_get($this, 'user.email');
         $user->employee_num = data_get($this, 'user.employee_num');
+        $user->employee_ext = data_get($this, 'user.employee_ext');
         if (isset($this->image))
         {
             $path = $this->image->storeAs('profile/images', time() . '.' . $this->image->extension());
