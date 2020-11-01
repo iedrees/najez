@@ -22,6 +22,6 @@ class Show extends Component
     }
     public function render()
     {
-        return view('livewire.projects.show');
+        return view('livewire.projects.show')->extends('layouts.app');
     }
 }

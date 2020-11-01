@@ -31,6 +31,6 @@ class MyTasks extends Component
             ->orderBy('created_at', 'desc')
             ->paginate(60);
 
-        return view('livewire.tasks.my-tasks')->with('tasks', $tasks);
+        return view('livewire.tasks.my-tasks')->with('tasks', $tasks)->extends('layouts.app');
     } 
 }

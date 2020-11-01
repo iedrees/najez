@@ -59,6 +59,6 @@ class Members extends Component
                                     $q->where('name', 'LIKE', "%{$this->search}%")
                                         ->orWhere('email', 'LIKE', "%{$this->search}%");
                                 })->limit(10)->get(),
-        ]);
+        ])->extends('layouts.app');
     }
 }

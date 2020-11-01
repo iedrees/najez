@@ -17,6 +17,7 @@
 
     <body class="bg-gray-100">
         @yield('body')
+        
 
         <script src="{{ mix('js/app.js') }}" data-turbolinks-suppress-warning></script>
         @livewireScripts
