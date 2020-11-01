@@ -12,6 +12,8 @@ class TaskRow extends Component
     public $project;
     public $taskContent;
     public $details;
+    public $start_date;
+    public $end_date;
 
     protected $listeners = ['taskAssigned' => 'updateTaskInfo'];
 
@@ -21,6 +23,9 @@ class TaskRow extends Component
         $this->project = $project;
         $this->taskContent = $task->task;
         $this->details = $task->details;
+        $this->start_date = $task->start_date;
+        $this->end_date = $task->end_date;
+        logger('mount');
     }
 
 
@@ -48,16 +53,17 @@ class TaskRow extends Component
     {
         // $this->task = Task::where('id', $taskid)->with('user', 'assignedUser', 'activities')->first();
     }
-
     public function addingNote()
     {
+
         $this->task->details=$this->details ;
+        $this->task->start_date=$this->start_date ;
+        $this->task->end_date=$this->end_date ;
         if($this->task->save()){
             session()->flash('color', 'green');
             session()->flash('message', 'تم اضافة الملاحظات  بنجاح. ');
             return redirect(route('projects.show', $this->task->project_id));
         }
-//        $this->task->save();
     }
 
     public function render()

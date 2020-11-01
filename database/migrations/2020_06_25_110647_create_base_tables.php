@@ -40,6 +40,8 @@ class CreateBaseTables extends Migration
             $table->boolean('done')->default(false);
             $table->json('meta')->nullable();
             $table->timestamp('due_date')->nullable();
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->timestamp('done_at')->nullable();
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();
