@@ -18,7 +18,7 @@ class Task extends Model {
     }
 
     protected $fillable = [
-        'task', 'done', 'user_id', 'project_id', 'assigned_user_id',
+        'task', 'done', 'user_id', 'project_id', 'assigned_user_id','details',
     ];
 
     public function user()

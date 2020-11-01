@@ -10,7 +10,7 @@
                 class="form-checkbox cursor-pointer hover:opacity-75 border border-gray-100 h-8 w-8 text-indigo-600 bg-gray-200 transition duration-150 ease-in-out focus:shadow-outline-none">
         </div>
         <div @click="showDetail = !showDetail" x-on:keydown.escape="showDetail = false" class="@if($task->done) line-through text-gray-400 @endif bg-white w-full mb-1 border-gray-200 shadow-sm p-4 rounded  cursor-pointer hover:bg-gray-50 hover:border-blue-200">
-            
+
             <span class="flex items-center">
                 <span class="flex-grow">{{$task->task}}</span>
                 <div class="inline-flex items-center rounded-md border border-green-300 px-1 py-1 bg-green-100 text-green-500 text-sm leading-4">
@@ -47,13 +47,12 @@
                         <div class="relative flex-1 p-1 ">
                             <div>
                                 @if(auth()->user()->id == $task->user_id)
-
                                 <div class="mb-3 flex rounded shadow-sm bg-gray-200 p-1">
                                     <div class="relative flex-grow focus-within:z-10">
-                                    <textarea id="task" 
-                                        wire:model.lazy="taskContent" 
-                                         
-                                        class="p-3 block w-full rounded-none rounded-r transition ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none" 
+                                    <textarea id="task"
+                                        wire:model.lazy="taskContent"
+
+                                        class="p-3 block w-full rounded-none rounded-r transition ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none"
                                         placeholder=""> {!! nl2br($task->task) !!}
                                     </textarea>
                                     </div>
@@ -61,13 +60,28 @@
                                         <svg class="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                                     </button>
                                 </div>
-                                @else 
+                                    <h2 class="text font-medium text-gray-700">
+                                        ملاحظات المهمة
+                                    </h2>
+                                    <div class="mb-3 flex rounded shadow-sm bg-gray-200 p-1">
+                                        <div class="relative flex-grow focus-within:z-10">
+                                    <textarea id="details"
+                                              wire:model.lazy="details"
+                                              class="p-3 block w-full rounded-none rounded-r transition ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none"
+                                              placeholder="اضف ملاحظه">
+                                        {!! nl2br($task->details) !!}
+                                    </textarea>
+                                        </div>
+                                        <button wire:click="addingNote()" class="relative inline-flex items-center px-4 py-2 border-gray-300 text-sm leading-5 font-medium rounded-l text-gray-700 bg-indigo-400 hover:text-gray-500 hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500 focus:shadow-outline-blue focus:border-white active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                                            <svg class="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                        </button>
+                                    </div>
+                                @else
                                     <div class="text-gray-700 bg-gray-50 p-3 rounded leading-8 text-sm">
                                         {!! nl2br($task->task) !!}
                                     </div>
                                 @endif
                             </div>
-
                             <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
                                 <div class="flex items-center -ml-px rounded-r-md border border-gray-300 px-2 py-2 bg-green-100 text-green-500 text-sm leading-5 h-8">
                                     <svg class="h-4 w-4 " fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M9 3a1 1 0 012 0v5.5a.5.5 0 001 0V4a1 1 0 112 0v4.5a.5.5 0 001 0V6a1 1 0 112 0v5a7 7 0 11-14 0V9a1 1 0 012 0v2.5a.5.5 0 001 0V4a1 1 0 012 0v4.5a.5.5 0 001 0V3z" clip-rule="evenodd"></path></svg>
@@ -75,9 +89,9 @@
                                        {{$task->assignedUser->name}}
                                    </div>
                                 </div>
-                            
+
                                 <livewire:tasks.assign-user :task="$task" :project="$project" />
-                                <livewire:tasks.delete-task :task="$task" />                              
+                                <livewire:tasks.delete-task :task="$task" />
                             </div>
 
                             <div class="mt-2">

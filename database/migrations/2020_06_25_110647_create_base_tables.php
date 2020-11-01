@@ -31,7 +31,7 @@ class CreateBaseTables extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();	// owner / created by
-            $table->foreignId('assigned_user_id')->nullable(); 
+            $table->foreignId('assigned_user_id')->nullable();
             $table->foreignId('project_id')->nullable();
             $table->foreignId('parent_id')->nullable();
             $table->text('task');

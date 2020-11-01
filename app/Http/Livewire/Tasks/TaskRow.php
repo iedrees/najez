@@ -11,6 +11,7 @@ class TaskRow extends Component
     public $task;
     public $project;
     public $taskContent;
+    public $details;
 
     protected $listeners = ['taskAssigned' => 'updateTaskInfo'];
 
@@ -19,8 +20,9 @@ class TaskRow extends Component
         $this->task = $task;
         $this->project = $project;
         $this->taskContent = $task->task;
+        $this->details = $task->details;
     }
- 
+
 
     public function update()
     {
@@ -30,7 +32,7 @@ class TaskRow extends Component
             session()->flash('message', 'تم تعديل المهمة  بنجاح. ');
             return redirect(route('projects.show', $this->task->project_id));
         }
- 
+
 
         $this->emit('taskUpdated', $this->task->id);
     }
@@ -45,6 +47,17 @@ class TaskRow extends Component
     public function updateTaskInfo($taskid)
     {
         // $this->task = Task::where('id', $taskid)->with('user', 'assignedUser', 'activities')->first();
+    }
+
+    public function addingNote()
+    {
+        $this->task->details=$this->details ;
+        if($this->task->save()){
+            session()->flash('color', 'green');
+            session()->flash('message', 'تم اضافة الملاحظات  بنجاح. ');
+            return redirect(route('projects.show', $this->task->project_id));
+        }
+//        $this->task->save();
     }
 
     public function render()
