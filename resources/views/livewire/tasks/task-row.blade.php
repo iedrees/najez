@@ -38,7 +38,7 @@
                         <header class="p-4 sm:p-4 bg-indigo-50">
                             <div class="flex items-center justify-between space-x-3">
                                 <h2 class="text font-medium text-gray-700">
-                                    تفاصيل المهمة
+                                    معلومات المهمة
                                 </h2>
                                 <button @click="showDetail= false" aria-label="Close panel"
                                         class="text-gray-400 hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">
@@ -76,9 +76,6 @@
                                             تفاصيل المهمة
                                         </h2>
                                         <br>
-                                        {{--                                        <h2 class="text font-medium text-gray-700">--}}
-                                        {{--                                            ملاحظات المهمة--}}
-                                        {{--                                        </h2>--}}
                                         <div class="mb-3 flex rounded shadow-sm bg-gray-200 p-1">
                                             <div class="relative flex-grow focus-within:z-10">
                                     <textarea id="details"
@@ -113,11 +110,6 @@
                                                 </div>
 
                                             @else
-                                                {{--                                                <div>--}}
-                                                {{--                                                    <h3 class="text font-medium text-gray-700">--}}
-                                                {{--                                                        غير محدد--}}
-                                                {{--                                                    </h3>--}}
-                                                {{--                                                </div>--}}
                                                 <div>
                                                     <div class=" flex rounded-md shadow-sm tab-pane fade" id="single"
                                                          role="tabpanel" aria-labelledby="single-tab">
@@ -126,11 +118,10 @@
                                                                    class="form-input block w-full rounded-none rounded-r-md transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                                                                    placeholder="dates">
                                                         </div>
-                                                        <button
+                                                        <div
                                                             class="-mr-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-l-md text-gray-700 bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none transition ease-in-out duration-150">
                                                             <input type="date" wire:model.lazy="end_date">
-                                                            {{--                                                   wire:click="taskDate()">--}}
-                                                        </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             @endif
