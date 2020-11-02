@@ -125,11 +125,11 @@
                                                     </div>
                                                 </div>
                                             @endif
+                                                <button wire:click="addingNote()"
+                                                        class=" btn-wrapper mr-2 rounded-md border border-gray-300 px-2 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none transition ease-in-out duration-150 sm:text-sm sm:leading-5 ">
+                                                    حفظ
+                                                </button>
                                         </div>
-                                        <button wire:click="addingNote()"
-                                                class=" btn-wrapper mr-3 rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none transition ease-in-out duration-150 sm:text-sm sm:leading-5 ">
-                                            حفظ
-                                        </button>
                                         <br>
                                     </div>
                                     <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
