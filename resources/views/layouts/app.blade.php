@@ -5,6 +5,9 @@
     <x-navbar />
 
     <div class="">
+        @isset($slot)
+            {{ $slot}}
+        @endif
         @yield('content')
     </div>
 

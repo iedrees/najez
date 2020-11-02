@@ -33,6 +33,6 @@ class Index extends Component
                     ->whereBetween('done_at', [$this->start ,$this->end])
                     ->with('assignedUser', 'project')->get();
                     
-        return view('livewire.reports.index')->with('tasks', $tasks);
+        return view('livewire.reports.index')->with('tasks', $tasks)->extends('layouts.app');
     }
 }

@@ -21,6 +21,9 @@
         <x-fields.wrapper label="الرقم الوظيفي" for="user.employee_num" :error="$errors->first('user.employee_num')">
             <x-fields.text dir="ltr" wire:model.lazy="user.employee_num" id="user.employee_num" rules="required"/>
         </x-fields.wrapper>
+        <x-fields.wrapper label="رقم التحويلة" for="user.employee_ext" :error="$errors->first('user.employee_ext')">
+            <x-fields.text dir="ltr" wire:model.lazy="user.employee_ext" id="user.employee_ext" rules="required"/>
+        </x-fields.wrapper>
         <x-fields.wrapper label="صورة العرض" for="image" :error="$errors->first('image')">
             <label for="image">
                 <img src="{{$image ? $image->temporaryUrl() : auth()->user()->image}}" class=" cursor-pointer hover:opacity-75 inline-block h-32 w-32 rounded text-white shadow-solid" />
