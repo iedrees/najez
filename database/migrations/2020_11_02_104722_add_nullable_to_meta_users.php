@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldsToUsersTable extends Migration
+class AddNullableToMetaUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,11 @@ class AddFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->json('meta')->after('image');
-            $table->string('employee_ext')->nullable()->unique()->after('meta');
+            $table->dropColumn('meta');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->json('meta')->after('image')->nullable();
         });
     }
 
@@ -26,9 +29,6 @@ class AddFieldsToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('meta');
-            $table->dropColumn('employee_ext');
-        });
+
     }
 }
