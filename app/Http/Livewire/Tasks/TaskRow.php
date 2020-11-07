@@ -33,6 +33,8 @@ class TaskRow extends Component
     public function update()
     {
         $this->task->task = $this->taskContent;
+        $this->task->start_date=$this->start_date ;
+        $this->task->end_date=$this->end_date ;
         if($this->task->save()){
             session()->flash('color', 'green');
             session()->flash('message', 'تم تعديل المهمة  بنجاح. ');
@@ -56,14 +58,14 @@ class TaskRow extends Component
     }
     public function addingNote()
     {
-        $this->task->details=$this->details ;
-        $this->task->start_date=$this->start_date ;
-        $this->task->end_date=$this->end_date ;
-        if($this->task->save()){
-            session()->flash('color', 'green');
-            session()->flash('message', 'تم اضافة الملاحظات  بنجاح. ');
-            return redirect(route('projects.show', $this->task->project_id));
-        }
+//        $this->task->details=$this->details ;
+//        $this->task->start_date=$this->start_date ;
+//        $this->task->end_date=$this->end_date ;
+//        if($this->task->save()){
+//            session()->flash('color', 'green');
+//            session()->flash('message', 'تم اضافة الملاحظات  بنجاح. ');
+//            return redirect(route('projects.show', $this->task->project_id));
+//        }
     }
 
     public function render()
