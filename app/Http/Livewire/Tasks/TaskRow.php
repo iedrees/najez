@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Tasks;
 
 use Livewire\Component;
 use App\Models\Task;
+use App\Models\User;
 use Carbon\Carbon;
 
 class TaskRow extends Component
@@ -55,7 +56,6 @@ class TaskRow extends Component
     }
     public function addingNote()
     {
-
         $this->task->details=$this->details ;
         $this->task->start_date=$this->start_date ;
         $this->task->end_date=$this->end_date ;

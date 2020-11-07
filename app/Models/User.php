@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Actuallymab\LaravelComment\CanComment;
 
 class User extends Authenticatable implements HasMedia
 {
-    use Notifiable ,InteractsWithMedia;
+    use Notifiable, CanComment ,InteractsWithMedia;
 
     protected $fillable = [
         'name', 'email', 'password','username',
@@ -38,12 +39,12 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Task::class, 'assigned_user_id');
     }
- 
+
     public function getAllMyDoneTasksAttribute()
     {
         return $this->hasMany(Task::class, 'assigned_user_id')->where('done', true);
     }
- 
+
     public function getAllMyNotDoneTasksAttribute()
     {
         return $this->hasMany(Task::class, 'assigned_user_id')->where('done', false);

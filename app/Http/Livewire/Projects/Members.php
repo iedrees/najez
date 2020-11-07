@@ -23,28 +23,36 @@ class Members extends Component
 
     public function addMember($user)
     {
-        ProjectMember::firstOrCreate([
-            'user_id' => $user['id'],
-            'project_id' => $this->project->id,
-        ], [
-            'rule' => 'member', // todo assign rule
-        ]);
-
+        if($this->project->leader_id == $user['id']) {
+            ProjectMember::firstOrCreate([
+                'user_id' => $user['id'],
+                'project_id' => $this->project->id,
+            ], [
+                'rule' => 'leader', // todo assign rule
+            ]);
+        }else{
+            ProjectMember::firstOrCreate([
+                'user_id' => $user['id'],
+                'project_id' => $this->project->id,
+            ], [
+                'rule' => 'member', // todo assign rule
+            ]);
+        }
         session()->flash('color', 'green');
         session()->flash('message', 'تمت إضافة العضو للفريق بنجاح.');
 
         $this->getData();
     }
 
-    public function updatedRole($id){
-        logger('id'.$id);
-        logger('$this->role '.$this->role);
-        $this->member=ProjectMember::where('user_id', $id)->where('project_id', $this->projectId)->first();
-        if( $this->member != null){
-            $this->member->rule=$this->role;
-            $this->member->save();
-        }
-    }
+//    public function updatedRole($id){
+//        logger('id'.$id);
+//        logger('$this->role '.$this->role);
+//        $this->member=ProjectMember::where('user_id', $id)->where('project_id', $this->projectId)->first();
+//        if( $this->member != null){
+//            $this->member->rule=$this->role;
+//            $this->member->save();
+//        }
+//    }
 
     public function removeMember($id)
     {

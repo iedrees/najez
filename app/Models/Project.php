@@ -19,7 +19,10 @@ class Project extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
-
+    public function leader()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function members()
     {
         return $this->hasMany(ProjectMember::class);

@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Actuallymab\LaravelComment\Contracts\Commentable;
+use Actuallymab\LaravelComment\HasComments;
 
-class Task extends Model {
-    use LogsActivity;
+class Task extends Model implements Commentable {
+    use LogsActivity, HasComments;
 
     protected static $logAttributes = ['task', 'user_id', 'done', 'project_id', 'status','assigned_user_id'];
     protected static $recordEvents = ['deleted', 'updated', 'created'];
@@ -15,6 +17,11 @@ class Task extends Model {
     public function getDescriptionForEvent(string $eventName): string
     {
         return "This Task has been {$eventName}";
+    }
+
+    public function canBeRated(): bool
+    {
+        return true; // default false
     }
 
     protected $fillable = [

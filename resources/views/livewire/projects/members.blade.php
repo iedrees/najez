@@ -1,6 +1,6 @@
 <x-project-page :project="$project">
 
-    @if(auth()->user()->id == $project->user_id)
+    @if((auth()->user()->id == $project->user_id) || (auth()->user()->id == $project->leader_id))
 
         {{-- Search  --}}
         <div x-data="{open:false}" class="relative block mb-5" x-on:click.away="open = false">
@@ -110,33 +110,33 @@
                                 </div>
                                 <div class="mt-2 flex items-center text-md leading-5 text-gray-500">
                                     <span class="truncate text-gray-400 font-bold"> الدور  : {{$member->rule}}</span>
-                                    <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                                        @if(auth()->user()->id == $project->user_id)
-                                            <div x-data="{ open: false }" class="relative inline-block z-40">
-                                                <button @click="open = true" class="focus:outline-none">
-                                                    <svg class="flex-shrink-0 ml-1 -mt-2 h-5 w-6 text-gray-400"
-                                                         fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
-                                                        <path fill-rule="evenodd"
-                                                              d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                              clip-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                                <div x-show="open" @click.away="open = false"
-                                                     class="origin-top-right absolute">
-                                                    <div>
-                                                    <select name="role" id="role" wire:model="role"
-                                                            class="border shadow p-2 bg-white">
-                                                        <option value=''></option>
-                                                        <option value='member'>member </option>
-                                                        <option value='lead'>lead</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
+{{--                                    <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">--}}
+{{--                                        @if(auth()->user()->id == $project->user_id)--}}
+{{--                                            <div x-data="{ open: false }" class="relative inline-block z-40">--}}
+{{--                                                <button @click="open = true" class="focus:outline-none">--}}
+{{--                                                    <svg class="flex-shrink-0 ml-1 -mt-2 h-5 w-6 text-gray-400"--}}
+{{--                                                         fill="currentColor" viewBox="0 0 20 20">--}}
+{{--                                                        <path--}}
+{{--                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>--}}
+{{--                                                        <path fill-rule="evenodd"--}}
+{{--                                                              d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"--}}
+{{--                                                              clip-rule="evenodd"></path>--}}
+{{--                                                    </svg>--}}
+{{--                                                </button>--}}
+{{--                                                <div x-show="open" @click.away="open = false"--}}
+{{--                                                     class="origin-top-right absolute">--}}
+{{--                                                    <div>--}}
+{{--                                                    <select name="role" id="role" wire:model="role"--}}
+{{--                                                            class="border shadow p-2 bg-white">--}}
+{{--                                                        <option value=''></option>--}}
+{{--                                                        <option value='member'>member </option>--}}
+{{--                                                        <option value='lead'>lead</option>--}}
+{{--                                                    </select>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                         {{-- remove member --}}
                         @if(auth()->user()->id == $project->user_id)
                             <div x-data="{ open: false }" class="relative inline-block z-40">
-                                <button wire:click="updatedRole({{$member->user_id}})"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></button>
+{{--                                <button wire:click="updatedRole({{$member->user_id}})"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></button>--}}
                                 <button @click="open = true" class="focus:outline-none">
                                     <svg class="h-6 w-6 text-gray-400 hover:text-gray-500" fill="currentColor"
                                          viewBox="0 0 20 20">
