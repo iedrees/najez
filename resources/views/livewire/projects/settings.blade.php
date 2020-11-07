@@ -21,7 +21,7 @@
             <div x-data="{open:false}" class="relative block mb-5" x-on:click.away="open = false">
 
                 <div class="relative rounded shadow-sm bg-gray-200 p-1">
-                    <input x-on:focus="open = true" wire:model="search" type="text" placeholder="ابحث عن عضو ..."
+                    <input x-on:focus="open = true" wire:model="search" type="text" placeholder="ابحث عن قائد ..."
                            class="p-3 pr-10 block w-full rounded-none rounded transition ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none"/>
                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                         <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -79,8 +79,7 @@
         <div class="rounded-t mb-0 px-6 py-6">
             <div class="text-center mb-3">
                 <div class="btn-wrapper text-left">
-                    @if(auth()->user()->id == $project->user_id)
-                        <div x-data="{ open: false }" class="relative inline-block z-40">
+                    @if((auth()->user()->id == $project->user_id) || (auth()->user()->id == $project->leader_id))                        <div x-data="{ open: false }" class="relative inline-block z-40">
                             <button @click="open = true" type="button"
                                     class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                                 <i class="ti-close ml-2"></i>

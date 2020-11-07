@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Projects;
 
+use App\Models\ProjectMember;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Storage;
@@ -54,6 +55,12 @@ class Settings extends Component
     {
         $this->project->leader_id = $user['id'];
         $this->project->save();
+        ProjectMember::firstOrCreate([
+            'user_id' => $user['id'],
+            'project_id' => $this->project->id,
+        ], [
+            'rule' => 'leader',
+        ]);
     }
 
     public function removeProject($id)

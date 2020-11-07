@@ -49,4 +49,5 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Task::class, 'assigned_user_id')->where('done', false);
     }
+
 }
