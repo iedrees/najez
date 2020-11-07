@@ -23,18 +23,18 @@ class Index extends Component
     public function refresh()
     {
         $this->tasks = Task::where('project_id', $this->projectid)
-            ->where(function ($w)
-            {
-                $w->whereHas('assignedUser',  function ($q)
-                {
+            ->where(function ($w) {
+                $w->whereHas('assignedUser', function ($q) {
                     $q->where('id', auth()->user()->id);
                 })
-                ->orWhereHas('project',  function ($q)
-                {
-                    $q->where('user_id', auth()->user()->id);
-                });
+                    ->orWhereHas('project', function ($q) {
+                        $q->where('user_id', auth()->user()->id);
+                    })
+                    ->orWhereHas('project', function ($q) {
+                        $q->where('leader_id', auth()->user()->id);
+                    })
+                ;
             })
-
             ->with('user', 'assignedUser', 'activities', 'project')
             ->latest()
             ->get();
