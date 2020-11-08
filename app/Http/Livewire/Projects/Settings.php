@@ -59,7 +59,7 @@ class Settings extends Component
             'user_id' => $user['id'],
             'project_id' => $this->project->id,
         ], [
-            'rule' => 'leader',
+            'rule' => 'قائد',
         ]);
     }
 

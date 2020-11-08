@@ -1,5 +1,5 @@
 <div class="btn-wrapper mr-3">
-    @if(auth()->user()->id == $task->user_id)
+    @if((auth()->user()->id == $task->user_id) || (auth()->user()->id==$task->project->leader_id))
         <div x-data="{ open: false }" class="relative inline-block z-40">
             <button @click="open = true" type="button"
                     class="inline-flex items-center justify-center py-1 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
@@ -19,4 +19,4 @@
         </div>
     @endif
 </div>
- 
+

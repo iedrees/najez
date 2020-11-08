@@ -79,7 +79,8 @@
         <div class="rounded-t mb-0 px-6 py-6">
             <div class="text-center mb-3">
                 <div class="btn-wrapper text-left">
-                    @if((auth()->user()->id == $project->user_id) || (auth()->user()->id == $project->leader_id))                        <div x-data="{ open: false }" class="relative inline-block z-40">
+                    @if((auth()->user()->id == $project->user_id) || (auth()->user()->id == $project->leader_id))
+                        <div x-data="{ open: false }" class="relative inline-block z-40">
                             <button @click="open = true" type="button"
                                     class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                                 <i class="ti-close ml-2"></i>

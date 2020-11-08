@@ -52,7 +52,7 @@
                         </header>
                         <div class="relative flex-1 p-1 ">
                             <div>
-                                @if(auth()->user()->id == $task->user_id)
+                                @if((auth()->user()->id == $task->user_id) || (auth()->user()->id==$task->project->leader_id) ||(auth()->user()->id==$task->project->user_id))
                                     <div class="bg-gray-50 text-sm text-gray-600 p-1 rounded border border-gray-200">
 
                                         <div class="mb-3 flex rounded shadow-sm bg-gray-200 p-1">
@@ -64,22 +64,6 @@
                                     </textarea>
                                             </div>
                                         </div>
-
-                                        {{--                                        <h2 class="text font-medium text-gray-700">--}}
-                                        {{--                                            تفاصيل المهمة--}}
-                                        {{--                                        </h2>--}}
-                                        {{--                                        <br>--}}
-                                        {{--                                        <div class="mb-3 flex rounded shadow-sm bg-gray-200 p-1">--}}
-                                        {{--                                            <div class="relative flex-grow focus-within:z-10">--}}
-                                        {{--                                    <textarea id="details"--}}
-                                        {{--                                              wire:model.lazy="details"--}}
-                                        {{--                                              class="p-3 block w-full rounded-none rounded-r transition ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none"--}}
-                                        {{--                                              placeholder="اضف ملاحظه">--}}
-                                        {{--                                        {!! nl2br($task->details) !!}--}}
-                                        {{--                                    </textarea>--}}
-                                        {{--                                            </div>--}}
-
-                                        {{--                                        </div>--}}
                                         @else
                                             <div class="text-gray-700 bg-gray-50 p-3 rounded leading-8 text-sm">
                                                 {!! nl2br($task->task) !!}
@@ -87,21 +71,26 @@
                                         @endif
 
                                         <h2 class="text font-medium text-gray-700">
-                                            فترة المهمة
+                                            تسليم المهمة
                                         </h2>
-                                        <div class="mx-1">
-                                            <b class=" text-sm text-gray-600 p-1 " dir="ltr">({{Carbon\Carbon::parse($end_date)->format('d M, Y')}})</b>
-                                        </div>
-                                        <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
-                                            <div>
-                                                <div class="relative focus-within:z-10">
-                                                    <x-fields.text wire:model.lazy="end_date" id="end_date"
-                                                                   rules="required" type="date"></x-fields.text>
-                                                </div>
 
+                                        @if(isset($task->end_date))
+                                            <div class="mx-1">
+                                                <b class=" text-sm text-gray-600 p-1 "
+                                                   dir="ltr">({{Carbon\Carbon::parse($end_date)->format('d M, Y')}}
+                                                    )</b>
                                             </div>
-                                        </div>
-                                        <br>
+                                        @else
+                                            <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
+                                                <div>
+                                                    <div class="relative focus-within:z-10">
+                                                        <x-fields.text wire:model.lazy="end_date" value="{{$task->end_date}}"
+                                                                       rules="required" type="date"></x-fields.text>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
                                         <div
@@ -118,11 +107,20 @@
 
                                         <livewire:tasks.assign-user :task="$task" :project="$project"/>
                                         <livewire:tasks.delete-task :task="$task"/>
-                                        <button wire:click="update" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-indigo-100 hover:bg-indigo-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-indigo-200 transition ease-in-out duration-150">
-                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                        </button>
+
+                                        <div class="mx-3 -mb-2">
+                                            <button wire:click="update" type="button"
+                                                    class="inline-flex items-center justify-center py-1 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-blue-700 bg-indigo-100 hover:bg-indigo-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-indigo-200 transition ease-in-out duration-150">
+                                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                          clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
-{{--                                commients --}}
+                                    {{--                                commients --}}
 
                                     <div class="mt-2">
                                         @foreach($task->activities as $activity)

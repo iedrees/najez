@@ -94,6 +94,7 @@
         </div>
 
         @foreach ($project->members as $member)
+            @if($member->rule == "قائد")
             <div class="bg-white mb-1">
                 <div class="flex items-center px-4 py-4 sm:px-6">
                     <div class="min-w-0 flex-1 flex items-center">
@@ -104,39 +105,13 @@
                             <div>
                                 <div
                                     class="leading-5 font-bold text-lg text-gray-600 truncate">{{$member->user->name}}</div>
+
+                                <div class="mt-2 flex items-center text-sm leading-5 text-indigo-600">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>                                    <span class="truncate text-gray-400">   {{$member->rule}}    </span>
+                                </div>
                                 <div class="mt-2 flex items-center text-md leading-5 text-gray-500">
                                     <span
                                         class="truncate text-gray-400 font-bold"> رقم التحويلة : {{$member->user->employee_ext}}</span>
-                                </div>
-                                <div class="mt-2 flex items-center text-md leading-5 text-gray-500">
-                                    <span class="truncate text-gray-400 font-bold"> الدور  : {{$member->rule}}</span>
-{{--                                    <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">--}}
-{{--                                        @if(auth()->user()->id == $project->user_id)--}}
-{{--                                            <div x-data="{ open: false }" class="relative inline-block z-40">--}}
-{{--                                                <button @click="open = true" class="focus:outline-none">--}}
-{{--                                                    <svg class="flex-shrink-0 ml-1 -mt-2 h-5 w-6 text-gray-400"--}}
-{{--                                                         fill="currentColor" viewBox="0 0 20 20">--}}
-{{--                                                        <path--}}
-{{--                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>--}}
-{{--                                                        <path fill-rule="evenodd"--}}
-{{--                                                              d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"--}}
-{{--                                                              clip-rule="evenodd"></path>--}}
-{{--                                                    </svg>--}}
-{{--                                                </button>--}}
-{{--                                                <div x-show="open" @click.away="open = false"--}}
-{{--                                                     class="origin-top-right absolute">--}}
-{{--                                                    <div>--}}
-{{--                                                    <select name="role" id="role" wire:model="role"--}}
-{{--                                                            class="border shadow p-2 bg-white">--}}
-{{--                                                        <option value=''></option>--}}
-{{--                                                        <option value='member'>member </option>--}}
-{{--                                                        <option value='lead'>lead</option>--}}
-{{--                                                    </select>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -173,6 +148,61 @@
                     </div>
                 </div>
             </div>
+            @else
+                <div class="bg-white mb-1">
+                    <div class="flex items-center px-4 py-4 sm:px-6">
+                        <div class="min-w-0 flex-1 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-12 w-12 rounded-full" src="{{$member->user->image}}" alt=""/>
+                            </div>
+                            <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                <div>
+                                    <div
+                                        class="leading-5 font-bold text-lg text-gray-600 truncate">{{$member->user->name}}</div>
+
+                                    <div class="mt-2 flex items-center text-sm leading-5 text-gray-800">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>                                        <span class="truncate text-gray-400">   {{$member->rule}}    </span>
+                                    </div>
+                                    <div class="mt-2 flex items-center text-md leading-5 text-gray-500">
+                                    <span
+                                        class="truncate text-gray-400 font-bold"> رقم التحويلة : {{$member->user->employee_ext}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+
+                            {{-- remove member --}}
+                            @if((auth()->user()->id == $project->user_id) || (auth()->user()->id == $project->leader_id))
+                                <div x-data="{ open: false }" class="relative inline-block z-40">
+                                    {{--                                <button wire:click="updatedRole({{$member->user_id}})"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></button>--}}
+                                    <button @click="open = true" class="focus:outline-none">
+                                        <svg class="h-6 w-6 text-gray-400 hover:text-gray-500" fill="currentColor"
+                                             viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                  clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+
+                                    <div x-show="open" @click.away="open = false"
+                                         class="origin-top-right absolute left-0 mt-2 w-56 rounded-md shadow-lg">
+                                        <div class="rounded-md bg-white shadow-xs p-3 text-sm text-gray-500 leading-8">
+                                            هل تريد بالتأكيد إزالة العضو من هذا المشروع ؟
+
+                                            <button wire:click="removeMember({{$member->id}})" type="button"
+                                                    class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-red-600 hover:bg-red-500 focus:outline-none transition ease-in-out duration-150">
+                                                نعم، تأكيد الحذف
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+            @endif
         @endforeach
     </div>
 </x-project-page>

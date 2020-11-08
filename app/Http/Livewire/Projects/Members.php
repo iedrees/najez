@@ -27,7 +27,7 @@ class Members extends Component
             'user_id' => $user['id'],
             'project_id' => $this->project->id,
         ], [
-            'rule' => 'member', // todo assign rule
+            'rule' => 'عضو', // todo assign rule
         ]);
 
         session()->flash('color', 'green');
