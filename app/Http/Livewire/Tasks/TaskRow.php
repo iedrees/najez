@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tasks;
 
+use Actuallymab\LaravelComment\Models\Comment;
 use Livewire\Component;
 use App\Models\Task;
 use App\Models\User;
@@ -12,6 +13,7 @@ class TaskRow extends Component
     public $task;
     public $project;
     public $taskContent;
+    public $comment;
     public $details;
     public $start_date;
     public $end_date;
@@ -23,6 +25,7 @@ class TaskRow extends Component
         $this->task = $task;
         $this->project = $project;
         $this->taskContent = $task->task;
+        $this->comment ;
         $this->details = $task->details;
         $this->start_date = $task->start_date;
         $this->end_date = $task->end_date;
@@ -51,25 +54,22 @@ class TaskRow extends Component
         $this->task->done_at =  Carbon::now();
         $this->task->save();
     }
+    public function comment()
+    {
+        logger('in the comment method ');
+        $userid = auth()->user()->id;
+        $user = User::find($userid);
+        $task =Task::where('id','=', $this->task->id)->first();
+        $user->comment($task, $this->comment);
+    }
 
     public function updateTaskInfo($taskid)
     {
         // $this->task = Task::where('id', $taskid)->with('user', 'assignedUser', 'activities')->first();
     }
-    public function addingNote()
-    {
-//        $this->task->details=$this->details ;
-//        $this->task->start_date=$this->start_date ;
-//        $this->task->end_date=$this->end_date ;
-//        if($this->task->save()){
-//            session()->flash('color', 'green');
-//            session()->flash('message', 'تم اضافة الملاحظات  بنجاح. ');
-//            return redirect(route('projects.show', $this->task->project_id));
-//        }
-    }
-
     public function render()
     {
-        return view('livewire.tasks.task-row');
+        return view('livewire.tasks.task-row', ['comments' => comment::where('commentable_id', $this->task->id)->latest()->paginate(5),
+        ]);
     }
 }

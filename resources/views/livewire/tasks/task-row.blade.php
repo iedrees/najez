@@ -74,24 +74,33 @@
                                             تسليم المهمة
                                         </h2>
 
-                                        @if(isset($task->end_date))
-                                            <div class="mx-1">
-                                                <b class=" text-sm text-gray-600 p-1 "
-                                                   dir="ltr">({{Carbon\Carbon::parse($end_date)->format('d M, Y')}}
-                                                    )</b>
-                                            </div>
-                                        @else
-                                            <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
-                                                <div>
-                                                    <div class="relative focus-within:z-10">
-                                                        <x-fields.text wire:model.lazy="end_date" value="{{$task->end_date}}"
-                                                                       rules="required" type="date"></x-fields.text>
-                                                    </div>
+                                        {{--                                        @if(isset($task->end_date))--}}
+                                        <div class="mx-1">
+                                            <b class=" text-sm text-gray-600 p-1 "
+                                               dir="ltr">({{Carbon\Carbon::parse($start_date)->format('d M, Y')}}
+                                                )</b>
+                                            <span class="mx-1 ">إلى</span>
+                                            <b class=" text-sm text-gray-600 p-1 "
+                                               dir="ltr">({{Carbon\Carbon::parse($end_date)->format('d M, Y')}}
+                                                )</b>
+                                        </div>
 
-                                                </div>
+                                        {{--                                        @else--}}
+                                        <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
+                                            <div class="relative focus-within:z-10">
+                                                <x-fields.text wire:model.lazy="start_date"
+                                                               value="{{$task->start_date}}"
+                                                               rules="required"></x-fields.text>
                                             </div>
-                                        @endif
+                                            <div class="relative focus-within:z-10">
+                                                <x-fields.text wire:model.lazy="end_date"
+                                                               value="{{$task->end_date}}"
+                                                               rules="required"></x-fields.text>
+                                            </div>
+                                        </div>
+                                        {{--                                        @endif--}}
                                     </div>
+
                                     <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
                                         <div
                                             class="flex items-center -ml-px rounded-r-md border border-gray-300 px-2 py-2 bg-green-100 text-green-500 text-sm leading-5 h-8">
@@ -117,40 +126,90 @@
                                                           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                                           clip-rule="evenodd"></path>
                                                 </svg>
+                                                حفظ
                                             </button>
                                         </div>
                                     </div>
-                                    {{--                                commients --}}
+                                    <div x-data="{showComment:false}">
+                                        <div>
+                                            <form class="my-4 flex" wire:submit.prevent="comment">
+                                                        <textarea id="comment"
+                                                                  wire:model.debounce.500ms="comment"
+                                                                  wire:keydown.enter="comment"
+                                                                  class=" block w-full rounded-none rounded-r border-gray-300 ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none"
+                                                                  placeholder="اضف تعليقك ..">
+                                                        </textarea>
+                                                <button wire:click="comment" type="button"
+                                                 class="inline-flex items-center justify-center py-1 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm border-gray-300 text-blue-700 bg-white-100 hover:bg-white-50 focus:outline-none focus:border-gray-500 focus:shadow-outline-white active:bg-white-200 transition ease-in-out duration-150">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div @click="showComment = !showComment"
+                                             x-on:keydown.escape="showComment = false">
+                                            <span class="flex items-center">
+                                                <button
+                                                    class="inline-flex items-center justify-center py-1 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm text-blue-700 bg-white-100 hover:bg-white-50 focus:outline-none focus:border-white-300 focus:shadow-outline-white active:bg-white-200 transition ease-in-out duration-150">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M19 13l-7 7-7-7m14-8l-7 7-7-7"></path></svg></button></span>
+                                        </div>
 
-                                    <div class="mt-2">
-                                        @foreach($task->activities as $activity)
-                                            <div class="bg-blue-50 p-2 mb-0.5 text-gray-600">
-                                                <div class="flex justify-between">
+
+                                        <div x-show="showComment" class="inset-0 overflow-hidden ">
+                                            @foreach($comments as $comment)
+                                                <div class="rounded border shadow p-3 my-2">
+                                                    <div class="flex justify-between my-2">
+                                                        <div class="flex">
+                                                            <p class="font-bold text-lg">{{$comment->commentable_id}}</p>
+                                                            <p class="mx-3 py-1 text-xs text-gray-500 font-semibold">{{$comment->created_at->diffForHumans()}}
+                                                            </p>
+                                                        </div>
+                                                        <i class="fas fa-times text-red-200 hover:text-red-600 cursor-pointer"
+                                                           wire:click="remove({{$comment->id}})"></i>
+                                                    </div>
+                                                    <p class="text-gray-800">{{$comment->comment}}</p>
+                                                    @if($comment->image)
+                                                        <img src="{{$comment->imagePath}}"/>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="mt-2">
+                                @foreach($task->activities as $activity)
+                                    <div class="bg-blue-50 p-2 mb-0.5 text-gray-600">
+                                        <div class="flex justify-between">
                                             <span>
                                                 <img class="inline-block h-5 w-5 rounded-full"
                                                      src="{{$activity->causer->image}}" alt=""/>
                                                 <span class="text-sm">{{$activity->causer->name}}</span>
                                             </span>
-                                                    <span
-                                                        class="p-1 inline-block px-1 text-sm text-gray-300 flex items-center">
+                                            <span
+                                                class="p-1 inline-block px-1 text-sm text-gray-300 flex items-center">
                                                 <span dir="ltr" class="text-xs"
                                                       title="{{$activity->created_at}}">{{$activity->created_at->diffForHumans()}}</span>
                                             </span>
-                                                </div>
+                                        </div>
 
-                                                <div class="text-sm">
-                                                    {{$activity->description}}
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                        <div class="text-sm">
+                                            {{$activity->description}}
+                                        </div>
                                     </div>
-
-
+                                @endforeach
                             </div>
 
+
                         </div>
+
                     </div>
-            </section>
+                </div>
         </div>
+        </section>
     </div>
 </div>
+</div>
+
