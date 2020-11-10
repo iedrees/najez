@@ -7,32 +7,26 @@ const routes = [
         name: 'home', 
         path: '/', 
         component: require('./components/Pages/Home').default
-    }, 
-    { 
-        name: 'media', 
-        path: '/media', 
-        component: require('./components/Pages/Media').default
-    }, 
-    { 
-        name: 'profiles', 
-        path: '/profiles', 
-        component: require('./components/Pages/Profiles').default
-    }, 
+    },   
     { 
         name: 'settings', 
         path: '/settings', 
         component: require('./components/Pages/Settings').default
     }, 
     { 
+        name: 'tasks', 
+        path: '/tasks', 
+        component: require('./components/Pages/Tasks').default
+    }, 
+    { 
+        name: 'report', 
+        path: '/report', 
+        component: require('./components/Pages/Report').default
+    }, 
+    { 
         name: 'myProfile', 
         path: '/my-profile', 
         component: require('./components/Pages/MyProfile').default
-    }, 
-
-    { 
-        name: 'showProfile', 
-        path: '/profiles/:id', 
-        component: require('./components/Profile/ShowProfile').default
     }, 
     { 
         path: '/projects/:id', 

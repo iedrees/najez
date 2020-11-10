@@ -51,7 +51,7 @@
 
     <div class="border-t shadow-sm border-gray-100 border-dottedx bg-white">
         <div class="container mx-auto pt-1">
-                <nav class="flex -mb-px">
+                <nav class="flex -mb-px" >
                     <router-link :to="{name:'projectIndex', params: {id:item.id}}" exact active-class="border-indigo-800 font-bold text-indigo-800" class="-mb-px text-gray-400 hover:text-indigo-700 border-transparent border-b-2 group inline-flex items-center py-4 px-1  font-medium text-sm leading-5 focus:outline-none">
                         <svg class="ml-2 h-5 w-5 text-gray-400group-hover:text-indigo-800" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                         <span> المهام </span>

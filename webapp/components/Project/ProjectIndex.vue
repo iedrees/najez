@@ -1,6 +1,8 @@
 <template>
   <div>
-      {{project.name}} قائمة المهام .. 
+     
+      <TaskList :projectId="project.id" />
+    
   </div>
 </template>
 
