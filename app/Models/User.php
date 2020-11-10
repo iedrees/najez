@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Actuallymab\LaravelComment\Models\Comment;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -33,6 +34,10 @@ class User extends Authenticatable implements HasMedia
     public function projects()
     {
         return $this->hasMany(Project::class);
+    }
+    public function comments()
+    {
+        $this->hasMany(comment::class);
     }
 
     public function getAllMyTasksAttribute()

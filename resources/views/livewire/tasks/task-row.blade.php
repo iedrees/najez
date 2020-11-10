@@ -69,36 +69,21 @@
                                                 {!! nl2br($task->task) !!}
                                             </div>
                                         @endif
-
                                         <h2 class="text font-medium text-gray-700">
                                             تسليم المهمة
                                         </h2>
-
-                                        {{--                                        @if(isset($task->end_date))--}}
-                                        <div class="mx-1">
-                                            <b class=" text-sm text-gray-600 p-1 "
-                                               dir="ltr">({{Carbon\Carbon::parse($start_date)->format('d M, Y')}}
-                                                )</b>
-                                            <span class="mx-1 ">إلى</span>
-                                            <b class=" text-sm text-gray-600 p-1 "
-                                               dir="ltr">({{Carbon\Carbon::parse($end_date)->format('d M, Y')}}
-                                                )</b>
-                                        </div>
-
-                                        {{--                                        @else--}}
                                         <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
                                             <div class="relative focus-within:z-10">
-                                                <x-fields.text wire:model.lazy="start_date"
-                                                               value="{{$task->start_date}}"
-                                                               rules="required"></x-fields.text>
+                                                <x-fields.text wire:model.lazy="start_date" id="start_date"
+                                                               {{--                                                               value=" {{Carbon\Carbon::parse($end_date)->format('d , M, Y')}}"--}}
+                                                               type="date"></x-fields.text>
                                             </div>
                                             <div class="relative focus-within:z-10">
-                                                <x-fields.text wire:model.lazy="end_date"
-                                                               value="{{$task->end_date}}"
-                                                               rules="required"></x-fields.text>
+                                                <x-fields.text wire:model.lazy="end_date" id="end_date"
+                                                               {{--                                                               value=" {{Carbon\Carbon::parse($end_date)->format('d , M, Y')}}"--}}
+                                                               type="date"></x-fields.text>
                                             </div>
                                         </div>
-                                        {{--                                        @endif--}}
                                     </div>
 
                                     <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
@@ -130,18 +115,24 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <br>
                                     <div x-data="{showComment:false}">
                                         <div>
                                             <form class="my-4 flex" wire:submit.prevent="comment">
                                                         <textarea id="comment"
                                                                   wire:model.debounce.500ms="comment"
                                                                   wire:keydown.enter="comment"
-                                                                  class=" block w-full rounded-none rounded-r border-gray-300 ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none"
+                                                                  class="block w-full rounded-none rounded-r border-gray-300 ease-in-out duration-150 text-gray-500 border-2 border-white focus:border-indigo-300  focus:outline-none"
                                                                   placeholder="اضف تعليقك ..">
                                                         </textarea>
                                                 <button wire:click="comment" type="button"
-                                                 class="inline-flex items-center justify-center py-1 px-4 border border-transparent text-sm leading-5 font-medium rounded-sm border-gray-300 text-blue-700 bg-white-100 hover:bg-white-50 focus:outline-none focus:border-gray-500 focus:shadow-outline-white active:bg-white-200 transition ease-in-out duration-150">
-                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                                        class="inline-flex items-center justify-center py-1 px-4 rounded-none rounded-r border-gray-300 ease-in-out duration-150 text-gray-500 border-2 border-white text-blue-700 bg-white-100 hover:bg-white-50 focus:outline-none focus:border-gray-500 focus:shadow-outline-white active:bg-white-200 transition ease-in-out duration-150">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2"
+                                                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                                    </svg>
                                                 </button>
                                             </form>
                                         </div>
@@ -158,9 +149,10 @@
                                         </div>
 
 
-                                        <div x-show="showComment" class="inset-0 overflow-hidden ">
+                                        <div x-show="showComment" class="rounded-md inset-0 overflow-hidden ">
                                             @foreach($comments as $comment)
-                                                <div class="rounded border shadow p-3 my-2">
+                                                <div
+                                                    class="rounded-md border border-gray-500 shadow p-3 my-2 bg-gray-50">
                                                     <div class="flex justify-between my-2">
                                                         <div class="flex">
                                                             <p class="font-bold text-lg">{{$comment->commentable_id}}</p>

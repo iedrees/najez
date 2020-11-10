@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Actuallymab\LaravelComment\Contracts\Commentable;
 use Actuallymab\LaravelComment\HasComments;
@@ -32,7 +33,6 @@ class Task extends Model implements Commentable {
     {
         return $this->belongsTo(User::class);
     }
-
     public function project()
     {
         return $this->belongsTo(Project::class);

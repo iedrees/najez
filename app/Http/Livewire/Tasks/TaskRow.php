@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tasks;
 
 use Actuallymab\LaravelComment\Models\Comment;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Task;
 use App\Models\User;
@@ -17,9 +18,7 @@ class TaskRow extends Component
     public $details;
     public $start_date;
     public $end_date;
-
     protected $listeners = ['taskAssigned' => 'updateTaskInfo'];
-
     public function mount($task, $project)
     {
         $this->task = $task;
@@ -31,8 +30,6 @@ class TaskRow extends Component
         $this->end_date = $task->end_date;
         logger('mount');
     }
-
-
     public function update()
     {
         $this->task->task = $this->taskContent;
@@ -61,8 +58,8 @@ class TaskRow extends Component
         $user = User::find($userid);
         $task =Task::where('id','=', $this->task->id)->first();
         $user->comment($task, $this->comment);
+        session()->flash('message', 'تم اضافة تعليقك بنجاح');
     }
-
     public function updateTaskInfo($taskid)
     {
         // $this->task = Task::where('id', $taskid)->with('user', 'assignedUser', 'activities')->first();
