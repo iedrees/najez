@@ -1,5 +1,11 @@
 <?php
 
+// web app 
+Route::namespace('\App\Actions')->middleware(['auth'])->group(function () {
+    Route::get('logout', User\LogoutUser::class)->name('logout');
+    Route::get('app/{any?}', WebApp::class)->name('dashboard')->where('any', '.*');
+});
+
 
 // Projects
 Route::middleware('auth')->group(function () {
