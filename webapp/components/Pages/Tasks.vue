@@ -21,7 +21,7 @@
                 </div>
             </h4>
 
-       <TaskRow v-for="task in items" :key="task.id" :task="task" />
+       <TaskRow v-for="task in items" :key="task.id" :task="task" @update-list="getData" />
  
   </AppPage>
 </template>

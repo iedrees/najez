@@ -1,25 +1,25 @@
 <template>
-<div class="bg-white border-gray-50 sm:px-0 py-1">
+<div class="bg-gradient-to-r from-blue-900 to-blue-800 sm:px-0 py-1">
   <div class="flex container mx-auto">
    
-    <div class="flex-1 px-4 md:px-0 flex justify-between">
+    <div class="flex-1 px-4 md:px-0 flex justify-between text-white">
     
       <AppLogo />  
-       
+        
 
       <div class=" flex items-center text-gray-400 hover:opactiy-50"> 
  
         <div class="mr-3 relative" v-click-outside="hideMe">
 
             <div>
-              <button @click="open = !open" class="max-w-xs cursor-pointer hover:opacity-75 flex items-center text-sm rounded-full focus:outline-none" id="user-menu" aria-label="User menu" aria-haspopup="true">
+              <button @click="open = !open" class="max-w-xs cursor-pointer hover:opacity-75 flex items-center rounded-full focus:outline-none" id="user-menu" aria-label="User menu" aria-haspopup="true">
                 <span class="mx-2 truncate hidden md:inline-block">{{$store.state.user.name}} </span>
                 <img class="h-8 w-8 rounded-full" :src="$store.state.user.image" alt="">
               </button>
             </div>
 
             <div v-show="open" @click="open = false">
-              <div class="z-10 py-1 rounded-b-md bg-white absolute left-0 w-48 shadow mt-3.5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+              <div class="z-10 py-1 rounded-b-md bg-white absolute left-0 w-48 shadow mt-4" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                 <div class="px-4 py-2">
                  <p class="text-sm leading-5 font-bold">
                    {{$store.state.user.name}} 
