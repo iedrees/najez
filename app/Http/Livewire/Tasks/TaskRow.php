@@ -53,11 +53,11 @@ class TaskRow extends Component
     }
     public function comment()
     {
-        logger('in the comment method ');
         $userid = auth()->user()->id;
         $user = User::find($userid);
         $task =Task::where('id','=', $this->task->id)->first();
         $user->comment($task, $this->comment);
+        session()->flash('color', 'green');
         session()->flash('message', 'تم اضافة تعليقك بنجاح');
     }
     public function updateTaskInfo($taskid)
@@ -66,7 +66,7 @@ class TaskRow extends Component
     }
     public function render()
     {
-        return view('livewire.tasks.task-row', ['comments' => comment::where('commentable_id', $this->task->id)->latest()->paginate(5),
+        return view('livewire.tasks.task-row', ['comments' => $this->task->comments,
         ]);
     }
 }

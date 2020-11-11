@@ -70,21 +70,24 @@
                                             </div>
                                         @endif
                                         <h2 class="text font-medium text-gray-700">
-                                            تسليم المهمة
+                                            فترة المهمة
                                         </h2>
-                                        <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
+                                        <div class="flex items-center p-1 rounded px-2 my-px ">
                                             <div class="relative focus-within:z-10">
+                                                <b>  من  </b>
                                                 <x-fields.text wire:model.lazy="start_date" id="start_date"
                                                                {{--                                                               value=" {{Carbon\Carbon::parse($end_date)->format('d , M, Y')}}"--}}
                                                                type="date"></x-fields.text>
                                             </div>
                                             <div class="relative focus-within:z-10">
+                                                <b> إلى  </b>
                                                 <x-fields.text wire:model.lazy="end_date" id="end_date"
                                                                {{--                                                               value=" {{Carbon\Carbon::parse($end_date)->format('d , M, Y')}}"--}}
                                                                type="date"></x-fields.text>
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="flex items-center bg-gray-50 p-1 rounded px-2 my-px ">
                                         <div
@@ -155,7 +158,13 @@
                                                     class="rounded-md border border-gray-500 shadow p-3 my-2 bg-gray-50">
                                                     <div class="flex justify-between my-2">
                                                         <div class="flex">
-                                                            <p class="font-bold text-lg">{{$comment->commentable_id}}</p>
+{{--                                                            <img--}}
+{{--                                                                class="-mr-0.5 inline-block h-8 w-8 rounded-full text-white shadow-solid"--}}
+{{--                                                                src="{{$comment->commented->image}}" title="{{$comment->commented->name}}"--}}
+{{--                                                                alt="{{$comment->commented->name}}"--}}
+{{--                                                            />--}}
+                                                            <p class="font-bold text-lg">{{$comment->commented->name}}</p>
+                                                            <br>
                                                             <p class="mx-3 py-1 text-xs text-gray-500 font-semibold">{{$comment->created_at->diffForHumans()}}
                                                             </p>
                                                         </div>

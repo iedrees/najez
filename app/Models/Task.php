@@ -15,6 +15,8 @@ class Task extends Model implements Commentable {
     protected static $recordEvents = ['deleted', 'updated', 'created'];
     protected static $logName = 'Task';
 
+//    protected $with = ['comments.commentable'];
+
     public function getDescriptionForEvent(string $eventName): string
     {
         return "This Task has been {$eventName}";
