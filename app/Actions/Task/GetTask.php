@@ -5,35 +5,30 @@ namespace App\Actions\Task;
 use Lorisleiva\Actions\Action;
 use App\Models\Task;
 
-class UpdateTask extends Action
+class GetTask extends Action
 {
     public static function routes($router)
     {
         $router->middleware(['api', 'auth'])->prefix('api')
-            ->patch('tasks/{id}', static::class);
+            ->get('tasks/{id}', static::class);
     }
 
     public function rules()
     {
         return [
             'id' => ['required', 'exists:tasks,id'],
-            'task' => ['required', 'min:1'],
         ];
     }
 
-    public function handle($id)
+    public function handle()
     {
-        $item =  Task::where('id', $this->id)->first();
-        $item->task    = $this->task ?: $item->task;
-        $item->save();
-
-        return $item ;
+        return Task::where('id', $this->id)->with('user', 'assignedUser', 'activities.causer')->first();
     }
- 
+
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'task updated sucessfuly!', 
+            'message' => 'Fetch task data.', 
             'data' => $result,
         ];
     }

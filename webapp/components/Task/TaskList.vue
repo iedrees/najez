@@ -1,7 +1,7 @@
 <template>
   <div>
        <CreateTask @task-created="getData" />
-       <TaskRow v-for="task in items" :key="task.id" :task="task" />
+       <TaskRow v-for="task in items" :key="task.id" :task="task" @task-created="getData" />
   </div>
 </template>
 
