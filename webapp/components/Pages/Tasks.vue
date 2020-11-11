@@ -21,8 +21,8 @@
                 </div>
             </h4>
 
-       <!-- <CreateTask @task-created="getData" /> -->
        <TaskRow v-for="task in items" :key="task.id" :task="task" />
+ 
   </AppPage>
 </template>
 
@@ -47,7 +47,7 @@
             getData(){
                 var that = this;
                 that.loading = true;
-                axios.get('tasks/my-task-list')
+                axios.get('my-task-list')
                 .then(function (response) {
                     that.loading = false;
                     that.items = response.data.data.data;

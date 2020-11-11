@@ -11,7 +11,7 @@ class GetMyTaskList extends Action
     {
         $router->middleware(['api', 'auth'])
                ->prefix('api')
-               ->get('tasks/my-task-list', static::class);
+               ->get('my-task-list', static::class);
     }
   
     public function handle()
