@@ -33,10 +33,10 @@
                 <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
                 <section class="absolute inset-y-0 right-0 max-w-full flex z-50">
-                    <div class="w-screen max-w-md">
+                    <div class="w-screen max-w-2xl">
                         <div class="h-full flex flex-col bg-white overflow-y-scroll">
                             <header class="p-4 sm:p-4 bg-indigo-50">
-                                <div class="flex items-center justify-between space-x-3">
+                                <div class="flex items-center justify-between">
                                     <h2 class="text font-medium text-gray-700">
                                         تفاصيل المهمة
                                     </h2>
@@ -52,13 +52,14 @@
                                     <div class="px-1">
                                         <textarea id="task" 
                                             v-model="task.task" 
+                                            rows="4"
                                             @keyup="$store.commit('clearErrorKey', 'task')"
                                             :class="{'border-red-500 bg-red-50': $store.state.errors['task']}"
-                                            class="p-3 mb-1 block w-full rounded-none rounded-r transition ease-in-out duration-150 text-gray-500 border-2 border-cool-gray-200 focus:border-indigo-300  focus:outline-none" 
+                                            class="p-3 focus:bg-cool-gray-200 block w-full rounded-t transition ease-in-out duration-150 text-gray-500 border-2 border-cool-gray-200 focus:border-indigo-300  focus:outline-none" 
                                             placeholder="" >
                                         </textarea>
  
-                                        <div class="flex justify-between mt-2">
+                                        <div class="flex justify-between bg-cool-gray-100 p-2 rounded-b">
                                             <AssignTaskToMember :task="currentTask" :project="currentTask.project" @update-list="$emit('update-list')" />
 
                                             <div>
