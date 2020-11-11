@@ -2,7 +2,7 @@
   <div>
        
         <TextField v-model="item.name" model="name" label="اسم المشروع" placeholder="اسم المشروع" />  
-        <PrimaryButton @save="save"> حفظ  </PrimaryButton>
+        <PrimaryButton @save="save" class="mt-3"> حفظ  </PrimaryButton>
   </div>
 </template>
  

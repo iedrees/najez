@@ -58,15 +58,20 @@
                                             placeholder="" >
                                         </textarea>
  
-                                        <PrimaryButton @save="update(task)"> حفظ  </PrimaryButton>
-                                        <SecondaryButton @save="deleteRecord(task)"> حذف  </SecondaryButton>
+                                        <div class="flex justify-between mt-2">
+                                            <AssignTaskToMember :task="currentTask" :project="currentTask.project" @update-list="$emit('update-list')" />
+
+                                            <div>
+                                                <PrimaryButton @save="update(task)"> حفظ  </PrimaryButton>
+                                                <SecondaryButton @save="deleteRecord(task)"> حذف  </SecondaryButton>
+                                            </div>
+                                        </div>
                                     </div>
                               
                                     <!-- <div v-html="task.task" class="text-gray-700 bg-gray-50 p-3 rounded leading-8 text-sm">
                                     </div> -->
                                 </div>
 
-    
                                 <div v-if="currentTask && currentTask.activities" class="mt-3" >
                                     <div v-for="activity in currentTask.activities" :key="activity.id" class="bg-blue-50 p-2 mb-0.5 text-gray-600">
                                         <div class="flex justify-between">
