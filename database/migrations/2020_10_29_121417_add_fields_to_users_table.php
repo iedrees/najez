@@ -14,7 +14,7 @@ class AddFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->json('meta')->after('image');
+            $table->json('meta')->after('image')->nullable();
             $table->string('employee_ext')->nullable()->unique()->after('meta');
         });
     }
