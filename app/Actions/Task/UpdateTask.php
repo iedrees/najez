@@ -33,7 +33,7 @@ class UpdateTask extends Action
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'task updated sucessfuly!', 
+            'message' => 'تم حفظ المهمة بنجاح.', 
             'data' => $result,
         ];
     }

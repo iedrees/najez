@@ -28,11 +28,11 @@
             </div>
         </div>
 
-        <div v-if="showDetail" class="fixed inset-0 overflow-hidden ">
+        <div v-if="showDetail" class="fixed inset-0 overflow-hidden z-50">
             <div class="absolute inset-0 overflow-hidden">
                 <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-                <section class="absolute inset-y-0 right-0 max-w-full flex">
+                <section class="absolute inset-y-0 right-0 max-w-full flex z-50">
                     <div class="w-screen max-w-md">
                         <div class="h-full flex flex-col bg-white overflow-y-scroll">
                             <header class="p-4 sm:p-4 bg-indigo-50">
@@ -45,7 +45,6 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                         </svg>
                                     </button>
-
                                 </div>
                             </header>
                             <div class="relative flex-1 p-1 ">
@@ -53,14 +52,14 @@
                                     <div class="px-1">
                                         <textarea id="task" 
                                             v-model="task.task" 
-                                            
+                                            @keyup="$store.commit('clearErrorKey', 'task')"
+                                            :class="{'border-red-500 bg-red-50': $store.state.errors['task']}"
                                             class="p-3 mb-1 block w-full rounded-none rounded-r transition ease-in-out duration-150 text-gray-500 border-2 border-cool-gray-200 focus:border-indigo-300  focus:outline-none" 
                                             placeholder="" >
                                         </textarea>
-                                        <button @click="update(task)" class="text-white relative inline-flex items-center px-4 py-2 border-gray-300 text-sm leading-5 font-medium rounded bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:bg-indigo-500 focus:shadow-outline-blue focus:border-white active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-                                            <svg class="h-5 w-5 " fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                            <span class="ms-2">حفظ</span>
-                                        </button>
+ 
+                                        <PrimaryButton @save="update(task)"> حفظ  </PrimaryButton>
+                                        <SecondaryButton @save="deleteRecord(task)"> حذف  </SecondaryButton>
                                     </div>
                               
                                     <!-- <div v-html="task.task" class="text-gray-700 bg-gray-50 p-3 rounded leading-8 text-sm">
@@ -129,10 +128,33 @@ export default {
                 task : task.task,
             })
             .then(function (response) {
-                // that.$emit('task-created');
+                that.$notify({group: 'app',type: 'success',text: response.data.message});
                 that.showDetail = false;
             })
+            .catch(e => {
+                if(e.response){
+                    that.$store.commit('setErrors', e.response.data.errors);
+                    that.$notify({group: 'app',type: 'error',text: e.response.data.message});
+                }
+            });
         },
+        deleteRecord(task) {
+            if(confirm("هل تريد بالتأكيد حذف المهمة؟")){
+                this.deleteIte(task)
+            }
+        },
+        deleteIte(task){
+            var that = this;
+            axios.delete('tasks/'+task.id, { params:{
+                id : task.id
+            }})
+            .then(function (response) {
+                that.$emit('update-list');
+                that.$notify({group: 'app',type: 'success',text: response.data.message});
+                that.showDetail = false;
+
+            });
+        }, 
     }
 }
 </script>

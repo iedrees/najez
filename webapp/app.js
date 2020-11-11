@@ -4,6 +4,7 @@ import store from './store'
 import router from './router';
 import VueMeta from 'vue-meta'
 import Multiselect from 'vue-multiselect'
+import Notifications from 'vue-notification'
 
 window.Vue = require('vue');
   
@@ -16,7 +17,8 @@ Vue.use(VueMeta, {
   })
  Vue.component('Spinner', require('vue-simple-spinner'));
  Vue.component('multiselect', Multiselect)
- 
+ Vue.use(Notifications)
+
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
  

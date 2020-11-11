@@ -3,36 +3,33 @@
 namespace App\Actions\Task;
 
 use Lorisleiva\Actions\Action;
+use App\Models\Task;
 
 class DeleteTask extends Action
 {
-    /**
-     * Determine if the user is authorized to make this action.
-     *
-     * @return bool
-     */
-    public function authorize()
+    public static function routes($router)
     {
-        return true;
+        $router->middleware(['api', 'auth'])->prefix('api')
+            ->delete('tasks/{id}', static::class);
     }
-
-    /**
-     * Get the validation rules that apply to the action.
-     *
-     * @return array
-     */
+ 
     public function rules()
     {
-        return [];
+        return [
+            'id' => ['required', 'exists:tasks,id'],
+        ];
+    }
+ 
+    public function handle($id)
+    {
+        return Task::where('id', $this->id)->delete();
     }
 
-    /**
-     * Execute the action and return a result.
-     *
-     * @return mixed
-     */
-    public function handle()
+    public function jsonResponse($result, $request)
     {
-        // Execute the action.
+        return [
+            'message' => 'تم حذف المهمة بنجاح!', 
+        ];
     }
+    
 }

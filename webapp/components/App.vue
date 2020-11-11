@@ -1,5 +1,7 @@
 <template>
     <div class="bg-cool-gray-200 min-h-screen">
+        <notifications group="app" position="top center" width="100%" />
+
         <AppNavbar />
        <router-view></router-view>
     </div>
