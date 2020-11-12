@@ -8,7 +8,14 @@ module.exports = {
             },
         },
     },
-    variants: {},
+    variants: {
+        opacity: ['responsive', 'hover', 'group-hover'],
+        borderRadius: ['responsive', 'first', 'last'],
+        margin: ['responsive', 'first', 'last'],
+        backgroundColor: ['responsive', 'hover', 'focus', 'group-hover'],
+        display: ['responsive', 'hover', 'group-hover'],
+        opacity: ['responsive', 'hover', 'focus', 'disabled'],
+    },
     purge: {
         content: [
             './app/**/*.php',
@@ -20,6 +27,7 @@ module.exports = {
             './resources/**/*.php',
             './resources/**/*.vue',
             './resources/**/*.twig',
+            './webapp/**/*.vue',
         ],
         options: {
             defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],
@@ -29,5 +37,6 @@ module.exports = {
     plugins: [
         require('@tailwindcss/custom-forms'),
         require('@tailwindcss/ui'),
+        require('tailwindcss-rtl'),
     ],
 };

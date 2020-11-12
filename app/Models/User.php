@@ -9,11 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Actuallymab\LaravelComment\CanComment;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements HasMedia
 {
-    use Notifiable, CanComment ,InteractsWithMedia;
-
+    use Notifiable ,InteractsWithMedia, HasApiTokens, CanComment;
+ 
     protected $fillable = [
         'name', 'email', 'password','username',
     ];
