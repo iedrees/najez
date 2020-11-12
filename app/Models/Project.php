@@ -15,17 +15,32 @@ class Project extends Model implements HasMedia
         'id', 'name', 'user_id', 'image', 'deadline','deleted_at',
     ];
 
+    protected $appends = [
+        'amILeader'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
     public function leader()
     {
         return $this->belongsTo(User::class);
     }
+
     public function members()
     {
         return $this->hasMany(ProjectMember::class);
+    }
+
+    public function getAmILeaderAttribute()
+    {
+        $leaders = $this->members()->where('rule', 'leader')->get()->keyBy('user_id')->keys();
+        $leaders->push($this->user_id); // add the owner to the leaders array by default 
+
+        // return true if current user is one of the leaders
+        return in_array(auth()->id(), $leaders->toArray());
     }
 
     public function tasks()
@@ -33,7 +48,6 @@ class Project extends Model implements HasMedia
         return $this->hasMany(Task::class);
     }
 
-    /// i add this
     public function project()
     {
         return $this->belongsTo(Project::class);

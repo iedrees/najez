@@ -23,7 +23,7 @@
                                         <img v-if="member.user.image" class="-mr-0.5 inline-block h-8 w-8 rounded-full text-white shadow-solid" :src="member.user.image" :title="member.user.name" :alt="member.user.name" />
                                     </div>
                                   
-                                    <router-link  v-if="item.id" :to="{name:'projectTeam', params: {id:item.id}}" class="inline-flex items-center p-px px-1.5 mx-2 rounded bg-gray-100 text-gray-700 bg-white hover:bg-gray-200 focus:outline-none transition ease-in-out duration-150">
+                                    <router-link  v-if="item.id && item.amILeader" :to="{name:'projectTeam', params: {id:item.id}}" class="inline-flex items-center p-px px-1.5 mx-2 rounded bg-gray-100 text-gray-700 bg-white hover:bg-gray-200 focus:outline-none transition ease-in-out duration-150">
                                         <svg class="h-5 w-5 text-gray-500"  fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
                                     </router-link>
                                 </div>
@@ -62,7 +62,7 @@
                     </router-link>
                     <!-- {{item.user_id}} --  {{$store.state.user.name}} -->
                     <!-- TODO : check if he is the lead so he can see the settins page -->
-                    <router-link v-if="item.id && item.user_id == $store.state.user.id" :to="{name:'projectSettings', params: {id:item.id}}" exact  active-class="border-indigo-800 font-bold text-indigo-800" class="hover:text-indigo-800 -mb-px text-gray-400 mx-px px-4 group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5    focus:outline-none  ">
+                    <router-link v-if="item.id && item.amILeader" :to="{name:'projectSettings', params: {id:item.id}}" exact  active-class="border-indigo-800 font-bold text-indigo-800" class="hover:text-indigo-800 -mb-px text-gray-400 mx-px px-4 group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5    focus:outline-none  ">
                         <svg class="ml-2 h-5 w-5 text-gray-400 group-hover:text-indigo-800" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
                         <span> الإعدادات </span>
                     </router-link>
