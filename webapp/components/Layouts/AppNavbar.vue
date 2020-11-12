@@ -6,9 +6,7 @@
     
       <AppLogo />  
         
-
       <div class=" flex items-center text-gray-400 hover:opactiy-50"> 
- 
         <div class="mr-3 relative" v-click-outside="hideMe">
 
             <div>
@@ -50,8 +48,6 @@
       </div>
     </div>
   </div>
-  
-  
 </div>
 
 </template>
