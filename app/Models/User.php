@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements HasMedia
 {
-    use Notifiable ,InteractsWithMedia;
+    use Notifiable ,InteractsWithMedia, HasApiTokens;
 
     protected $fillable = [
         'name', 'email', 'password','username',
