@@ -76,29 +76,28 @@
                                             <span></span>
                                             <AssignTaskToMember :task="currentTask" :project="currentTask.project" @update-list="$emit('update-list')" />
                                         </div>
-
                                     </div>
                               
                                     <!-- <div v-html="task.task" class="text-gray-700 bg-gray-50 p-3 rounded leading-8 text-sm">
                                     </div> -->
                                 </div>
 
-                                <div v-if="currentTask && currentTask.activities" class="mt-3" >
-                                    <div v-for="activity in currentTask.activities" :key="activity.id" class="bg-blue-50 p-2 mb-0.5 text-gray-600">
-                                        <div class="flex justify-between">
-                                            <span v-if="activity.causer">
-                                                <img class="inline-block h-5 w-5 rounded-full" :src="activity.causer.image" alt="" />
-                                                <span class="text-sm">{{activity.causer.name}}</span>
-                                            </span>
-                                            <span class="p-1 inline-block px-1 text-sm text-gray-300 flex items-center">
-                                                <span dir="ltr" class="text-xs" title="activity.created_at">{{activity.created_at}}</span>
-                                            </span>
-                                        </div>
-                                        <div class="text-sm">
-                                            {{activity.description}}
-                                        </div>
+                                <div class="mb-2">
+                                    <div class="border-t border-dotted bg-blue-100 mx-1 mt-px">
+                                        <nav class="-mb-px flex justify-between">
+                                            <a href="#" @click.prevent="currentTab='commentsTab'" :class="{'border-indigo-500 font-medium text-indigo-600':currentTab=='commentsTab'}" class="w-full py-3 px-1 text-center border-b-2 border-transparent text-sm leading-5  text-gray-500 focus:outline-none " aria-current="page">
+                                            التعليقات
+                                            </a>
+                                            <a href="#" @click.prevent="currentTab='activitiesTab'" :class="{'border-indigo-500 font-medium text-indigo-600':currentTab=='activitiesTab'}" class="w-full py-3 px-1 text-center border-b-2 border-transparent text-sm leading-5  text-gray-500 focus:outline-none">
+                                            الأحداث
+                                            </a>
+                                        </nav>
                                     </div>
                                 </div>
+
+
+                                <TaskComments v-if="currentTab=='commentsTab'" :task="currentTask" @update-comment-list="getData" />
+                                <TaskActivities v-if="currentTab=='activitiesTab'" :activities="currentTask.activities" />
                             </div>
                         </div>
                     </div>
@@ -116,6 +115,7 @@ export default {
         return {
             showDetail: false,
             currentTask: {},
+            currentTab: 'commentsTab',
         }
     },
     computed: {
@@ -144,6 +144,10 @@ export default {
         openDetail(){
             var that = this;
             that.showDetail = true;
+            that.getData();
+        },
+        getData(){
+            var that = this;
             that.loading = true;
             axios.get('tasks/'+that.task.id)
             .then(function (response) {
@@ -160,7 +164,7 @@ export default {
             })
             .then(function (response) {
                 that.$notify({group: 'app',type: 'success',text: response.data.message});
-                that.showDetail = false;
+                // that.showDetail = false;
             })
             .catch(e => {
                 if(e.response){

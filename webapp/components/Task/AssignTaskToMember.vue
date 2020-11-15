@@ -31,7 +31,7 @@ export default {
                 })
                 .then(function (response) {
                     that.$notify({group: 'app',type: 'success',text: response.data.message});
-                    that.$emit('update-list');
+                    // that.$emit('update-list');
                     // that.task.assigned_user = response.data.data
                 })
                 .catch(e => {
