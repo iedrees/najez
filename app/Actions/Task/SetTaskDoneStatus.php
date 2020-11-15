@@ -4,6 +4,7 @@ namespace App\Actions\Task;
 
 use Lorisleiva\Actions\Action;
 use App\Models\Task;
+use Carbon\Carbon;
 
 class SetTaskDoneStatus extends Action
 {
@@ -26,6 +27,7 @@ class SetTaskDoneStatus extends Action
     {
         $item =  Task::where('id', $this->id)->firstOrFail();
         $item->done    = $this->done;
+        $item->done_at =  Carbon::now();
         $item->save();
 
         return $item;
