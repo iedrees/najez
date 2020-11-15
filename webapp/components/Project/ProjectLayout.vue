@@ -30,18 +30,21 @@
                             </div>
                         </div>
                         <div>
-                            <div class="container mx-auto">
-                                <div class="inline-grid  lg:flex bg-gray rounded-lg border shadow-lg  ">
-                                    <div class="w-full p-4">
-                                        <div class="inline-grid">
-                                            <p>
-                                                تسليم المشروع :</p>
-                                            <p class="text-cool-gray-500 mx-1">  {{item.deadline}}</p>
-                                        </div>
-                                    </div>
+                        
+                            <!-- <div class="mt-4 pl-5 flex-shrink-0 sm:mt-0">
+                                <div class="flex items-center overflow-hidden text-2xl text-cool-gray-700">
+                                    <p class="text-cool-gray-500 mx-1">  {{item.tasks_count}}</p>
+                                    <span class="text-cool-gray-200 mx-1">/</span>
+                                    <b class="text-green-300"> {{item.done_tasks_count}}  </b>
+                                    <i class="ti-check-box text-sm text-green-300 inline-block -mt-1.5 mr-2"></i>
                                 </div>
+                            </div> -->
 
+                            <div class="text-end text-cool-gray-400">
+                                <svg class="w-5 h-5 inline-block -mt-1 me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <span>{{item.deadline}}</span>
                             </div>
+                         
                         </div>
                     </div>
                 </div>
