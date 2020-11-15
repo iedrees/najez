@@ -1,12 +1,12 @@
 <template>
   <div>
  
-      <div v-for="project in items" :key="project.id" class="bg-white hover:bg-indigo-50 shadow-smx overflow-hidden sm:rounded-sm mb-2 p-px">
+      <div v-for="project in items" :key="project.id" class="bg-white hover:bg-indigo-100 shadow-smx overflow-hidden sm:rounded-lg mb-2 p-px">
             <router-link :to="{name:'projectIndex', params: {id:project.id}}"
                 class="block  focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                 <div class="flex items-center">
                     <div
-                        class="flex-shrink-0 py-5 rounded-r-sm  p-2 bg-gray-50  border-l-2  border-cool-gray-100">
+                        class="flex-shrink-0 py-5 rounded-r-lg  p-2 bg-gray-50  border-l-2  border-cool-gray-100">
                         <img class="w-20 h-20 p-2 rounded-r opacity-75"
                                 :src="project.image" />
                     </div>

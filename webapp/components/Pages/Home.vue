@@ -1,4 +1,5 @@
 <template>
+  <div class="bg-cool-gray-100 pb-20">
   <AppPage>
 
     <div class="my-10 container mx-auto">
@@ -11,6 +12,7 @@
 
     <ProjectList />
   </AppPage>
+  </div>
 </template>
 
 <script>

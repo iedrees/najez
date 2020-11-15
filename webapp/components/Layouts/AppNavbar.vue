@@ -1,12 +1,12 @@
 <template>
-<div class="bg-gradient-to-bl from-indigo-900 to-indigo-800 sm:px-0 py-1 border-b-2 border-indigo-900">
+<div class="bg-gr sm:px-0 py-1">
   <div class="flex container mx-auto">
    
     <div class="flex-1 px-4 md:px-0 flex justify-between text-white">
     
       <AppLogo />  
         
-      <div class=" flex items-center text-gray-400 hover:opactiy-50"> 
+      <div class=" flex items-center  hover:opactiy-50"> 
         <div class="mr-3 relative" v-click-outside="hideMe">
 
             <div>
@@ -17,7 +17,7 @@
             </div>
 
             <div v-show="open" @click="open = false">
-              <div class="z-10 py-1 rounded-b-md bg-white absolute left-0 w-48 shadow mt-4" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+              <div class="z-10 py-1 rounded-b-md bg-white absolute left-0 w-48 shadow mt-4 text-gray-400" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                 <div class="px-4 py-2">
                  <p class="text-sm leading-5 font-bold">
                    {{$store.state.user.name}} 
@@ -68,3 +68,19 @@
         },
     }
 </script>
+
+<style lang="css">
+  .bg-gr{
+    background-image: linear-gradient( 112.1deg,  rgba(77,238,253,1) 0.7%, rgba(3,151,232,1) 26.1%, rgba(47,31,116,1) 95.7% );
+   
+  /* background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%); */
+  /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
+  /* background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%); */
+  /* background-image: linear-gradient(-225deg, #2CD8D5 0%, #6B8DD6 48%, #8E37D7 100%); */
+  /* background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%); */
+  /* background-image: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%); */
+ 
+
+
+  }
+</style>

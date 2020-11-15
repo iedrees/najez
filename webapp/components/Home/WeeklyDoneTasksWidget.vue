@@ -1,8 +1,8 @@
 <template>
-    <div class="bg-white overflow-hidden shadow-sm rounded-md">
+    <div class="bg-white overflow-hidden shadow-sm rounded-2xl hover:bg-indigo-100">
         <div class="px-4 py-5 sm:p-6">
           <router-link :to="{ name: 'report'}" class="flex items-center">
-            <div class="flex-shrink-0 bg-indigo-500 rounded-md p-2">
+            <div class="flex-shrink-0 bg-indigo-700 rounded-full p-2">
               <svg class="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
             </div>
             <div class="mr-5 w-0 flex-1">
