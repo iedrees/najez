@@ -42,7 +42,6 @@ class Settings extends Component
             $path = $this->image->storeAs('upload/images', time() . '.' . $this->image->extension());
             $this->project->clearMediaCollection('upload')
                 ->addMedia(Storage::path($path))->toMediaCollection('upload');
-
         }
         $this->project->save();
 

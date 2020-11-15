@@ -6,16 +6,16 @@
                 <!-- <div class="mx-1 -mb-1">
                     {{task.assigned_user.name}}
                 </div> -->
-            </div>    
+            </div>
 
-            <select v-model="task.assigned_user_id" @change="assignUser" class="w-32 border focus:outline-none p-2 h-9 rounded-e bg-white">
+            <select v-model="task.assigned_user_id" v-if="project" @change="assignUser" class="w-32 border focus:outline-none p-2 h-9 rounded-e bg-white">
                 <option value="" disabled> تعيين المهمة إلى : </option>
-                <option :value="$store.state.user.id" >{{$store.state.user.name}}</option>
-                <option v-for="item in project.members" :key="item.id"  v-if="item.user" :value="item.user.id" >{{item.user.name}}</option>
-            </select>                                      
+                <option :value="project.user.id">{{project.user.name}}</option>
+                <option v-for="item in project.members" :key="item.id" v-if="item.user" :value="item.user.id" >{{item.user.name}}</option>
+            </select>
         </div>
 
-   
+
   </div>
 </template>
 

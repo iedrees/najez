@@ -1,13 +1,79 @@
 <template>
-  <AppPage>
-     تعديل الاعدادات الشخصية للعضو 
-  </AppPage>
+    <AppPage>
+    <div>
+                <TextField  model="name" label="اسم المشروع" placeholder="اسم المشروع"/>
+        {{item.name}}
+        <PrimaryButton @save="save" class="mt-3"> حفظ</PrimaryButton>
+
+        <!--        <TextField v-model="item.status" model="status" label="حاله المشروع" placeholder="حاله المشروع"/>-->
+<!--        <TextField v-model="item.details" model="details" label="تفاصيل المشروع" placeholder="تفاصيل المشروع"/>-->
+<!--        <TextField v-model="item.deadline" model="deadline" label="موعد تسليم المشروع" placeholder="موعد تسليم المشروع"-->
+<!--                   type="date"/>-->
+<!--        <div>-->
+<!--            &lt;!&ndash;            <label for="image">شعار المشروع</label>&ndash;&gt;-->
+<!--            <FieldWrapper label="شعار المشروع" >-->
+<!--                <img class=" cursor-pointer hover:opacity-75 inline-block h-32 w-32 rounded text-white shadow-solid"-->
+<!--                     :src="item.image" alt=""/>-->
+<!--                &lt;!&ndash;            <input model="image" id="image" accept="image/*" type="file" @change="loadimage()">&ndash;&gt;-->
+<!--            </FieldWrapper>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <PrimaryButton @save="save" class="mt-3"> حفظ</PrimaryButton>-->
+    </div>
+    </AppPage>
 </template>
 
 <script>
-    export default {
-        metaInfo: {
-            title: 'ملفي الشخصي' 
+import FieldWrapper from "../Fields/FieldWrapper";
+import TextField from "../Fields/TextField";
+
+export default {
+    components: {FieldWrapper,TextField},
+    props: ['user'],
+    metaInfo() {
+        return {title: 'الإعدادات - ' + this.user.name}
+    },
+    data() {
+        return {
+            loading: false,
+            logo: null,
+        }
+    },
+    computed: {
+        item: function () {
+            return this.user
+        }
+    },
+    methods: {
+        save() {
+            var that = this;
+            // that.loading = true;
+            axios.patch('my-profile', {
+                name: that.item().name,
+                // status: that.item.status,
+                // details: that.item.details,
+                // deadline: that.item.deadline,
+                // image: that.item.image,
+            })
+                .then(function (response) {
+                    that.$notify({group: 'app', type: 'success', text: response.data.message});
+                })
+                .catch(e => {
+                    if (e.response) {
+                        that.$store.commit('setErrors', e.response.data.errors);
+                        that.$notify({group: 'app', type: 'error', text: e.response.data.message});
+                    }
+                });
         },
+        // loadimage() {
+        //     var that = this;
+        //     axios.patch('projects/' + that.$route.params.id, {
+        //         image: that.item.image,
+        //     })
+        // },
     }
+}
 </script>
+
+
+

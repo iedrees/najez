@@ -6,7 +6,7 @@
        <router-view></router-view>
     </div>
 </template>
-  
+
 <script>
     export default {
         metaInfo () {
@@ -18,6 +18,9 @@
 </script>
 
 <style lang="scss">
+    // body{
+    //     font-family: 'Cairo', sans-serif;
+    // }
     .icon-field {
         font-size: 18px;
     }
@@ -52,6 +55,7 @@
             border-left-color: #42A85F;
         }
     }
+
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
