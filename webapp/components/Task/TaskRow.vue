@@ -59,14 +59,24 @@
                                             placeholder="" >
                                         </textarea>
  
-                                        <div class="flex justify-between bg-cool-gray-100 p-2 rounded-b">
-                                            <AssignTaskToMember :task="currentTask" :project="currentTask.project" @update-list="$emit('update-list')" />
+                                        <div class="flex justify-between bg-cool-gray-100 p-2">
+                                            <div>
+                                                <!-- <input type="date" v-model="task.start_date" class="p-1.5 h-9 bg-white rounded"  > -->
+                                                <input type="date" v-model="task.end_date" class="p-1.5 h-9 bg-white rounded"  >
+                                                                                        <span v-if="task.end_date" class="text-indigo-700 text-sm"> {{TaskDue}}</span>
 
+                                            </div>
+                                         
                                             <div>
                                                 <PrimaryButton @save="update(task)"> حفظ  </PrimaryButton>
                                                 <SecondaryButton @save="deleteRecord(task)"> حذف  </SecondaryButton>
                                             </div>
                                         </div>
+                                        <div class="flex items-center justify-between bg-cool-gray-100 p-2 rounded-b mt-px">
+                                            <span></span>
+                                            <AssignTaskToMember :task="currentTask" :project="currentTask.project" @update-list="$emit('update-list')" />
+                                        </div>
+
                                     </div>
                               
                                     <!-- <div v-html="task.task" class="text-gray-700 bg-gray-50 p-3 rounded leading-8 text-sm">
@@ -99,12 +109,25 @@
 </template>
 
 <script>
+import { format, differenceInCalendarDays, parseISO, startOfToday } from 'date-fns';
 export default {
     props:['task'],
     data(){
         return {
             showDetail: false,
             currentTask: {},
+        }
+    },
+    computed: {
+        TaskDue:  function () {
+            if(this.task.end_date){
+                var days = differenceInCalendarDays(parseISO(this.task.end_date), startOfToday());
+                if(days < 0){
+                    return 'متأخرة'
+                }else{
+                    return differenceInCalendarDays(parseISO(this.task.end_date), startOfToday()) + ' أيام لإنجاز المهمة'
+                }
+            }
         }
     },
     methods: {
@@ -132,6 +155,8 @@ export default {
             var that = this;
             axios.patch('tasks/'+task.id, {
                 task : task.task,
+                start_date : task.start_date,
+                end_date : task.end_date,
             })
             .then(function (response) {
                 that.$notify({group: 'app',type: 'success',text: response.data.message});
