@@ -17,7 +17,7 @@
       <div class="flex flex-col">
           <div class="py-2 overflow-x-auto ">
               <div class="align-middle inline-block min-w-full overflow-hidden sm:rounded shadow-sm">
-                  <table class="min-w-full">
+                  <table class="min-w-full" v-if="items.length > 1">
                       <thead>
                       <tr class="bg-gray-100 border-b-2 border-white">
                           <td class="px-6 py-4  text-sm leading-5 text-gray-600">
@@ -53,6 +53,9 @@
                       </tr>
 <!--                      @endforeach-->
                       </tbody>
+                  </table>
+                  <table v-else>
+                     <p> لا يوجد اي مهام </p>
                   </table>
               </div>
           </div>
