@@ -1,5 +1,5 @@
 <template>
-<div class="bg-gr sm:px-0 py-1">
+<div class="bg-gr sm:px-0">
   <div class="flex container mx-auto">
    
     <div class="flex-1 px-4 md:px-0 flex justify-between text-white">
@@ -79,8 +79,7 @@
   /* background-image: linear-gradient(-225deg, #2CD8D5 0%, #6B8DD6 48%, #8E37D7 100%); */
   /* background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%); */
   /* background-image: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%); */
- 
-
 
   }
+ 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
  
-      <div v-for="project in items" :key="project.id" class="bg-white hover:bg-indigo-100 shadow-smx overflow-hidden sm:rounded-lg mb-2 p-px">
+      <div v-for="project in items" :key="project.id" class="bg-white hover:bg-cool-gray-50 shadow-smx overflow-hidden sm:rounded-lg mb-2 p-px">
             <router-link :to="{name:'projectIndex', params: {id:project.id}}"
                 class="block  focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                 <div class="flex items-center">

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="bg-white overflow-hidden shadow-sm rounded-2xl hover:bg-indigo-100">
+    <div class="bg-white overflow-hidden shadow-sm rounded-2xl hover:bg-cool-gray-50">
         <div class="px-4 py-5 sm:p-6">
           <router-link :to="{ name: 'tasks'}" class="flex items-center">
             <div class="flex-shrink-0 bg-teal-400 rounded-full p-2">

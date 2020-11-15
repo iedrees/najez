@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white overflow-hidden shadow-sm rounded-2xl hover:bg-indigo-100">
+    <div class="bg-white overflow-hidden shadow-sm rounded-2xl hover:bg-cool-gray-50">
         <div class="px-4 py-5 sm:p-6">
           <router-link :to="{ name: 'report'}" class="flex items-center">
             <div class="flex-shrink-0 bg-indigo-700 rounded-full p-2">
@@ -8,7 +8,7 @@
             <div class="mr-5 w-0 flex-1">
               <dl>
                 <dt class="text-sm leading-5 font-medium text-gray-400 truncate mb-3">
-                  مهام الأسبوع المنجزة لمشاريعك 
+                  مهام الأسبوع المنجزة لمشاريعي 
                 </dt>
                 <dd class="flex items-baseline">
                   <div class="text-3xl leading-8 font-semibold text-gray-700">

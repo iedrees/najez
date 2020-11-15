@@ -10,6 +10,10 @@
         <meta name="domain" content="{{ config('app.url') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=milano,sky,sky-bold,shekari,almawadah,hama,neckar" />
+   
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+        
     </head>
 
     <body>
