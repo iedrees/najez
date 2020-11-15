@@ -28,6 +28,7 @@ class GetMyTaskList extends Action
         return [
             'message' => 'Get my task list', 
             'data' => $result,
+            'allMyTasksCount'   => auth()->user()->allMyTasks->count(),
             'allMyDoneTasks'    => auth()->user()->allMyDoneTasks->count(),
             'allMyNotDoneTasks'    => auth()->user()->allMyNotDoneTasks->count(),
         ];

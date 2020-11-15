@@ -30,7 +30,7 @@
 
         <div v-if="showDetail" class="fixed inset-0 overflow-hidden z-50">
             <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="showDetail=false"></div>
 
                 <section class="absolute inset-y-0 right-0 max-w-full flex z-50">
                     <div class="w-screen max-w-2xl">
@@ -83,7 +83,7 @@
                                 </div>
 
                                 <div class="mb-2">
-                                    <div class="border-t border-dotted bg-blue-100 mx-1 mt-px">
+                                    <div class="border-t border-dotted bg-cool-gray-200 mx-1 mt-px">
                                         <nav class="-mb-px flex justify-between">
                                             <a href="#" @click.prevent="currentTab='commentsTab'" :class="{'border-indigo-500 font-medium text-indigo-600':currentTab=='commentsTab'}" class="w-full py-3 px-1 text-center border-b-2 border-transparent text-sm leading-5  text-gray-500 focus:outline-none " aria-current="page">
                                             التعليقات
@@ -138,7 +138,7 @@ export default {
                 done: task.done
             })
             .then(function (response) {
-                // console.log(response.data.data)
+                that.$emit('update-counts');
             });
         },
         openDetail(){
@@ -185,11 +185,12 @@ export default {
             }})
             .then(function (response) {
                 that.$emit('update-list');
+                that.$emit('update-counts');
                 that.$notify({group: 'app',type: 'success',text: response.data.message});
                 that.showDetail = false;
 
             });
-        }, 
+        },
     }
 }
 </script>
