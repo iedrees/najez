@@ -31,7 +31,7 @@ class CreateBaseTables extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();	// owner / created by
-            $table->foreignId('assigned_user_id')->nullable(); 
+            $table->foreignId('assigned_user_id')->nullable();
             $table->foreignId('project_id')->nullable();
             $table->foreignId('parent_id')->nullable();
             $table->text('task');
@@ -40,6 +40,8 @@ class CreateBaseTables extends Migration
             $table->boolean('done')->default(false);
             $table->json('meta')->nullable();
             $table->timestamp('due_date')->nullable();
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->timestamp('done_at')->nullable();
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();

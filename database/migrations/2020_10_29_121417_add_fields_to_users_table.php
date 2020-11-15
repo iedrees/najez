@@ -28,7 +28,7 @@ class AddFieldsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('meta');
-            $table->string('employee_ext');
+            $table->dropColumn('employee_ext');
         });
     }
 }
