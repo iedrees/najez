@@ -1,26 +1,14 @@
 <template>
-    <AppPage>
     <div>
-                <TextField  model="name" label="اسم المشروع" placeholder="اسم المشروع"/>
-        {{item.name}}
-        <PrimaryButton @save="save" class="mt-3"> حفظ</PrimaryButton>
 
-        <!--        <TextField v-model="item.status" model="status" label="حاله المشروع" placeholder="حاله المشروع"/>-->
-<!--        <TextField v-model="item.details" model="details" label="تفاصيل المشروع" placeholder="تفاصيل المشروع"/>-->
-<!--        <TextField v-model="item.deadline" model="deadline" label="موعد تسليم المشروع" placeholder="موعد تسليم المشروع"-->
-<!--                   type="date"/>-->
-<!--        <div>-->
-<!--            &lt;!&ndash;            <label for="image">شعار المشروع</label>&ndash;&gt;-->
-<!--            <FieldWrapper label="شعار المشروع" >-->
-<!--                <img class=" cursor-pointer hover:opacity-75 inline-block h-32 w-32 rounded text-white shadow-solid"-->
-<!--                     :src="item.image" alt=""/>-->
-<!--                &lt;!&ndash;            <input model="image" id="image" accept="image/*" type="file" @change="loadimage()">&ndash;&gt;-->
-<!--            </FieldWrapper>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--        <PrimaryButton @save="save" class="mt-3"> حفظ</PrimaryButton>-->
+        <TextField v-model="item.name" model="name" label="الاسم " placeholder="الاسم"/>
+        <TextField v-model="item.username" model="username" label="اسم المستخدم " placeholder="اسم المستخد"/>
+        <TextField v-model="item.employee_num" model="employee_num" label="الرقم الوظيفي" placeholder="الرقم الوظيفي"/>
+        <TextField v-model="item.employee_ext" model="employee_ext" label="رقم التحويله " placeholder="رقم التحويله"/>
+        <TextField v-model="item.email" model="email" label="البريد الالكتروني" placeholder="البريد الالكتروني"
+                   type="date"/>
+        <PrimaryButton @save="save" class="mt-3"> حفظ</PrimaryButton>
     </div>
-    </AppPage>
 </template>
 
 <script>
@@ -28,7 +16,7 @@ import FieldWrapper from "../Fields/FieldWrapper";
 import TextField from "../Fields/TextField";
 
 export default {
-    components: {FieldWrapper,TextField},
+    components: {FieldWrapper, TextField},
     props: ['user'],
     metaInfo() {
         return {title: 'الإعدادات - ' + this.user.name}
@@ -45,15 +33,25 @@ export default {
         }
     },
     methods: {
+        getData() {
+            var that = this;
+            that.loading = true;
+            // users: [],
+            //     axios.get('my-profile')
+            //         .then(function (response) {
+            //             that.loading = false;
+            //             that.users = response.data.data;
+            //         });
+        },
         save() {
             var that = this;
             // that.loading = true;
             axios.patch('my-profile', {
-                name: that.item().name,
-                // status: that.item.status,
-                // details: that.item.details,
-                // deadline: that.item.deadline,
-                // image: that.item.image,
+                name: that.item.name,
+                username: that.item.username,
+                employee_num: that.item.employee_num,
+                employee_ext: that.item.employee_ext,
+                email: that.item.email,
             })
                 .then(function (response) {
                     that.$notify({group: 'app', type: 'success', text: response.data.message});
@@ -65,12 +63,6 @@ export default {
                     }
                 });
         },
-        // loadimage() {
-        //     var that = this;
-        //     axios.patch('projects/' + that.$route.params.id, {
-        //         image: that.item.image,
-        //     })
-        // },
     }
 }
 </script>

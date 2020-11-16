@@ -6,12 +6,15 @@
         <TextField v-model="item.deadline" model="deadline" label="موعد تسليم المشروع" placeholder="موعد تسليم المشروع"
                    type="date"/>
         <div>
-<!--            <label for="image">شعار المشروع</label>-->
-            <FieldWrapper label="شعار المشروع" >
-            <img class=" cursor-pointer hover:opacity-75 inline-block h-32 w-32 rounded text-white shadow-solid"
-                 :src="item.image" alt=""/>
-<!--            <input model="image" id="image" accept="image/*" type="file" @change="loadimage()">-->
-            </FieldWrapper>
+            <div class="bg-cool-gray-100 p-2 py-1 rounded mb-1 last:mb-0 sm:flex sm:items-center">
+                <label for="name" class="block text-sm font-bold leading-5 text-gray-500 p-2 sm:w-48"> صوره المشروع </label>
+                <div class=" cursor-pointer h-32 w-32 rounded">
+<!--            <FieldWrapper label="شعار المشروع">-->
+                <img class="h-32 w-32 rounded-sm"
+                     :src="item.image" alt=""/>
+<!--            </FieldWrapper>-->
+                </div>
+            </div>
         </div>
         <br>
         <PrimaryButton @save="save" class="mt-3"> حفظ</PrimaryButton>
