@@ -28,7 +28,7 @@ class GetReportList extends Action
                     $q->where('rule', 'leader');
                 });
             })
-            ->whereBetween('done_at', [$this->start ,$this->end])
+                ->whereBetween('done_at', [$this->start ,$this->end])
             ->with('assignedUser', 'project')->get();
     }
 

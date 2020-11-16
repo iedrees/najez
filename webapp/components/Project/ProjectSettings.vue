@@ -1,6 +1,9 @@
 <template>
-
-    <div>
+ <div>
+     <h4 class="border-b-2 border-cool-gray-300 p-2 mb-2 text-cool-gray-500 font-bold flex items-center">
+         <svg fill="currentColor" viewBox="0 0 20 20" class="ml-2 h-5 w-5 group-hover:text-indigo-800"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
+         <span class="mx-2"> اعدادات المشروع  </span>
+     </h4>
         <TextField v-model="item.name" model="name" label="اسم المشروع" placeholder="اسم المشروع"/>
         <TextField v-model="item.status" model="status" label="حاله المشروع" placeholder="حاله المشروع"/>
         <TextField v-model="item.details" model="details" label="تفاصيل المشروع" placeholder="تفاصيل المشروع"/>
