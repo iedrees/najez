@@ -1,14 +1,9 @@
 <?php
 
-// web app 
-Route::namespace('\App\Actions')->middleware(['auth'])->group(function () {
-    Route::get('logout', User\LogoutUser::class)->name('logout');
-    Route::get('app/{any?}', WebApp::class)->name('dashboard')->where('any', '.*');
-});
 
 
 // Projects
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->prefix('old')->group(function () {
     // Route::livewire('/', 'home.home')->name('home');
     Route::get('//', \App\Http\Livewire\Home\Home::class)->name('home');
 
@@ -28,11 +23,11 @@ Route::middleware('auth')->group(function () {
 });
 
 // Download Reports
-Route::get('reports/view-pdf/{start}/{end}', 'App\Http\Controllers\PdfController@viewPDF');
-Route::get('reports/download', 'App\Http\Controllers\PdfController@download')->name('reports.download');
+Route::prefix('old')->get('reports/view-pdf/{start}/{end}', 'App\Http\Controllers\PdfController@viewPDF');
+Route::prefix('old')->get('reports/download', 'App\Http\Controllers\PdfController@download')->name('reports.download');
 
 // Auth
-Route::middleware('auth')->group(function () {
+Route::prefix('old')->middleware('auth')->group(function () {
 
     // profile
     // Route::livewire('/profile', 'users.show')->name('profile');
@@ -49,14 +44,21 @@ Route::middleware('auth')->group(function () {
     // Auth
     Route::view('email/verify', 'auth.verify')->middleware('throttle:6,1')->name('verification.notice');
     Route::get('email/verify/{id}/{hash}', 'App\Http\Controllers\Auth\EmailVerificationController')->middleware('signed')->name('verification.verify');
-    Route::get('logout', 'App\Http\Controllers\Auth\LogoutController')->name('logout');
     Route::view('password/confirm', 'auth.passwords.confirm')->name('password.confirm');
 });
 
 Route::middleware('guest')->group(function () {
     Route::view('login', 'auth.login')->name('login');
     Route::view('register', 'auth.register')->name('register');
+    // Route::get('logout', 'App\Http\Controllers\Auth\LogoutController')->name('logout');
+
 });
 
 Route::view('password/reset', 'auth.passwords.email')->name('password.request');
 Route::get('password/reset/{token}', 'App\Http\Controllers\Auth\PasswordResetController')->name('password.reset');
+
+// web app 
+Route::namespace('\App\Actions')->middleware(['auth'])->group(function () {
+    Route::get('logout', User\LogoutUser::class)->name('logout');
+    Route::get('{any?}', WebApp::class)->name('app')->where('any', '.*');
+});

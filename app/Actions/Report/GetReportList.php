@@ -25,10 +25,10 @@ class GetReportList extends Action
             {
                 $q->where('user_id', auth()->user()->id)->orWhereHas('members',  function ($q)
                 {
-                    $q->where('rule', 'leader');
-                });
+                    $q->where('user_id', auth()->user()->id)->where('rule', 'leader');
+                });;
             })
-                ->whereBetween('done_at', [$this->start ,$this->end])
+            ->whereBetween('done_at', [$this->start ,$this->end])
             ->with('assignedUser', 'project')->get();
     }
 

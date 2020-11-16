@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white overflow-hidden shadow-sm rounded-2xl hover:bg-cool-gray-50">
+    <div v-if="total > 0" class="bg-white overflow-hidden shadow-sm rounded-2xl hover:bg-cool-gray-50">
         <div class="px-4 py-5 sm:p-6">
           <router-link :to="{ name: 'report'}" class="flex items-center">
             <div class="flex-shrink-0 bg-indigo-700 rounded-full p-2">

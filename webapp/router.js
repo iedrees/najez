@@ -55,7 +55,7 @@ const routes = [
    
 export default new VueRouter({
     routes,
-    base: '/app',
+    base: '/',
     mode: 'history',
 
     scrollBehavior(to, from, savedPosition) {
