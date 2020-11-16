@@ -14,22 +14,25 @@ class GetWeeklyDoneTasks extends Action
                ->prefix('api')
                ->get('analyses/get-weekly-done-tasks', static::class);
     }
- 
+
     public function handle()
     {
         return Task::where('done', true)
             ->whereBetween('done_at', [Carbon::now()->startOfWeek(0) ,Carbon::now()->endOfWeek(-3)])
             ->whereHas('project',  function ($q)
             {
-                $q->where('user_id', auth()->user()->id);
+                $q->where('user_id', auth()->user()->id)->orWhereHas('members',  function ($q)
+                {
+                    $q->where('rule', 'leader');
+                });;
             })
-            ->count();  
+            ->count();
     }
 
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'get current user tasks state', 
+            'message' => 'get current user tasks state',
             'data' => $result,
         ];
     }
