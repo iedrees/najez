@@ -13,7 +13,7 @@ class ProjectTaskList extends Action
                ->prefix('api')
                ->get('projects/{id}/tasks', static::class);
     }
- 
+
     public function rules()
     {
         return [
@@ -32,19 +32,23 @@ class ProjectTaskList extends Action
                 })
                 ->orWhereHas('project',  function ($q)
                 {
-                    $q->where('user_id', auth()->user()->id);
+                    $q->where('user_id', auth()->user()->id)
+                    ->orWhereHas('members',  function ($q)
+                    {
+                        $q->where('rule', 'leader');
+                    });
                 });
             })
             ->with('user', 'assignedUser', 'project')
             ->latest()
             ->get();
- 
+
     }
 
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'Get project task list', 
+            'message' => 'Get project task list',
             'data' => $result,
         ];
     }

@@ -16,8 +16,14 @@ class UpdateProject extends Action
 
     public function authorize()
     {
-        $project =  Project::where('id', $this->id)->first();
-        return $project->user_id == auth()->id(); // for now just check for the owner, later for the leader
+        $project =  Project::where('id', $this->id)
+            ->where('user_id', auth()->id())
+            ->orWhereHas('members',  function ($q)
+            {
+                $q->where('user_id', auth()->id())->where('rule', 'leader');
+            })->exists();
+
+        return $project;
     }
 
     public function rules()

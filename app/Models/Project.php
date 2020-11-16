@@ -37,7 +37,7 @@ class Project extends Model implements HasMedia
     public function getAmILeaderAttribute()
     {
         $leaders = $this->members()->where('rule', 'leader')->get()->keyBy('user_id')->keys();
-        $leaders->push($this->user_id); // add the owner to the leaders array by default 
+        $leaders->push($this->user_id); // add the owner to the leaders array by default
 
         // return true if current user is one of the leaders
         return in_array(auth()->id(), $leaders->toArray());
@@ -62,4 +62,6 @@ class Project extends Model implements HasMedia
     {
         return "" !== $this->getFirstMediaUrl('upload')  ? $this->getFirstMediaUrl('upload'): asset('images/021-efficiency.svg');
     }
+
+
 }
