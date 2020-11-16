@@ -36,23 +36,17 @@ class index extends Action
      */
     public function handle()
     {
-        $tasks = Task::where('done', true)
-        ->whereHas('project',  function ($q)
-        {
-            $q->where('user_id', auth()->user()->id)->append('amILeader');
-        })
-        ->with('assignedUser', 'project')->get();
-        logger('$tasks 2'.$tasks);
         return $tasks = Task::where('done', true)
             ->whereHas('project',  function ($q)
             {
                 $q->where('user_id', auth()->user()->id);
             })
+//            ->whereBetween('done_at', [$this->start ,$this->end])
             ->with('assignedUser', 'project')->get();
     }
     public function jsonResponse($result)
     {
-//        logger("orwhere".$result);
+        logger("orwhere".$result);
         return [
             'message' => 'Get my task ',
             'data' => $result,
