@@ -14,8 +14,6 @@
                 <option v-for="item in project.members" :key="item.id" v-if="item.user" :value="item.user.id" >{{item.user.name}}</option>
             </select>
         </div>
-
-
   </div>
 </template>
 
@@ -24,23 +22,23 @@ export default {
     props: ['task', 'project'],
     methods: {
         assignUser() {
-                var that = this;
-                axios.post('assign-task-to-user', {
-                    id : that.task.id,
-                    assigned_user_id : that.task.assigned_user_id,
-                })
-                .then(function (response) {
-                    that.$notify({group: 'app',type: 'success',text: response.data.message});
-                    that.$emit('update-list');
-                    // that.task.assigned_user = response.data.data
-                })
-                .catch(e => {
-                    if(e.response){
-                        that.$store.commit('setErrors', e.response.data.errors);
-                        that.$notify({group: 'app',type: 'error',text: e.response.data.message});
-                    }
-                });
-            },
+            var that = this;
+            axios.post('assign-task-to-user', {
+                id : that.task.id,
+                assigned_user_id : that.task.assigned_user_id,
+            })
+            .then(function (response) {
+                that.$notify({group: 'app',type: 'success',text: response.data.message});
+                that.$emit('update-list');
+                // that.task.assigned_user = response.data.data
+            })
+            .catch(e => {
+                if(e.response){
+                    that.$store.commit('setErrors', e.response.data.errors);
+                    that.$notify({group: 'app',type: 'error',text: e.response.data.message});
+                }
+            });
+        },
     }
 
 }

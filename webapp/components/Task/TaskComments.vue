@@ -7,7 +7,7 @@
                 @keyup="$store.commit('clearErrorKey', 'comment')"
                 :class="{'border-red-500 bg-red-50': $store.state.errors['comment']}"
                 class="p-3 mb-1 focus:bg-cool-gray-200 block w-full rounded transition ease-in-out duration-150 text-gray-500 border-2 border-cool-gray-200 focus:border-indigo-300  focus:outline-none" 
-                placeholder="" >
+                placeholder="اكتب تعليقك ..">
             </textarea>
             <PrimaryButton @save="save"> أضف تعليق  </PrimaryButton>
         </div>

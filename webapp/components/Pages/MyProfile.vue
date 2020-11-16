@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <AppPage>
         <br>
         <br>
         <h4 class="border-b-2 border-cool-gray-300 p-2 mb-2 text-cool-gray-500 font-bold flex items-center">
@@ -10,9 +10,9 @@
         <TextField v-model="item.username" model="username" label="اسم المستخدم " placeholder="اسم المستخدم"/>
         <TextField v-model="item.employee_num" model="employee_num" label="الرقم الوظيفي" placeholder="الرقم الوظيفي"/>
         <TextField v-model="item.employee_ext" model="employee_ext" label="رقم التحويله " placeholder="رقم التحويله"/>
-        <TextField v-model="item.email" model="email" label="البريد الالكتروني" placeholder="البريد الالكتروني"/>
+        <TextField v-model="item.email" model="email" label="البريد الالكتروني" :ltr="true" placeholder="البريد الالكتروني"/>
         <PrimaryButton @save="save" class="mt-3"> حفظ</PrimaryButton>
-     </div>
+     </AppPage>
 </template>
 
 <script>

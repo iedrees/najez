@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-cool-gray-100 pb-20">
+  <div class="bg-cool-gray-100 pb-20 min-h-screen">
   <AppPage>
 
     <div class="my-10 container mx-auto">
