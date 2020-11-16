@@ -14,8 +14,8 @@ class UpdateTaskTable extends Migration
     public function up()
     {
         Schema::table('tasks', function($table) {
-            $table->date('start_date')->nullable()->change();
-            $table->date('end_date')->nullable()->change();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
         });
     }
 
