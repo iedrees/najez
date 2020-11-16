@@ -21,7 +21,7 @@
                 </div>
             </h4>
 
-       <TaskRow v-for="task in items" :key="task.id" :task="task" @update-list="getData" />
+       <TaskRow v-for="task in items" :key="task.id" :task="task" v-if="task.assigned_user_id == $store.state.user.id" @update-list="getData" />
 
   </AppPage>
 </template>
