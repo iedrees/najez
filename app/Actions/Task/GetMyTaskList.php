@@ -16,10 +16,9 @@ class GetMyTaskList extends Action
 
     public function handle()
     {
-        return Task::
-//        where('assigned_user_id', auth()->user()->id)
-//            ->orWhere('user_id', auth()->user()->id)
-//            ->
+        return Task::where('assigned_user_id', auth()->user()->id)
+            ->orWhere('user_id', auth()->user()->id)
+            ->
             with('project', 'user','assignedUser')
             ->orderBy('created_at', 'desc')
             ->paginate(100);
