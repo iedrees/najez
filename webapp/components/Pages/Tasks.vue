@@ -6,7 +6,7 @@
                     <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
                     </svg>
-                    <span class="mx-2">  المهام المُسندة إلي  
+                    <span class="mx-2">  المهام المُسندة إلي
                         <span class="bg-red-500 px-2 mx-1 py-1 rounded-sm text-white">
                             {{allMyNotDoneTasks}}
                         </span>
@@ -21,15 +21,15 @@
                 </div>
             </h4>
 
-       <TaskRow v-for="task in items" :key="task.id" :task="task" @update-list="getData" />
- 
+       <TaskRow v-for="task in items" :key="task.id" :task="task" v-if="task.project.amILeader || task.assigned_user.id == $store.state.user.id" @update-list="getData" />
+
   </AppPage>
 </template>
 
 <script>
     export default {
         metaInfo: {
-            title: 'مهامي' 
+            title: 'مهامي'
         },
         data(){
             return {
@@ -41,7 +41,7 @@
             }
         },
         mounted(){
-            this.getData();  
+            this.getData();
         },
         methods: {
             getData(){
@@ -60,4 +60,4 @@
     }
 </script>
 
- 
+

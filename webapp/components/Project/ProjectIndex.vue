@@ -1,8 +1,8 @@
 <template>
   <div>
-     
-      <TaskList :projectId="project.id" />
-    
+
+      <TaskList :projectId="project.id"  />
+
   </div>
 </template>
 
@@ -14,4 +14,3 @@ export default {
     },
 }
 </script>
- 

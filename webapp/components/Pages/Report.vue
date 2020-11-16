@@ -57,7 +57,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="task in items" :key="task.id" :task="task" class="bg-white @if (!$loop->last) border-b-2 @endif  border-gray-100" >
+                        <tr v-for="task in items" :key="task.id" v-if="task.project.amILeader || task.assigned_user.id == $store.state.user.id" :task="task" class="bg-white @if (!$loop->last) border-b-2 @endif  border-gray-100" >
                             <td class="px-6 py-4  text-sm leading-5 text-gray-700">
                                 <div><h1> {{task.task}} </h1> </div>
                                 <span dir="ltr" class="text-xs text-gray-300"><h1> {{task.done_at}} </h1></span>
