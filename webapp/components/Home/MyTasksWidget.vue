@@ -50,10 +50,10 @@
             }
         },
         mounted () {
-            this.getMediaCountCount()
+            this.getTaskCounts()
         },
         methods: {
-            getMediaCountCount(){
+            getTaskCounts(){
                 var that = this;
                 axios.get('analyses/get-current-user-tasks-state')
                 .then(function (response) {

@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <TextField v-model="item.name" model="name" label="الاسم " placeholder="الاسم"/>
         <TextField v-model="item.username" model="username" label="اسم المستخدم " placeholder="اسم المستخد"/>
         <TextField v-model="item.employee_num" model="employee_num" label="الرقم الوظيفي" placeholder="الرقم الوظيفي"/>

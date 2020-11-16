@@ -14,14 +14,14 @@
                 </div>
 
                 <div class="flex items-center overflow-hidden text-2xl text-gray-700">
-                    <p class="text-gray-500 mx-1">  {{total}}</p>
+                    <p class="text-gray-500 mx-1">  {{allMyTasksCount}}</p>
                     <span class="text-gray-300 mx-1">/</span>
                     <b class="text-green-300"> {{allMyDoneTasks}}  </b>
                     <i class="ti-check-box text-sm text-green-300 inline-block -mt-1.5 mr-2"></i>
                 </div>
             </h4>
 
-       <TaskRow v-for="task in items" :key="task.id" :task="task" v-if="task.assigned_user_id == $store.state.user.id" @update-list="getData" />
+        <TaskRow v-for="task in items" :key="task.id" :task="task" @update-counts="getTaskCounts" @update-list="getData" />
 
   </AppPage>
 </template>
@@ -35,12 +35,13 @@
             return {
                 loading: false,
                 items: [],
-                total: 0,
+                allMyTasksCount: 0,
                 allMyDoneTasks: 0,
                 allMyNotDoneTasks: 0,
             }
         },
         mounted(){
+            this.getTaskCounts();
             this.getData();
         },
         methods: {
@@ -51,9 +52,15 @@
                 .then(function (response) {
                     that.loading = false;
                     that.items = response.data.data.data;
-                    that.total = response.data.data.total;
-                    that.allMyDoneTasks = response.data.allMyDoneTasks;
-                    that.allMyNotDoneTasks = response.data.allMyNotDoneTasks;
+                });
+            },
+             getTaskCounts(){
+                var that = this;
+                axios.get('analyses/get-current-user-tasks-state')
+                .then(function (response) {
+                    that.allMyTasksCount = response.data.data.allMyTasksCount
+                    that.allMyDoneTasks = response.data.data.allMyDoneTasks
+                    that.allMyNotDoneTasks = response.data.data.allMyNotDoneTasks
                 });
             },
         }

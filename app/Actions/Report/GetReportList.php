@@ -23,7 +23,10 @@ class GetReportList extends Action
         return $tasks = Task::where('done', true)
             ->whereHas('project',  function ($q)
             {
-                $q->where('user_id', auth()->user()->id);
+                $q->where('user_id', auth()->user()->id)->orWhereHas('members',  function ($q)
+                {
+                    $q->where('rule', 'leader');
+                });
             })
             ->whereBetween('done_at', [$this->start ,$this->end])
             ->with('assignedUser', 'project')->get();

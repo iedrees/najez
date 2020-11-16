@@ -36,7 +36,7 @@
 
         <div v-if="showDetail" class="fixed inset-0 overflow-hidden z-50">
             <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="showDetail=false"></div>
 
                 <section class="absolute inset-y-0 right-0 max-w-full flex z-50">
                     <div class="w-screen max-w-2xl">
@@ -67,14 +67,22 @@
                                                   placeholder="">
                                         </textarea>
 
-                                        <div class="flex justify-between bg-cool-gray-100 p-2 rounded-b">
-                                            <AssignTaskToMember :task="currentTask" :project="currentTask.project"
-                                                                @update-list="$emit('update-list')"/>
+                                        <div class="flex justify-between bg-cool-gray-100 p-2">
+                                            <div>
+                                                <!-- <input type="date" v-model="task.start_date" class="p-1.5 h-9 bg-white rounded"  > -->
+                                                <input type="date" v-model="task.end_date" class="p-1.5 h-9 bg-white rounded"  >
+                                                                                        <span v-if="task.end_date" class="text-indigo-700 text-sm"> {{TaskDue}}</span>
+
+                                            </div>
 
                                             <div>
-                                                <PrimaryButton @save="update(task)"> حفظ</PrimaryButton>
-                                                <SecondaryButton @save="deleteRecord(task)"> حذف</SecondaryButton>
+                                                <PrimaryButton @save="update(task)"> حفظ  </PrimaryButton>
+                                                <SecondaryButton @save="deleteRecord(task)"> حذف  </SecondaryButton>
                                             </div>
+                                        </div>
+                                        <div class="flex items-center justify-between bg-cool-gray-100 p-2 rounded-b mt-px">
+                                            <span></span>
+                                            <AssignTaskToMember :task="currentTask" :project="currentTask.project" @update-list="$emit('update-list')" />
                                         </div>
                                     </div>
 
@@ -82,25 +90,22 @@
                                     </div> -->
                                 </div>
 
-                                <div v-if="currentTask && currentTask.activities" class="mt-3">
-                                    <div v-for="activity in currentTask.activities" :key="activity.id"
-                                         class="bg-blue-50 p-2 mb-0.5 text-gray-600">
-                                        <div class="flex justify-between">
-                                            <span v-if="activity.causer">
-                                                <img class="inline-block h-5 w-5 rounded-full"
-                                                     :src="activity.causer.image" alt=""/>
-                                                <span class="text-sm">{{ activity.causer.name }}</span>
-                                            </span>
-                                            <span class="p-1 inline-block px-1 text-sm text-gray-300 flex items-center">
-                                                <span dir="ltr" class="text-xs"
-                                                      title="activity.created_at">{{ activity.created_at }}</span>
-                                            </span>
-                                        </div>
-                                        <div class="text-sm">
-                                            {{ activity.description }}
-                                        </div>
+                                <div class="mb-2">
+                                    <div class="border-t border-dotted bg-cool-gray-200 mx-1 mt-px">
+                                        <nav class="-mb-px flex justify-between">
+                                            <a href="#" @click.prevent="currentTab='commentsTab'" :class="{'border-indigo-500 font-medium text-indigo-600':currentTab=='commentsTab'}" class="w-full py-3 px-1 text-center border-b-2 border-transparent text-sm leading-5  text-gray-500 focus:outline-none " aria-current="page">
+                                            التعليقات
+                                            </a>
+                                            <a href="#" @click.prevent="currentTab='activitiesTab'" :class="{'border-indigo-500 font-medium text-indigo-600':currentTab=='activitiesTab'}" class="w-full py-3 px-1 text-center border-b-2 border-transparent text-sm leading-5  text-gray-500 focus:outline-none">
+                                            الأحداث
+                                            </a>
+                                        </nav>
                                     </div>
                                 </div>
+
+
+                                <TaskComments v-if="currentTab=='commentsTab'" :task="currentTask" @update-comment-list="getData" />
+                                <TaskActivities v-if="currentTab=='activitiesTab'" :activities="currentTask.activities" />
                             </div>
                         </div>
                     </div>
@@ -111,69 +116,88 @@
 </template>
 
 <script>
+import { format, differenceInCalendarDays, parseISO, startOfToday } from 'date-fns';
 export default {
-    props: ['task'],
-    data() {
+    props:['task'],
+    data(){
         return {
             showDetail: false,
             currentTask: {},
+            currentTab: 'commentsTab',
+        }
+    },
+    computed: {
+        TaskDue:  function () {
+            if(this.task.end_date){
+                var days = differenceInCalendarDays(parseISO(this.task.end_date), startOfToday());
+                if(days < 0){
+                    return 'متأخرة'
+                }else{
+                    return differenceInCalendarDays(parseISO(this.task.end_date), startOfToday()) + ' أيام لإنجاز المهمة'
+                }
+            }
         }
     },
     methods: {
-        setDoneStatus(task) {
+        setDoneStatus(task){
             var that = this;
             that.loading = true;
-            axios.post('tasks/' + task.id + '/set-done-status', {
+            axios.post('tasks/'+task.id+'/set-done-status', {
                 done: task.done
             })
-                .then(function (response) {
-                    // console.log(response.data.data)
-                });
+            .then(function (response) {
+                that.$emit('update-counts');
+            });
         },
-        openDetail() {
+        openDetail(){
             var that = this;
             that.showDetail = true;
-            that.loading = true;
-            axios.get('tasks/' + that.task.id)
-                .then(function (response) {
-                    that.loading = false;
-                    that.currentTask = response.data.data;
-                });
+            that.getData();
         },
-        update(task) {
+        getData(){
             var that = this;
-            axios.patch('tasks/' + task.id, {
-                task: task.task,
+            that.loading = true;
+            axios.get('tasks/'+that.task.id)
+            .then(function (response) {
+                that.loading = false;
+                that.currentTask = response.data.data;
+            });
+        },
+        update(task){
+            var that = this;
+            axios.patch('tasks/'+task.id, {
+                task : task.task,
+                start_date : task.start_date,
+                end_date : task.end_date,
             })
-                .then(function (response) {
-                    that.$notify({group: 'app', type: 'success', text: response.data.message});
-                    that.showDetail = false;
-                })
-                .catch(e => {
-                    if (e.response) {
-                        that.$store.commit('setErrors', e.response.data.errors);
-                        that.$notify({group: 'app', type: 'error', text: e.response.data.message});
-                    }
-                });
+            .then(function (response) {
+                that.$notify({group: 'app',type: 'success',text: response.data.message});
+                // that.showDetail = false;
+            })
+            .catch(e => {
+                if(e.response){
+                    that.$store.commit('setErrors', e.response.data.errors);
+                    that.$notify({group: 'app',type: 'error',text: e.response.data.message});
+                }
+            });
         },
         deleteRecord(task) {
-            if (confirm("هل تريد بالتأكيد حذف المهمة؟")) {
+            if(confirm("هل تريد بالتأكيد حذف المهمة؟")){
                 this.deleteIte(task)
             }
         },
-        deleteIte(task) {
+        deleteIte(task){
             var that = this;
-            axios.delete('tasks/' + task.id, {
-                params: {
-                    id: task.id
-                }
-            })
-                .then(function (response) {
-                    that.$emit('update-list');
-                    that.$notify({group: 'app', type: 'success', text: response.data.message});
-                    that.showDetail = false;
+            axios.delete('tasks/'+task.id, { params:{
+                id : task.id
+            }})
+            .then(function (response) {
+                that.$emit('update-list');
+                that.$emit('update-counts');
+                that.$notify({group: 'app',type: 'success',text: response.data.message});
+                that.showDetail = false;
 
-                });
+            });
         },
     }
 }

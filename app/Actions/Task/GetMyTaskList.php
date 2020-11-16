@@ -16,11 +16,9 @@ class GetMyTaskList extends Action
 
     public function handle()
     {
-        return Task::
-        //where('assigned_user_id', auth()->user()->id)
-        //            ->orWhere('user_id', auth()->user()->id)
-        //            ->
-        with('project', 'user', 'assignedUser')
+        return Task::where('assigned_user_id', auth()->user()->id)
+                    ->orWhere('user_id', auth()->user()->id)
+                    ->with('project', 'user', 'assignedUser')
             ->orderBy('created_at', 'desc')
             ->paginate(100);
     }
@@ -30,8 +28,9 @@ class GetMyTaskList extends Action
         return [
             'message' => 'Get my task list',
             'data' => $result,
-            'allMyDoneTasks' => auth()->user()->allMyDoneTasks->count(),
-            'allMyNotDoneTasks' => auth()->user()->allMyNotDoneTasks->count(),
+            'allMyTasksCount'   => auth()->user()->allMyTasks->count(),
+            'allMyDoneTasks'    => auth()->user()->allMyDoneTasks->count(),
+            'allMyNotDoneTasks'    => auth()->user()->allMyNotDoneTasks->count(),
         ];
     }
 }
