@@ -24,7 +24,10 @@ class UpdateTask extends Action
     public function handle($id)
     {
         $item =  Task::where('id', $this->id)->first();
-        $item->task    = $this->task ?: $item->task;
+        $item->task         = $this->task ?: $item->task;
+        // $item->start_date   = $this->start_date ?: $item->start_date;
+        $item->end_date     = $this->end_date ?: $item->end_date;
+        $item->due_date     = $this->end_date ?: $item->end_date;
         $item->save();
 
         return $item ;

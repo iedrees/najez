@@ -31,6 +31,7 @@ class GetProject extends Action
                         });
                 })
                 ->with('user','members.user')
+                ->withCount('tasks', 'doneTasks')
                 ->first();
     }
 

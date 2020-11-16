@@ -4,6 +4,7 @@ namespace App\Actions\Task;
 
 use Lorisleiva\Actions\Action;
 use App\Models\Task;
+use Carbon\Carbon;
 
 class CreateTask extends Action
 {
@@ -30,6 +31,9 @@ class CreateTask extends Action
         $item->assigned_user_id    = auth()->user()->id;
         $item->project_id  = $this->projectId;
         $item->task     = $this->task;
+        $item->start_date     = Carbon::now();
+        $item->end_date     = Carbon::now()->addWeeks(1);
+        $item->due_date     = Carbon::now()->addWeeks(1);
         $item->save();
  
         return $item;
