@@ -6,7 +6,7 @@
             <div class="block focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 py-5 p-2 bg-gray-50 rounded">
-                        <img class="inline-block h-8 w-8 rounded-full text-white shadow-solid"
+                        <img v-if="item.image" class="inline-block h-8 w-8 rounded-full text-white shadow-solid"
                              alt="item.name"
                              :src="item.image" />
                     </div>

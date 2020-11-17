@@ -39,6 +39,8 @@
     </div>
 
 
+    <Loading v-if="loading" />
+    <div v-else>
       <div class="flex flex-col">
           <div class="py-2 overflow-x-auto ">
               <div class="align-middle inline-block min-w-full overflow-hidden sm:rounded-lg shadow-sm">
@@ -80,6 +82,7 @@
                   </table>
               </div>
           </div>
+        </div>
       </div>
 
   </AppPage>

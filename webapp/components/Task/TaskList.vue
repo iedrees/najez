@@ -1,8 +1,11 @@
 <template>
     <div>
         <CreateTask @update-list="getData"/>
-        <!-- v-if="task.project.amILeader || task.assigned_user.id == $store.state.user.id"-->
-        <TaskRow v-for="task in items" :key="task.id" :task="task" @update-list="getData"/>
+
+        <Loading v-if="loading" />
+        <div v-else>
+            <TaskRow v-for="task in items" :key="task.id" :task="task" @update-list="getData"/>
+        </div>
     </div>
 </template>
 

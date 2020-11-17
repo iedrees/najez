@@ -10,7 +10,8 @@
         </div>
     </div>
 
-    <ProjectList />
+    
+    <ProjectList  />
   </AppPage>
   </div>
 </template>
