@@ -22,6 +22,7 @@ class ProjectList extends Action
                         $q->where('user_id', auth()->id());
                     })   
                 ->with('user', 'members.user')
+                ->latest()
                 ->get();
     }
 

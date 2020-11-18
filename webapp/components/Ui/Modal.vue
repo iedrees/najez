@@ -4,8 +4,8 @@
             <div class="fixed inset-0 transition-opacity">
                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
-            <div class="bg-whiteX rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                <header class="px-3 bg-whitex py-3">
+            <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <header class="px-3 bg-whitex bg-cool-gray-100 py-3">
                     <div class="flex items-start justify-between">
                         <slot name="header"> 
                             <h2 class="text-md px-2 leading-7 font-bold text-cool-gray-700">
@@ -13,7 +13,7 @@
                             </h2>
                         
                             <div class="h-7 flex items-center">
-                                <button @click="close"  aria-label="Close panel" class="text-white hover:text-gray-500 transition ease-in-out duration-150 focus:outline-none">
+                                <button @click="close"  aria-label="Close panel" class="text-cool-gray-500 hover:text-gray-600 transition ease-in-out duration-150 focus:outline-none">
                                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
@@ -22,12 +22,12 @@
                         </slot>
                     </div>
                 </header>
-                <div class="w-full mx-auto text-center px-4 sm:p-6 sm:pb-4">
-                    <div class="relative   pb-10 overflow-y-auto">
+                <div class="w-full mx-auto text-center px-2 sm:p-1 sm:pb-4">
+                    
                         <slot>
                             ..
                         </slot> 
-                    </div> 
+                    
                 </div>
                 <div v-if="!hideFooter" class="bg-whitex px-4 py-4 sm:flex  justify-between">
                     <slot name="footer">

@@ -9,7 +9,10 @@
         <TextField v-model="item.details" model="details" label="تفاصيل المشروع" placeholder="تفاصيل المشروع"/>
         <TextField v-model="item.deadline" model="deadline" label="موعد تسليم المشروع" placeholder="موعد تسليم المشروع"/>
 
-        <PrimaryButton @save="save" class="mt-3"> حفظ</PrimaryButton>
+        <div class="flex justify-between mt-3">
+            <PrimaryButton @save="save"> حفظ</PrimaryButton>
+            <SecondaryButton @save="deleteRecord()"> أرشفة المشروع  </SecondaryButton>
+        </div>
     </div>
 </template>
 
@@ -44,21 +47,30 @@ export default {
                 deadline: that.item.deadline,
                 // image: that.item.image,
             })
-                .then(function (response) {
-                    that.$notify({group: 'app', type: 'success', text: response.data.message});
-                })
-                .catch(e => {
-                    if (e.response) {
-                        that.$store.commit('setErrors', e.response.data.errors);
-                        that.$notify({group: 'app', type: 'error', text: e.response.data.message});
-                    }
-                });
-        },
-        loadimage() {
-            var that = this;
-            axios.patch('projects/' + that.$route.params.id, {
-                image: that.item.image,
+            .then(function (response) {
+                that.$notify({group: 'app', type: 'success', text: response.data.message});
             })
+            .catch(e => {
+                if (e.response) {
+                    that.$store.commit('setErrors', e.response.data.errors);
+                    that.$notify({group: 'app', type: 'error', text: e.response.data.message});
+                }
+            });
+        },
+        deleteRecord() {
+            if(confirm("هل تريد بالتأكيد أرشفة هذا المشروع ؟")){
+                this.deleteIte()
+            }
+        },
+        deleteIte(){
+            var that = this;
+            axios.delete('projects/'+that.project.id, { params:{
+                id : that.project.id
+            }})
+            .then(function (response) {
+                that.$notify({group: 'app',type: 'success',text: response.data.message});
+                that.$router.push({ name: 'home'})
+            });
         },
     }
 }

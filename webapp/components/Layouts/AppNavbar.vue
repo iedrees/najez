@@ -1,5 +1,6 @@
 <template>
 <div class="bg-gr sm:px-0">
+  <AddProject :open="openNewProjectModal" @close="openNewProjectModal=false" /> 
   <div class="flex container mx-auto">
 
     <div class="flex-1 px-4 md:px-0 flex justify-between text-white">
@@ -33,7 +34,17 @@
                   <svg class="w-4 h-4 me-2 text-cool-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     الملف الشخصي
                 </router-link>
+            
+               <div class="border-t border-gray-100"></div>
+                <a 
+                    href="#"
+                    @click.prevent="openNewProjectModal=true"
+                    class="flex items-center px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                >
+                <svg class="h-4 w-4 me-2 text-cool-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
 
+                    مشروع جديد 
+                </a> 
                <div class="border-t border-gray-100"></div>
                 <a
                     href="/logout"
@@ -59,6 +70,7 @@
         data(){
             return {
                 open: false,
+                openNewProjectModal: false,
             }
         },
         methods: {
