@@ -65,14 +65,18 @@
                                 <span dir="ltr" class="text-xs text-gray-300"><h1> {{task.done_at}} </h1></span>
                             </td>
                             <td class="px-6 w-48 py-4 bg-gray-50 border-gray-100 border-b-2 text-base leading-5 text-gray-500">
+                               <router-link :to="{name:'projectIndex', params: {id:task.project.id}}" class="text-blue-600 hover:text-blue-500">
                                 {{task.project.name}}
+                               </router-link>
                             </td>
                             <td class="px-6 w-56  max-w-md py-4  text-sm leading-5 font-medium text-gray-900">
-                                <div class="text-gray-700"><h1> {{task.assigned_user.name}} </h1></div>
-                                <span v-if="task.assigned_user.employee_num"  class="text-gray-400 font-bold flex items-center leading-8">
-                                    <svg class="w-4 h-4 me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                                    <span dir="ltr">{{task.assigned_user.employee_num}}</span>
-                                </span>
+                                <div v-if="task.assigned_user">
+                                    <div class="text-gray-700"><h1> {{task.assigned_user.name}} </h1></div>
+                                    <span v-if="task.assigned_user.employee_num"  class="text-gray-400 font-bold flex items-center leading-8">
+                                        <svg class="w-4 h-4 me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                        <span dir="ltr">{{task.assigned_user.employee_num}}</span>
+                                    </span>
+                                </div>
                             </td>
                         </tr>
                       </tbody>
