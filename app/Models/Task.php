@@ -15,7 +15,7 @@ class Task extends Model implements Commentable {
     protected static $recordEvents = ['deleted', 'updated', 'created'];
     protected static $logName = 'Task';
 
-//    protected $with = ['comments.commentable'];
+   protected $appends = ['since'];
 
     public function getDescriptionForEvent(string $eventName): string
     {
@@ -43,5 +43,10 @@ class Task extends Model implements Commentable {
     public function assignedUser()
     {
         return $this->belongsTo(User::class, 'assigned_user_id');
+    }
+
+    public function getSinceAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 }

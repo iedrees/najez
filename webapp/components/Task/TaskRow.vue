@@ -11,23 +11,28 @@
              class="bg-white w-full mb-1 border-gray-200 shadow-sm p-4 rounded  cursor-pointer hover:bg-gray-50 hover:border-blue-200">
             <div class="flex items-start">
                 <div class="flex-grow">
-                    <div class="text-xs mb-2 text-indigo-600" v-if="task.project">{{ task.project.name }}</div>
+                    <div class="text-xs mb-2 text-indigo-600" v-if="showProjectName && task.project">{{ task.project.name }}</div>
                     <span :class="{'line-through text-gray-400': task.done}">{{ task.task }}</span>
                 </div>
 
                 <div>
                     <div class="p-1 inline-block px-1 text-sm text-gray-300 flex items-center">
-                        <span dir="ltr" class="text-xs" title="task.created_at">{{ task.created_at }}</span>
+                        <span dir="ltr" class="text-xs" :title="task.created_at">{{ task.since }}</span>
                     </div>
                     <div
-                        class="inline-flex items-center rounded-md border border-green-300 px-1 py-1 bg-green-100 text-green-500 text-sm leading-4">
+                        :class="{'border-green-200 bg-green-100 text-green-500': task.assigned_user != null}"
+                        class="inline-flex items-center rounded-md border bg-cool-gray-50 text-cool-gray-500 px-1 py-1 text-sm leading-5">
                         <svg class="h-4 w-4 " fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                   d="M9 3a1 1 0 012 0v5.5a.5.5 0 001 0V4a1 1 0 112 0v4.5a.5.5 0 001 0V6a1 1 0 112 0v5a7 7 0 11-14 0V9a1 1 0 012 0v2.5a.5.5 0 001 0V4a1 1 0 012 0v4.5a.5.5 0 001 0V3z"
                                   clip-rule="evenodd"></path>
                         </svg>
-                        <div class="mx-1 -mb-1" v-if="task.assigned_user">
+                        <div class="mx-1 flex items-center leading-5" v-if="task.assigned_user">
                             {{ task.assigned_user.name }}
+                            <img v-if="task.assigned_user.image" :src="task.assigned_user.image" class="ms-1 rounded-full h-4 w-4" alt="">
+                        </div>
+                        <div class="mx-1 leading-5" v-else>
+                            بدون تعيين
                         </div>
                     </div>
                 </div>
@@ -71,7 +76,7 @@
                                             <div>
                                                 <!-- <input type="date" v-model="task.start_date" class="p-1.5 h-9 bg-white rounded"  > -->
                                                 <input type="date" v-model="task.end_date" class="p-1.5 h-9 bg-white rounded"  >
-                                                                                        <span v-if="task.end_date" class="text-indigo-700 text-sm"> {{TaskDue}}</span>
+                                                <span v-if="task.end_date" class="text-indigo-700 text-sm"> {{TaskDue}}</span>
 
                                             </div>
 
@@ -82,7 +87,7 @@
                                         </div>
                                         <div class="flex items-center justify-between bg-cool-gray-100 p-2 rounded-b mt-px">
                                             <span></span>
-                                            <AssignTaskToMember :task="currentTask" :project="currentTask.project" @update-list="$emit('update-list')" />
+                                            <AssignTaskToMember :task="currentTask" :project="project" @update-list="$emit('update-list')" />
                                         </div>
                                     </div>
 
@@ -118,7 +123,7 @@
 <script>
 import { format, differenceInCalendarDays, parseISO, startOfToday } from 'date-fns';
 export default {
-    props:['task'],
+    props:['task', 'project', 'showProjectName'],
     data(){
         return {
             showDetail: false,

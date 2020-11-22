@@ -17,7 +17,6 @@ class AssignTaskToUser extends Action
     {
         return [
             'id' => ['required', 'exists:tasks,id'],
-            'assigned_user_id' => ['required'],
         ];
     }
  

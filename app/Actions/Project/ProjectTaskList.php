@@ -24,9 +24,15 @@ class ProjectTaskList extends Action
     public function handle()
     {
         return Task::where('project_id', $this->id)
+            // ->whereNull('assigned_user_id')
+            // ->where(function ($w)
+            // {
+            //     $w->whereNull('assigned_user_id');
+            // }
             ->where(function ($w)
             {
-                $w->whereHas('assignedUser',  function ($q)
+                $w->whereNull('assigned_user_id')
+                ->orWhereHas('assignedUser',  function ($q)
                 {
                     $q->where('id', auth()->user()->id);
                 })

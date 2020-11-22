@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=milano,sky,sky-bold,shekari,almawadah,hama,neckar" />
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet" sync>
         {{-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&family=Lalezar&display=swap" rel="stylesheet"> --}}
     </head>
 

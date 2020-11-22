@@ -1,16 +1,17 @@
 <template>
     <div>
         <CreateTask @update-list="getData"/>
-
+ 
         <Loading v-if="loading" />
         <div v-else>
-            <TaskRow v-for="task in items" :key="task.id" :task="task" @update-list="getData"/>
+            <TaskRow v-for="task in items" :key="task.id" :task="task" @update-list="getData" :project="project" />
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: ['project'],
     data() {
         return {
             loading: false,

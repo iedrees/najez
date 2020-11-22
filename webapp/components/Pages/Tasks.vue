@@ -23,7 +23,7 @@
 
         <Loading v-if="loading" />
         <div v-else>
-            <TaskRow v-for="task in items" :key="task.id" :task="task" @update-counts="getTaskCounts" @update-list="getData" />
+            <TaskRow v-for="task in items" :key="task.id" :task="task" @update-counts="getTaskCounts" @update-list="getData" :showProjectName="true" />
         </div>
   </AppPage>
 </template>

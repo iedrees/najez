@@ -1,7 +1,7 @@
 <template>
   <div>
 
-      <TaskList :projectId="project.id"  />
+      <TaskList :project="project" :projectId="project.id"  />
 
   </div>
 </template>

@@ -28,7 +28,7 @@ class CreateTask extends Action
     {
         $item = new Task();
         $item->user_id    = auth()->user()->id;
-        $item->assigned_user_id    = auth()->user()->id;
+        // $item->assigned_user_id    = auth()->user()->id;
         $item->project_id  = $this->projectId;
         $item->task     = $this->task;
         $item->start_date     = Carbon::now();

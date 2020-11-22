@@ -11,7 +11,7 @@
 
         <div class="flex justify-between mt-3">
             <PrimaryButton @save="save"> حفظ</PrimaryButton>
-            <SecondaryButton @save="deleteRecord()"> أرشفة المشروع  </SecondaryButton>
+            <SecondaryButton v-if="item.user_id == $store.state.user.id" @save="deleteRecord()"> أرشفة المشروع  </SecondaryButton>
         </div>
     </div>
 </template>
