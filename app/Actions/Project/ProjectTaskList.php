@@ -24,24 +24,21 @@ class ProjectTaskList extends Action
     public function handle()
     {
         return Task::where('project_id', $this->id)
-            // ->whereNull('assigned_user_id')
-            // ->where(function ($w)
-            // {
-            //     $w->whereNull('assigned_user_id');
-            // }
             ->where(function ($w)
             {
-                $w->whereNull('assigned_user_id')
-                ->orWhereHas('assignedUser',  function ($q)
+                $w->whereHas('assignedUser',  function ($q)
                 {
                     $q->where('id', auth()->user()->id);
                 })
-                ->orWhereHas('project',  function ($q)
-                {
-                    $q->where('user_id', auth()->user()->id)
-                    ->orWhereHas('members',  function ($q)
+                ->orWhere(function ($w){
+                    $w->orWhereHas('project',  function ($q)
                     {
-                        $q->where('rule', 'leader');
+                        $q->where('user_id', auth()->user()->id)
+                        ->orWhereHas('members',  function ($q)
+                        {
+                            $q->where('rule', 'leader');
+                        })
+                        ->orWhereNull('assigned_user_id');
                     });
                 });
             })
