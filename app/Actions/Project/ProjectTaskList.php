@@ -2,6 +2,7 @@
 
 namespace App\Actions\Project;
 
+//use App\Http\Resources\TaskTransformer;
 use Lorisleiva\Actions\Action;
 use App\Models\Task;
 
@@ -29,16 +30,11 @@ class ProjectTaskList extends Action
                 $w->whereHas('assignedUser',  function ($q)
                 {
                     $q->where('id', auth()->user()->id);
-                })
-                ->orWhere(function ($w){
+                })->orWhereNull('assigned_user_id')
+                    ->orWhere(function ($w){
                     $w->orWhereHas('project',  function ($q)
                     {
-                        $q->where('user_id', auth()->user()->id)
-                        ->orWhereHas('members',  function ($q)
-                        {
-                            $q->where('rule', 'leader');
-                        })
-                        ->orWhereNull('assigned_user_id');
+                        $q->where('user_id', auth()->user()->id);
                     });
                 });
             })
@@ -53,6 +49,7 @@ class ProjectTaskList extends Action
         return [
             'message' => 'Get project task list',
             'data' => $result,
+//            'data' => TaskTransformer::collection($result),
         ];
     }
 }

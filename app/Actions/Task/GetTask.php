@@ -2,6 +2,7 @@
 
 namespace App\Actions\Task;
 
+//use App\Http\Resources\TaskTransformer;
 use Lorisleiva\Actions\Action;
 use App\Models\Task;
 
@@ -30,6 +31,7 @@ class GetTask extends Action
         return [
             'message' => 'Fetch task data.',
             'data' => $result,
+//            'data' => TaskTransformer::collection($result),
         ];
     }
 }

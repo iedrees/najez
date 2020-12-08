@@ -2,6 +2,7 @@
 
 namespace App\Actions\Task;
 
+//use App\Http\Resources\TaskTransformer;
 use Lorisleiva\Actions\Action;
 use App\Models\Task;
 
@@ -13,7 +14,7 @@ class TaskList extends Action
                ->prefix('api')
                ->get('tasks', static::class);
     }
-  
+
     public function handle()
     {
         return Task::with('user', 'assignedUser', 'project')
@@ -25,8 +26,9 @@ class TaskList extends Action
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'Get task list', 
+            'message' => 'Get task list',
             'data' => $result,
+//            'data' => TaskTransformer::collection($result),
         ];
     }
 }
