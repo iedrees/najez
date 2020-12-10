@@ -28,7 +28,7 @@ class CreateProject extends Action
 
 
         if($countProjects >= 20) {
-            return 'no';
+            return 'Creating Limit';
         }
         $item = new Project();
         $item->name     = $this->name;
@@ -41,7 +41,7 @@ class CreateProject extends Action
 
     public function jsonResponse($result, $request)
     {
-        if($result == 'no'){
+        if($result == 'Creating Limit'){
             return response()->json([
                 'message' => 'لا يمكن انشاء اكثر من ٢٠ مشروع ',
             ], 400);

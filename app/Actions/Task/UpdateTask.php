@@ -32,11 +32,11 @@ class UpdateTask extends Action
 
         return $item ;
     }
- 
+
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'تم حفظ المهمة بنجاح.', 
+            'message' => 'تم حفظ المهمة بنجاح.',
             'data' => $result,
         ];
     }

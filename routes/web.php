@@ -57,7 +57,7 @@ Route::middleware('guest')->group(function () {
 Route::view('password/reset', 'auth.passwords.email')->name('password.request');
 Route::get('password/reset/{token}', 'App\Http\Controllers\Auth\PasswordResetController')->name('password.reset');
 
-// web app 
+// web app
 Route::namespace('\App\Actions')->middleware(['auth'])->group(function () {
     Route::get('logout', User\LogoutUser::class)->name('logout');
     Route::get('{any?}', WebApp::class)->name('app')->where('any', '.*');

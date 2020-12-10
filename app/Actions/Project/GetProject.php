@@ -25,7 +25,7 @@ class GetProject extends Action
         return Project::where('id', $this->id)
                 ->where(function ($query)
                 {
-                    $query->where('user_id', auth()->id()) 
+                    $query->where('user_id', auth()->id())
                         ->orWhereHas('members', function ($q){
                             $q->where('user_id', auth()->id());
                         });
@@ -38,7 +38,7 @@ class GetProject extends Action
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'Fetch Project data.', 
+            'message' => 'Fetch Project data.',
             'data' => $result,
         ];
     }
