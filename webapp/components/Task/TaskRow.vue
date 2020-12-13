@@ -28,7 +28,6 @@
                                   clip-rule="evenodd"></path>
                         </svg>
                         <div class="mx-1 flex items-center leading-5" v-if="task.assigned_user">
-                            {{task}}
                             {{ task.assigned_user.name }}
                             <img v-if="task.assigned_user.image" :src="task.assigned_user.image" class="ms-1 rounded-full h-4 w-4" alt="">
                         </div>

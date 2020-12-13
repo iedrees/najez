@@ -35,15 +35,13 @@ class ProjectTaskList extends Action
                     ->orWhere(function ($w){
                         $w->orWhereHas('project',  function ($q)
                         {
-                            $q->where('user_id', auth()->user()->id)
-                                ->orWhereHas('members',  function ($p)
-                                {
-                                    $p->where('rule', 'leader');
-                                })
-                                ->orWhereNull('assigned_user_id');
+                            $q->where('user_id', auth()->user()->id)->orWhereHas('members', function ($q) {
+                                $q->where('user_id', auth()->user()->id)->where('rule', 'leader')
+                                    ->orWhereNull('assigned_user_id');
                         });
                     });
-            })
+            });
+                      })
             ->with('user', 'assignedUser', 'project')
             ->latest()
             ->get();
@@ -52,11 +50,10 @@ class ProjectTaskList extends Action
     }
 
     public function jsonResponse($result, $request)
-    {logger('$result'.$result);
+    {
         return [
             'message' => 'Get project task list',
-            'data' => $result,
-//            'data' => TaskTransformer::collection($result),
+            'data' => TaskTransformer::collection($result),
         ];
     }
 }
