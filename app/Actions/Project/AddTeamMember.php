@@ -13,7 +13,7 @@ class AddTeamMember extends Action
             ->prefix('api')
             ->post('projects/{id}/team', static::class);
     }
-   
+
     public function rules()
     {
         return [
@@ -21,23 +21,23 @@ class AddTeamMember extends Action
             'userId' => ['required'],
         ];
     }
- 
+
     public function handle()
     {
         return ProjectMember::firstOrCreate([
             'user_id' => $this->userId,
             'project_id' => $this->projectId,
         ], [
-            'rule' => 'member', // todo assign rule 
+            'rule' => 'member',
         ]);
     }
 
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'تم إضافة العضو للفريق بنجاح!', 
+            'message' => 'تم إضافة العضو للفريق بنجاح!',
             'data' => $result ,
         ];
     }
-  
+
 }

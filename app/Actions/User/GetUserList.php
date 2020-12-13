@@ -2,6 +2,7 @@
 
 namespace App\Actions\User;
 
+use App\Http\Resources\UserTransformer;
 use Lorisleiva\Actions\Action;
 use App\Models\User;
 
@@ -13,7 +14,7 @@ class GetUserList extends Action
                ->prefix('api')
                ->get('users', static::class);
     }
- 
+
     public function handle()
     {
         return User::where('name', 'LIKE', "%{$this->search}%")
@@ -24,8 +25,8 @@ class GetUserList extends Action
     public function jsonResponse($result, $request)
     {
         return [
-            'message' => 'Project list', 
-            'data' => $result,
+            'message' => 'Project list',
+            'data' => UserTransformer::collection($result),
         ];
     }
 }
