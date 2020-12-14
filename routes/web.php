@@ -3,24 +3,24 @@
 
 
 // Projects
-//Route::middleware('auth')->prefix('old')->group(function () {
-//    // Route::livewire('/', 'home.home')->name('home');
-//    Route::get('//', \App\Http\Livewire\Home\Home::class)->name('home');
-//
-//
-//    Route::as('projects.')->prefix('/projects/{id}')->group(function () {
-//        Route::get('/', \App\Http\Livewire\Projects\Show::class)->name('show');
-//        Route::get('settings', \App\Http\Livewire\Projects\Settings::class)->name('settings');
-//        Route::get('members', \App\Http\Livewire\Projects\Members::class)->name('members');
-//        // Route::livewire('/', 'projects.show')->name('show');
-//        // Route::livewire('/settings', 'projects.settings')->name('settings');
-//        // Route::livewire('/members', 'projects.members')->name('members');
-//    });
-//
-//    Route::get('create-project', \App\Http\Livewire\Projects\ProjectCreate::class)->name('create-project');
-//
-//    // Route::livewire('create-project', 'projects.project-create')->name('create-project');
-//});
+Route::middleware('auth')->prefix('old')->group(function () {
+   // Route::livewire('/', 'home.home')->name('home');
+   Route::get('//', \App\Http\Livewire\Home\Home::class)->name('home');
+
+
+   Route::as('projects.')->prefix('/projects/{id}')->group(function () {
+       Route::get('/', \App\Http\Livewire\Projects\Show::class)->name('show');
+       Route::get('settings', \App\Http\Livewire\Projects\Settings::class)->name('settings');
+       Route::get('members', \App\Http\Livewire\Projects\Members::class)->name('members');
+       // Route::livewire('/', 'projects.show')->name('show');
+       // Route::livewire('/settings', 'projects.settings')->name('settings');
+       // Route::livewire('/members', 'projects.members')->name('members');
+   });
+
+   Route::get('create-project', \App\Http\Livewire\Projects\ProjectCreate::class)->name('create-project');
+
+   // Route::livewire('create-project', 'projects.project-create')->name('create-project');
+});
 
 //// Download Reports
 //Route::prefix('old')->get('reports/view-pdf/{start}/{end}', 'App\Http\Controllers\PdfController@viewPDF');
