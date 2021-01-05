@@ -13,6 +13,7 @@
                 <div class="flex-grow">
                     <div class="text-xs mb-2 text-indigo-600" v-if="showProjectName && task.project">{{ task.project.name }}</div>
                     <span :class="{'line-through text-gray-400': task.done}">{{ task.task }}</span>
+                    <span v-if="task.done" class="block text-xs mt-2 text-green-500" :title="task.done_at">تمت {{ task.done_since }}</span>
                 </div>
 
                 <div>
@@ -147,11 +148,14 @@ export default {
         setDoneStatus(task){
             var that = this;
             that.loading = true;
+    
+            
             axios.post('tasks/'+task.id+'/set-done-status', {
                 done: task.done
             })
             .then(function (response) {
                 that.$emit('update-counts');
+                that.$emit('update-list');
             });
         },
         openDetail(){

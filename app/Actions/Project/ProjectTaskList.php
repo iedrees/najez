@@ -51,9 +51,12 @@ class ProjectTaskList extends Action
 
     public function jsonResponse($result, $request)
     {
+     
         return [
             'message' => 'Get project task list',
             'data' => TaskTransformer::collection($result),
+            'doneTasks' => TaskTransformer::collection(data_get($result->groupBy('done'), '1', [])),
+            'notDoneTasks' => TaskTransformer::collection(data_get($result->groupBy('done'), '0', [])),
         ];
     }
 }
