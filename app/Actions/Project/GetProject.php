@@ -35,6 +35,7 @@ class GetProject extends Action
                 ->first();
     }
 
+
     public function jsonResponse($result, $request)
     {
         return [
